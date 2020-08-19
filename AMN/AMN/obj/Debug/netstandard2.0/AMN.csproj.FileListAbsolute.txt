@@ -1,0 +1,14 @@
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\bin\Debug\netstandard2.0\AMN.deps.json
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\bin\Debug\netstandard2.0\AMN.dll
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\bin\Debug\netstandard2.0\ref\AMN.dll
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\bin\Debug\netstandard2.0\AMN.pdb
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\AMN.csprojAssemblyReference.cache
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\App.xaml.g.cs
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\AMN.AssemblyInfoInputs.cache
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\AMN.AssemblyInfo.cs
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\AMN.csproj.CoreCompileInputs.cache
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\XamlC.stamp
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\AMN.dll
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\ref\AMN.dll
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\AMN.pdb

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AMN.MainPage">
+
+    <StackLayout>
+        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+            <Label Text="Advanced Macro Nutrients" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+        </Frame>
+        <StackLayout Margin="50,0">
+            <!-- Place new controls here -->
+           HorizontalOptions="Center" TextColor="Black" FontSize="Large" Margin="0,50" />
+            <Button Text="Diet" Margin="0,20,0,10" Clicked="Button_Clicked"></Button>
+            <Button Text="Exercises" Margin="0,10" Clicked="Button_Clicked"></Button>
+            <Button Text="Progress" Margin="0,10" Clicked="Button_Clicked"></Button>
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>
