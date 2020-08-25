@@ -57,3 +57,16 @@ C:\Users\Min\source\repos\AMNRepo\AMN\AMN.iOS\obj\iPhone\Debug\XamlC.stamp
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN.iOS\obj\iPhone\Debug\AMN.iOS.csproj.CopyComplete
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN.iOS\obj\iPhone\Debug\AMN.iOS.exe
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN.iOS\obj\iPhone\Debug\AMN.iOS.pdb
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN.iOS\bin\iPhone\Debug\Firebase.dll
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN.iOS\bin\iPhone\Debug\LiteDB.dll
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN.iOS\bin\iPhone\Debug\Newtonsoft.Json.dll
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN.iOS\bin\iPhone\Debug\System.Reactive.dll
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN.iOS\bin\iPhone\Debug\Firebase.Auth.dll
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN.iOS\bin\iPhone\Debug\System.IO.Compression.dll
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN.iOS\bin\iPhone\Debug\System.Net.Http.dll
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN.iOS\bin\iPhone\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN.iOS\bin\iPhone\Debug\System.Security.Cryptography.Algorithms.dll
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN.iOS\bin\iPhone\Debug\System.Security.Cryptography.Encoding.dll
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN.iOS\bin\iPhone\Debug\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN.iOS\bin\iPhone\Debug\BCrypt.Net-Core.dll
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN.iOS\bin\iPhone\Debug\BCrypt.Net-Core.pdb
