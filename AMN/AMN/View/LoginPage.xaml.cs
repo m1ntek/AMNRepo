@@ -40,10 +40,12 @@ namespace AMN
 
             try
             {
+                actInd.IsRunning = true;
                 await MasterController.DAL.SignInUser(entryEmail.Text, entryPassword.Text);
                 MasterController.currentUser.email = entryEmail.Text;
                 ClearForm();
                 await Navigation.PopToRootAsync();
+                actInd.IsRunning = false;
                 MasterController.currentUser.rememberMe = chkboxRememberMe.IsChecked;
                 await MasterController.DAL.UpdateUser();
             }
