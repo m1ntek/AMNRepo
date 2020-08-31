@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "mtv+vx63X4brydCDSXHscrBixzVavFDkizgyLIj3xMIqhFu7sJE2XAjYC4ZYhof1gb9pq+HUknjNdGhYg1tzeg==",
+  "dgSpecHash": "/KPVytTI9i76T1PAFr4K6y34AjIX7JaP28Nfa/JQqGnXeDULuesHl51oaa1nWhs7xBDJanyRoysfANX4H/SQ2w==",
   "success": true,
   "projectFilePath": "C:\\Users\\Min\\source\\repos\\AMNRepo\\AMN\\AMN\\AMN.csproj",
   "expectedPackageFiles": [
@@ -23,7 +23,7 @@
     "C:\\Users\\Min\\.nuget\\packages\\system.text.encoding\\4.3.0\\system.text.encoding.4.3.0.nupkg.sha512",
     "C:\\Users\\Min\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
     "C:\\Users\\Min\\.nuget\\packages\\xamarin.essentials\\1.5.3.2\\xamarin.essentials.1.5.3.2.nupkg.sha512",
-    "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.forms\\4.6.0.1141\\xamarin.forms.4.6.0.1141.nupkg.sha512"
+    "C:\\Users\\Min\\.nuget\\packages\\xamarin.forms\\4.8.0.1364\\xamarin.forms.4.8.0.1364.nupkg.sha512"
   ],
   "logs": []
 }

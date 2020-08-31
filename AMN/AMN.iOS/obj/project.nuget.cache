@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "VyMPbMzANm0jWp1+HFC+1Xw2QRSKtIWPuEfnzFtdCCg3AqlwrEdSEBtH0hBBiMCq7P+7/5kV3ElokN2NjzD7Pw==",
+  "dgSpecHash": "huIxkOIQU9CkYq6wQ/4XnvMEt0uvF7gXm6+CakJsQ+VSk8bXdT4iNtDjtgvKnt2bEdDo9dNBA7gkSxJe7ztfXw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Min\\source\\repos\\AMNRepo\\AMN\\AMN.iOS\\AMN.iOS.csproj",
   "expectedPackageFiles": [
@@ -58,7 +58,7 @@
     "C:\\Users\\Min\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\Min\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\Min\\.nuget\\packages\\xamarin.essentials\\1.5.3.2\\xamarin.essentials.1.5.3.2.nupkg.sha512",
-    "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.forms\\4.6.0.1141\\xamarin.forms.4.6.0.1141.nupkg.sha512"
+    "C:\\Users\\Min\\.nuget\\packages\\xamarin.forms\\4.8.0.1364\\xamarin.forms.4.8.0.1364.nupkg.sha512"
   ],
   "logs": []
 }
