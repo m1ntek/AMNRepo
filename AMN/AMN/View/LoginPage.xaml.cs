@@ -18,25 +18,25 @@ namespace AMN
             InitializeComponent();
         }
 
-        private void RememberMeRow_Tapped(object sender, EventArgs e)
-        {
-            //toggle remember me
-            if (chkboxRememberMe.IsChecked == false)
-            {
-                chkboxRememberMe.IsChecked = true;
-            }
-            else
-            {
-                chkboxRememberMe.IsChecked = false;
-            }
-        }
+        //private void RememberMeRow_Tapped(object sender, EventArgs e)
+        //{
+        //    //toggle remember me
+        //    if (chkboxRememberMe.IsChecked == false)
+        //    {
+        //        chkboxRememberMe.IsChecked = true;
+        //    }
+        //    else
+        //    {
+        //        chkboxRememberMe.IsChecked = false;
+        //    }
+        //}
 
         private async void Login_Clicked(object sender, EventArgs e)
         {
-            if (chkboxRememberMe.IsChecked == true)
-            {
+            //if (chkboxRememberMe.IsChecked == true)
+            //{
                 
-            }
+            //}
 
             try
             {
@@ -46,7 +46,7 @@ namespace AMN
                 ClearForm();
                 await Navigation.PopToRootAsync();
                 actInd.IsRunning = false;
-                MasterController.currentUser.rememberMe = chkboxRememberMe.IsChecked;
+                //MasterController.currentUser.rememberMe = chkboxRememberMe.IsChecked;
                 await MasterController.DAL.UpdateUser();
             }
             catch (Exception exception)
@@ -62,9 +62,9 @@ namespace AMN
             entryPassword.Text = "";
         }
 
-        private void chkboxRememberMe_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
-            RememberMeRow_Tapped(sender, e);
-        }
+        //private void chkboxRememberMe_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        //{
+        //    RememberMeRow_Tapped(sender, e);
+        //}
     }
 }

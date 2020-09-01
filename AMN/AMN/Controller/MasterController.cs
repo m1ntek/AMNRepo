@@ -11,5 +11,6 @@ namespace AMN.Controller
         public static LoginController loginC = new LoginController();
         public static Validator vd = new Validator();
         public static Person currentUser = new Person();
+        public static APIController apiC = new APIController();
     }
 }

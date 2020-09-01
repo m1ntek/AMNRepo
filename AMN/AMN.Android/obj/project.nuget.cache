@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ir31RlaiECLXElXn67cMN5I3uvC3Pnujeu3JYTQV6fUHke/KGm+n/BNFkc6ve/ATYOLb7JxBd14BwLHbbAVh7g==",
+  "dgSpecHash": "upx3PhEliCGu+rNLu5RovFs/1YP9T2+kNuMtKA7Y7Fev9EclwqP2gnRjN03gnCHyJs+xKFdgnbOq0S4NETiwyw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Min\\source\\repos\\AMNRepo\\AMN\\AMN.Android\\AMN.Android.csproj",
   "expectedPackageFiles": [
@@ -11,7 +11,7 @@
     "C:\\Users\\Min\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\Min\\.nuget\\packages\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\Min\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
-    "C:\\Users\\Min\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
+    "C:\\Users\\Min\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\Min\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\Min\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
     "C:\\Users\\Min\\.nuget\\packages\\system.collections.concurrent\\4.3.0\\system.collections.concurrent.4.3.0.nupkg.sha512",

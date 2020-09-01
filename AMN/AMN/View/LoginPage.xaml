@@ -15,6 +15,7 @@
                     <Label FontSize="Large" TextColor="Black">Password:</Label>
                     <Entry x:Name="entryPassword" IsPassword="True" FontSize="Large" TextColor="Black"
                            Placeholder="Your password..."></Entry>
+                    <!--
                     <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
                         <Label Text="Remember me?" FontSize="Medium" TextColor="Black" VerticalOptions="Center"></Label>
                         <CheckBox x:Name="chkboxRememberMe" Color="#2196F3"></CheckBox>
@@ -22,6 +23,7 @@
                             <TapGestureRecognizer Tapped="RememberMeRow_Tapped"></TapGestureRecognizer>
                         </StackLayout.GestureRecognizers>
                     </StackLayout>
+                    -->
                     <Button Text="Login" Margin="0,20,0,0" BackgroundColor="#2196F3" TextColor="White" FontSize="Medium"
                             Clicked="Login_Clicked"></Button>
                     <ActivityIndicator x:Name="actInd" IsRunning="False" VerticalOptions="Center" Margin="0,20,0,0"></ActivityIndicator>

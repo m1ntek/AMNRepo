@@ -10,6 +10,7 @@ using AMN;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using AMN.Controller;
+using Xamarin.Essentials;
 
 public class DataAccessLayer
 {
@@ -54,6 +55,6 @@ public class DataAccessLayer
 
     public async Task SignUpUser(string _email, string _pw)
     {
-        auth = await authProvider.CreateUserWithEmailAndPasswordAsync(_email, _pw, _email, true);
+        auth = await authProvider.CreateUserWithEmailAndPasswordAsync(_email, _pw, _email, false);
     }
 }

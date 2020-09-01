@@ -4,6 +4,7 @@ using System.Text;
 using BCrypt;
 using BCrypt.Net;
 using System.IO;
+using Xamarin.Essentials;
 
 namespace AMN.Controller
 {
@@ -12,17 +13,6 @@ namespace AMN.Controller
         public string UpdateFooter(string user)
         {
             return $"Logged in as {user}.";
-        }
-
-        public string SecurePw(string pw)
-        {
-            //*********************
-            return BCrypt.Net.BCrypt.HashPassword(pw, 12);
-        }
-
-        public async void RememberMe()
-        {
-   
         }
     }
 }

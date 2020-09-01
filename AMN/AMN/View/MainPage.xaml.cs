@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using System.IO;
+using AMN.View;
 
 namespace AMN
 {
@@ -17,9 +18,9 @@ namespace AMN
             InitializeComponent();
         }
 
-        private void Nutrition_Clicked(object sender, EventArgs e)
+        private async void Nutrition_Clicked(object sender, EventArgs e)
         {
-
+            await Navigation.PushAsync(new NutritionPage());
         }
 
         private void Exercises_Clicked(object sender, EventArgs e)

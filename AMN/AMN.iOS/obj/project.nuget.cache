@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "huIxkOIQU9CkYq6wQ/4XnvMEt0uvF7gXm6+CakJsQ+VSk8bXdT4iNtDjtgvKnt2bEdDo9dNBA7gkSxJe7ztfXw==",
+  "dgSpecHash": "B5bt948TeVPwYXTkIroD38DKJmKOtPoweBublnt+/KO+AOtSHubKortozgAYbRC7URzr66foC2DU9l2b/t/avg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Min\\source\\repos\\AMNRepo\\AMN\\AMN.iOS\\AMN.iOS.csproj",
   "expectedPackageFiles": [
@@ -11,7 +11,7 @@
     "C:\\Users\\Min\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\Min\\.nuget\\packages\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\Min\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
-    "C:\\Users\\Min\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
+    "C:\\Users\\Min\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\Min\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\Min\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
     "C:\\Users\\Min\\.nuget\\packages\\system.collections.concurrent\\4.3.0\\system.collections.concurrent.4.3.0.nupkg.sha512",
