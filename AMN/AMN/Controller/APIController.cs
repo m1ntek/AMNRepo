@@ -27,7 +27,7 @@ namespace AMN.Controller
             {
                 if(i==0)
                 {
-                    convertedString = words[i];
+                    convertedString = $"1%20{words[i]}";
                 }
                 else
                 {
