@@ -25,7 +25,8 @@
                         </Grid.RowDefinitions>
                         <!-- name -->
                         <Label Text="Name:" FontSize="Large" TextColor="Black"></Label>
-                        <Entry x:Name="entryName" Grid.Column="1" PropertyChanged="entryName_PropertyChanged"></Entry>
+                        <Entry x:Name="entryName" Grid.Column="1" Unfocused="entryName_Unfocused"></Entry>
+                        <ActivityIndicator x:Name="actName" IsRunning="False" Grid.Column="2"></ActivityIndicator>
                         
                         <!-- grouped form -->
                         <Grid Grid.RowSpan="5" Grid.ColumnSpan="3" x:Name="macroFormGrid" IsVisible="False">
@@ -64,7 +65,7 @@
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <StackLayout>
-                                        <Label Text="{Binding parsed[0].food}" TextColor="White"></Label>
+                                        <Label Text="{Binding text}" TextColor="White"></Label>
                                     </StackLayout>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
