@@ -4,6 +4,7 @@ using System.Text;
 using Newtonsoft.Json;
 using System.Net;
 using AMN.Model;
+using System.Threading.Tasks;
 
 namespace AMN.Controller
 {
@@ -22,10 +23,11 @@ namespace AMN.Controller
         private string ConvertSpaces(string search)
         {
             string convertedString = null;
+
             string[] words = search.Split(' ');
             for (int i = 0; i < words.Length; i++)
             {
-                if(i==0)
+                if (i == 0)
                 {
                     convertedString = $"1%20{words[i]}";
                 }
@@ -34,6 +36,7 @@ namespace AMN.Controller
                     convertedString += $"%20{words[i]}";
                 }
             }
+
             return convertedString;
         }
     }

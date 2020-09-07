@@ -15,3 +15,4 @@ C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\Nutritio
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\AMN.csproj.CoreCompileInputs.cache
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\XamlC.stamp
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\AMN.csprojAssemblyReference.cache
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\AddMealPage.xaml.g.cs

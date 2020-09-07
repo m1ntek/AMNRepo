@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AMN.View.AddMealPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+                    <Label Text="Add A Meal" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+                </Frame>
+                <StackLayout Margin="50,10" VerticalOptions="StartAndExpand">
+                    <!-- grid for form -->
+                    <Grid Margin="0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="0.33*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <!-- name -->
+                        <Label Text="Name:" FontSize="Large" TextColor="Black"></Label>
+                        <Entry x:Name="entryName" Grid.Column="1" PropertyChanged="entryName_PropertyChanged"></Entry>
+                        
+                        <!-- grouped form -->
+                        <Grid Grid.RowSpan="5" Grid.ColumnSpan="3" x:Name="macroFormGrid" IsVisible="False">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="0.33*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <!-- left column -->
+                            <Label Text="Energy:" FontSize="Large" TextColor="Black" Grid.Row="1"></Label>
+                            <Label Text="Carbs:" FontSize="Large" TextColor="Black" Grid.Row="2"></Label>
+                            <Label Text="Fat:" FontSize="Large" TextColor="Black" Grid.Row="3"></Label>
+                            <Label Text="Serving:" FontSize="Large" TextColor="Black" Grid.Row="4"></Label>
+
+                            <!-- mid column -->
+                            <Entry Grid.Column="1" Grid.Row="1"></Entry>
+                            <Entry Grid.Column="1" Grid.Row="2"></Entry>
+                            <Entry Grid.Column="1" Grid.Row="3"></Entry>
+                            <Entry Grid.Column="1" Grid.Row="4"></Entry>
+
+                            <!-- right column -->
+                            <Label Text="kcal" FontSize="Large" TextColor="Black" Grid.Row="1" Grid.Column="2"></Label>
+                            <Label Text="g" FontSize="Large" TextColor="Black" Grid.Row="2" Grid.Column="2"></Label>
+                            <Label Text="g" FontSize="Large" TextColor="Black" Grid.Row="3" Grid.Column="2"></Label>
+                            <Label Text="g" FontSize="Large" TextColor="Black" Grid.Row="4" Grid.Column="2"></Label>
+                        </Grid>
+
+                        <ListView BackgroundColor="Red" Grid.Row="1" Grid.RowSpan="5" Grid.ColumnSpan="3">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <Label Text="{Binding parsed[0].food}" TextColor="White"></Label>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+                    <Button Text="Add food item" BackgroundColor="#2196F3" TextColor="White" FontSize="Medium"></Button>
+                </StackLayout>
+                <Button Text="Save meal" Margin="50,10" BackgroundColor="#2196F3" TextColor="White" FontSize="Medium"></Button>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
