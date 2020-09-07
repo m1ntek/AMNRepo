@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "309242724018",
+    "firebase_url": "https://project-amn.firebaseio.com",
+    "project_id": "project-amn",
+    "storage_bucket": "project-amn.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:309242724018:android:a2dfbc40045f80e46dd3ab",
+        "android_client_info": {
+          "package_name": "com.companyname.amn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "309242724018-gprmsd8qobl8l745ga6ab9p1tpobi0o4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCo4orwpS8lGQJsBLISIYjPiY5eOaEs5lA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "309242724018-gprmsd8qobl8l745ga6ab9p1tpobi0o4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
