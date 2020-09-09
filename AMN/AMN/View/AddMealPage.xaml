@@ -24,12 +24,12 @@
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <!-- name -->
-                        <Label Text="Name:" FontSize="Large" TextColor="Black"></Label>
+                        <Label Text="Name:" FontSize="Medium" TextColor="Black" VerticalOptions="Center"></Label>
                         <Entry x:Name="entryName" Grid.Column="1" Unfocused="entryName_Unfocused"></Entry>
                         <ActivityIndicator x:Name="actName" IsRunning="False" Grid.Column="2"></ActivityIndicator>
-                        
+
                         <!-- grouped form -->
-                        <Grid Grid.RowSpan="5" Grid.ColumnSpan="3" x:Name="macroFormGrid" IsVisible="False">
+                        <Grid Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="3" x:Name="macroFormGrid" IsVisible="True">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="0.5*"></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
@@ -40,36 +40,25 @@
                                 <RowDefinition></RowDefinition>
                                 <RowDefinition></RowDefinition>
                                 <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
                             <!-- left column -->
-                            <Label Text="Energy:" FontSize="Large" TextColor="Black" Grid.Row="1"></Label>
-                            <Label Text="Carbs:" FontSize="Large" TextColor="Black" Grid.Row="2"></Label>
-                            <Label Text="Fat:" FontSize="Large" TextColor="Black" Grid.Row="3"></Label>
-                            <Label Text="Serving:" FontSize="Large" TextColor="Black" Grid.Row="4"></Label>
+                            <Label Text="Energy:" FontSize="Medium" TextColor="Black" Grid.Row="0" VerticalOptions="Center"></Label>
+                            <Label Text="Carbs:" FontSize="Medium" TextColor="Black" Grid.Row="1" VerticalOptions="Center"></Label>
+                            <Label Text="Fat:" FontSize="Medium" TextColor="Black" Grid.Row="2" VerticalOptions="Center"></Label>
+                            <Label Text="Serving:" FontSize="Medium" TextColor="Black" Grid.Row="3" VerticalOptions="Center"></Label>
 
                             <!-- mid column -->
-                            <Entry Grid.Column="1" Grid.Row="1"></Entry>
-                            <Entry Grid.Column="1" Grid.Row="2"></Entry>
-                            <Entry Grid.Column="1" Grid.Row="3"></Entry>
-                            <Entry Grid.Column="1" Grid.Row="4"></Entry>
+                            <Entry x:Name="entryEnergy" Grid.Column="1" Grid.Row="0" Focused="entryEnergy_Focused" Unfocused="entryEnergy_Unfocused"></Entry>
+                            <Entry x:Name="entryCarbs" Grid.Column="1" Grid.Row="1" Focused="entryCarbs_Focused" Unfocused="entryCarbs_Unfocused"></Entry>
+                            <Entry x:Name="entryFat" Grid.Column="1" Grid.Row="2" Focused="entryFat_Focused" Unfocused="entryFat_Unfocused"></Entry>
+                            <Entry x:Name="entryServing" Grid.Column="1" Grid.Row="3" Focused="entryServing_Focused" Unfocused="entryServing_Unfocused"></Entry>
 
                             <!-- right column -->
-                            <Label Text="kcal" FontSize="Large" TextColor="Black" Grid.Row="1" Grid.Column="2"></Label>
-                            <Label Text="g" FontSize="Large" TextColor="Black" Grid.Row="2" Grid.Column="2"></Label>
-                            <Label Text="g" FontSize="Large" TextColor="Black" Grid.Row="3" Grid.Column="2"></Label>
-                            <Label Text="g" FontSize="Large" TextColor="Black" Grid.Row="4" Grid.Column="2"></Label>
+                            <Label Text="kcal" FontSize="Medium" TextColor="Black" Grid.Row="0" Grid.Column="2" VerticalOptions="Center"></Label>
+                            <Label Text="g" FontSize="Medium" TextColor="Black" Grid.Row="1" Grid.Column="2" VerticalOptions="Center"></Label>
+                            <Label Text="g" FontSize="Medium" TextColor="Black" Grid.Row="2" Grid.Column="2" VerticalOptions="Center"></Label>
+                            <Label Text="g" FontSize="Medium" TextColor="Black" Grid.Row="3" Grid.Column="2" VerticalOptions="Center"></Label>
                         </Grid>
-
-                        <ListView BackgroundColor="Red" Grid.Row="1" Grid.RowSpan="5" Grid.ColumnSpan="3">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <StackLayout>
-                                        <Label Text="{Binding text}" TextColor="White"></Label>
-                                    </StackLayout>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
                     </Grid>
                     <Button Text="Add food item" BackgroundColor="#2196F3" TextColor="White" FontSize="Medium"></Button>
                 </StackLayout>
