@@ -14,5 +14,7 @@ namespace AMN.Controller
         public static APIController apiC = new APIController();
         public static FoodResult currentFoodResult;
         public static Meal tempMeal = new Meal();
+        public static MacroNutrients dailyGoal = new MacroNutrients();
+        public static MacroNutrients dailyProgress = new MacroNutrients();
     }
 }

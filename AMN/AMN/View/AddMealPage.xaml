@@ -66,8 +66,11 @@
                         <Button x:Name="btnEditFood" Text="Edit food item" BackgroundColor="#2196F3" TextColor="White" FontSize="Medium" Clicked="editFood_Clicked" IsVisible="False"></Button>
                     </Grid>
                     <StackLayout x:Name="stackFoodItems"></StackLayout>
+                    <StackLayout x:Name="macroSummary">
+                        <Label Text="Placeholder Goal: "></Label>
+                    </StackLayout>
                 </StackLayout>
-                <Button Text="Save meal" Margin="50,10" BackgroundColor="#2196F3" TextColor="White" FontSize="Medium"></Button>
+                <Button Text="Save meal" Margin="50,10" BackgroundColor="#2196F3" TextColor="White" FontSize="Medium" Clicked="SaveMeal_Clicked"></Button>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

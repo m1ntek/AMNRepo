@@ -33,11 +33,54 @@ namespace AMN.View
         //        $"{resultInfo.ingredients[0].parsed[0].nutrients.FAT.label}:\t{resultInfo.ingredients[0].parsed[0].nutrients.FAT.quantity}{resultInfo.ingredients[0].parsed[0].nutrients.FAT.unit}";
         //}
 
+        private void RefreshPage()
+        {
+            var refreshedPage = new NutritionPage(); Navigation.InsertPageBefore(refreshedPage, this); Navigation.PopAsync();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            UpdateText();
+        }
+
         private async void AddMeal_Clicked(object sender, EventArgs e)
         {
             actInd.IsRunning = true;
             await Navigation.PushAsync(new AddMealPage());
             actInd.IsRunning = false;
+        }
+
+        private void SetGoal_Clicked(object sender, EventArgs e)
+        {
+            MasterModel.dailyGoal.energyKcal = Convert.ToDouble(entryEnergyGoal.Text);
+            MasterModel.dailyGoal.carbs = Convert.ToDouble(entryCarbGoal.Text);
+            MasterModel.dailyGoal.fat = Convert.ToDouble(entryFatGoal.Text);
+            UpdateText();
+
+            DisplayAlert("Success", "Goal set!", "OK");
+        }
+
+        private void UpdateText()
+        {
+            entryEnergyGoal.Text = MasterModel.dailyGoal.energyKcal.ToString();
+            entryCarbGoal.Text = MasterModel.dailyGoal.carbs.ToString();
+            entryFatGoal.Text = MasterModel.dailyGoal.fat.ToString();
+        }
+
+        private void entryEnergyGoal_Focused(object sender, FocusEventArgs e)
+        {
+            entryEnergyGoal.Text = "";
+        }
+
+        private void entryCarbGoal_Focused(object sender, FocusEventArgs e)
+        {
+            entryCarbGoal.Text = "";
+        }
+
+        private void entryFatGoal_Focused(object sender, FocusEventArgs e)
+        {
+            entryFatGoal.Text = "";
         }
     }
 }

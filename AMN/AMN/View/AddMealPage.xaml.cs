@@ -312,5 +312,10 @@ namespace AMN.View
 
             RefreshPage();
         }
+
+        private void SaveMeal_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }
