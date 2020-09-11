@@ -245,9 +245,10 @@ namespace AMN.View
                     currentFoodItemIndex = item.index;
                 };
 
-                btnDelete.Clicked += async (sender, args) =>
+                btnDelete.Clicked += (sender, args) =>
                 {
-                    await DisplayAlert("Test", "Delete Clicked", "OK");
+                    MasterModel.tempMeal.items.RemoveAt(item.index);
+                    RefreshPage();
                 };
 
                 stack.Children.Add(btnEdit);
