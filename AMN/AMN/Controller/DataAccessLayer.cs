@@ -40,7 +40,7 @@ public class DataAccessLayer
 
     public async Task UpdateUser()
     {
-        await fb.Child(auth.User.LocalId).PutAsync(MasterController.currentUser);
+        await fb.Child(auth.User.LocalId).PutAsync(MasterModel.currentUser);
     }
 
     public async Task SignInUser(string _email, string _pw)

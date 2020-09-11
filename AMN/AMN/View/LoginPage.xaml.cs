@@ -41,17 +41,17 @@ namespace AMN
             try
             {
                 actInd.IsRunning = true;
-                await MasterController.DAL.SignInUser(entryEmail.Text, entryPassword.Text);
-                MasterController.currentUser.email = entryEmail.Text;
+                await MasterModel.DAL.SignInUser(entryEmail.Text, entryPassword.Text);
+                MasterModel.currentUser.email = entryEmail.Text;
                 ClearForm();
                 await Navigation.PopToRootAsync();
                 actInd.IsRunning = false;
                 //MasterController.currentUser.rememberMe = chkboxRememberMe.IsChecked;
-                await MasterController.DAL.UpdateUser();
+                await MasterModel.DAL.UpdateUser();
             }
             catch (Exception exception)
             {
-                string reason = MasterController.DAL.SimplifyException(exception.Message);
+                string reason = MasterModel.DAL.SimplifyException(exception.Message);
                 await DisplayAlert("Error", reason, "OK");
             }
         }

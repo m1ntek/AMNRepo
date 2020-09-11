@@ -45,11 +45,11 @@ namespace AMN
 
         private void UpdateFooter()
         {
-            if(string.IsNullOrEmpty(MasterController.currentUser.email) != true)
+            if(string.IsNullOrEmpty(MasterModel.currentUser.email) != true)
             {
                 notLoggedIn.IsVisible = false;
                 loggedIn.IsVisible = true;
-                lblLoggedIn.Text = MasterController.loginC.UpdateFooter(MasterController.currentUser.email);
+                lblLoggedIn.Text = MasterModel.loginC.UpdateFooter(MasterModel.currentUser.email);
             }
             else
             {

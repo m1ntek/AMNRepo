@@ -16,12 +16,12 @@ namespace AMN.Model
 
         public FoodResult()
         {
-            resultName = MasterController.apiC.queryResult.ingredients[0].parsed[0].foodMatch;
-            resultKcal = MasterController.apiC.queryResult.ingredients[0].parsed[0].nutrients.ENERC_KCAL.quantity;
-            resultCarb = MasterController.apiC.queryResult.ingredients[0].parsed[0].nutrients.CHOCDF.quantity;
-            resultProtein = MasterController.apiC.queryResult.ingredients[0].parsed[0].nutrients.PROCNT.quantity;
-            resultFat = MasterController.apiC.queryResult.ingredients[0].parsed[0].nutrients.FAT.quantity;
-            resultServing = MasterController.apiC.queryResult.ingredients[0].parsed[0].weight;
+            resultName = MasterModel.apiC.queryResult.ingredients[0].parsed[0].foodMatch;
+            resultKcal = MasterModel.apiC.queryResult.ingredients[0].parsed[0].nutrients.ENERC_KCAL.quantity;
+            resultCarb = MasterModel.apiC.queryResult.ingredients[0].parsed[0].nutrients.CHOCDF.quantity;
+            resultProtein = MasterModel.apiC.queryResult.ingredients[0].parsed[0].nutrients.PROCNT.quantity;
+            resultFat = MasterModel.apiC.queryResult.ingredients[0].parsed[0].nutrients.FAT.quantity;
+            resultServing = MasterModel.apiC.queryResult.ingredients[0].parsed[0].weight;
         }
     }
 }

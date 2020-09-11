@@ -21,26 +21,26 @@ namespace AMN
 
         private async void Signup_Clicked(object sender, EventArgs e)
         {
-            bool pwValid = MasterController.vd.Signup(entryEmail.Text, entryPassword1.Text, entryPassword2.Text);
+            bool pwValid = MasterModel.vd.Signup(entryEmail.Text, entryPassword1.Text, entryPassword2.Text);
 
             if(pwValid == true)
             {
                 try
                 {
-                    await MasterController.DAL.SignUpUser(entryEmail.Text, entryPassword1.Text);
+                    await MasterModel.DAL.SignUpUser(entryEmail.Text, entryPassword1.Text);
                     await DisplayAlert("Successful", "New account created successfully.", "OK");
                     ClearForm();
                     await Navigation.PopToRootAsync();
                 }
                 catch (Exception exception)
                 {
-                    string reason = MasterController.DAL.SimplifyException(exception.Message);
+                    string reason = MasterModel.DAL.SimplifyException(exception.Message);
                     await DisplayAlert("Error", reason, "OK");
                 }
             }
             else
             {
-                await DisplayAlert("Invalid", MasterController.vd.error, "OK");
+                await DisplayAlert("Invalid", MasterModel.vd.error, "OK");
                 ClearPasswords();
             }
         }
