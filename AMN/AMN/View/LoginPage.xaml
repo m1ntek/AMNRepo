@@ -11,7 +11,7 @@
                 <StackLayout Margin="50,10" VerticalOptions="CenterAndExpand">
                     <Label FontSize="Large" TextColor="Black">E-mail Address:</Label>
                     <Entry x:Name="entryEmail" FontSize="Large" TextColor="Black"
-                           Placeholder="Your e-mail address..."></Entry>
+                           Placeholder="Your e-mail address..." Keyboard="Email"></Entry>
                     <Label FontSize="Large" TextColor="Black">Password:</Label>
                     <Entry x:Name="entryPassword" IsPassword="True" FontSize="Large" TextColor="Black"
                            Placeholder="Your password..."></Entry>

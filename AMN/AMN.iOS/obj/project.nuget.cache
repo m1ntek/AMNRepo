@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "B5bt948TeVPwYXTkIroD38DKJmKOtPoweBublnt+/KO+AOtSHubKortozgAYbRC7URzr66foC2DU9l2b/t/avg==",
+  "dgSpecHash": "NWGRnzTn9jA3W9CKdQb13Y8JTtspJxwRR8ySdRdQ8ZtWfHxPJiDedCW/Za/yfTIMLyTjLWJVcl2Q6O7E5XmL/w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Min\\source\\repos\\AMNRepo\\AMN\\AMN.iOS\\AMN.iOS.csproj",
+  "projectFilePath": "C:\\Users\\Min\\Source\\Repos\\AMNRepo\\AMN\\AMN.iOS\\AMN.iOS.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Min\\.nuget\\packages\\bcrypt.net-core\\1.6.0\\bcrypt.net-core.1.6.0.nupkg.sha512",
     "C:\\Users\\Min\\.nuget\\packages\\firebaseauthentication.net\\3.4.0\\firebaseauthentication.net.3.4.0.nupkg.sha512",
@@ -57,7 +57,7 @@
     "C:\\Users\\Min\\.nuget\\packages\\system.threading.timer\\4.3.0\\system.threading.timer.4.3.0.nupkg.sha512",
     "C:\\Users\\Min\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\Min\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\Min\\.nuget\\packages\\xamarin.essentials\\1.5.3.2\\xamarin.essentials.1.5.3.2.nupkg.sha512",
+    "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.essentials\\1.5.3.2\\xamarin.essentials.1.5.3.2.nupkg.sha512",
     "C:\\Users\\Min\\.nuget\\packages\\xamarin.forms\\4.8.0.1364\\xamarin.forms.4.8.0.1364.nupkg.sha512"
   ],
   "logs": []

@@ -25,9 +25,9 @@
                     <Label Text="Carbs" Grid.Row="1" TextColor="Black" VerticalOptions="Center"></Label>
                     <Label Text="Fat" Grid.Row="2" TextColor="Black" VerticalOptions="Center"></Label>
                     <!-- center -->
-                    <Entry x:Name="entryEnergyGoal" Grid.Column="1" Focused="entryEnergyGoal_Focused"></Entry>
-                    <Entry x:Name="entryCarbGoal" Grid.Column="1" Grid.Row="1" Focused="entryCarbGoal_Focused"></Entry>
-                    <Entry x:Name="entryFatGoal" Grid.Column="1" Grid.Row="2" Focused="entryFatGoal_Focused"></Entry>
+                    <Entry x:Name="entryEnergyGoal" Grid.Column="1" Focused="entryEnergyGoal_Focused" Keyboard="Numeric"></Entry>
+                    <Entry x:Name="entryCarbGoal" Grid.Column="1" Grid.Row="1" Focused="entryCarbGoal_Focused" Keyboard="Numeric"></Entry>
+                    <Entry x:Name="entryFatGoal" Grid.Column="1" Grid.Row="2" Focused="entryFatGoal_Focused" Keyboard="Numeric"></Entry>
                     <!-- right -->
                     <Label Text="kcal" TextColor="Black" Grid.Column="2" VerticalOptions="Center"></Label>
                     <Label Text="g" Grid.Row="1" TextColor="Black" Grid.Column="2" VerticalOptions="Center"></Label>

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LaUJUxSdye6WeV6ZhMjWD/ynmwOpMsTW/0cYRoDtGYqoec1JJqCOgsno0d+irCQY2UBhBUmS8icBPBTed4sBXw==",
+  "dgSpecHash": "RsPSs6r8RtgQuW1bWaq2DixW7VJgxujZzhohnpdOp85jcoNrlSI+KbbkFh5Rc+rY67ZFenYZ9G4aHkDeqhT8XA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Min\\source\\repos\\AMNRepo\\AMN\\AMN\\AMN.csproj",
+  "projectFilePath": "C:\\Users\\Min\\Source\\Repos\\AMNRepo\\AMN\\AMN\\AMN.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Min\\.nuget\\packages\\bcrypt.net-core\\1.6.0\\bcrypt.net-core.1.6.0.nupkg.sha512",
     "C:\\Users\\Min\\.nuget\\packages\\firebaseauthentication.net\\3.4.0\\firebaseauthentication.net.3.4.0.nupkg.sha512",
@@ -22,7 +22,7 @@
     "C:\\Users\\Min\\.nuget\\packages\\system.runtime.interopservices.windowsruntime\\4.3.0\\system.runtime.interopservices.windowsruntime.4.3.0.nupkg.sha512",
     "C:\\Users\\Min\\.nuget\\packages\\system.text.encoding\\4.3.0\\system.text.encoding.4.3.0.nupkg.sha512",
     "C:\\Users\\Min\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
-    "C:\\Users\\Min\\.nuget\\packages\\xamarin.essentials\\1.5.3.2\\xamarin.essentials.1.5.3.2.nupkg.sha512",
+    "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.essentials\\1.5.3.2\\xamarin.essentials.1.5.3.2.nupkg.sha512",
     "C:\\Users\\Min\\.nuget\\packages\\xamarin.forms\\4.8.0.1364\\xamarin.forms.4.8.0.1364.nupkg.sha512"
   ],
   "logs": []
