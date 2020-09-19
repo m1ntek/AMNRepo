@@ -31,25 +31,47 @@ namespace AMN.View
             entryServing.Text = MasterModel.currentFoodResult.resultServing.ToString();
         }
 
-        private async void entryName_Unfocused(object sender, FocusEventArgs e)
+        private async Task ActNameOn()
         {
             actName.IsRunning = true;
+        }
+
+        private async Task ActNameOff()
+        {
+            actName.IsRunning = false;
+        }
+
+        private async Task QueryAPI()
+        {
+            MasterModel.apiC.Query(entryName.Text);
+        }
+
+        bool isFirstSearch = true;
+
+        private async void entryName_Unfocused(object sender, FocusEventArgs e)
+        {
+            //actName.IsRunning = true;
+            await ActNameOn();
+
+            var queryTask = QueryAPI();
 
             if (string.IsNullOrEmpty(entryName.Text) == false)
             {
                 try
                 {
-                    MasterModel.apiC.Query(entryName.Text);
+                    await queryTask;
                     MasterModel.currentFoodResult = new Model.FoodResult();
                     UpdateText();
                 }
                 catch (Exception ex)
                 {
-                    await DisplayAlert("Error", ex.Message, "OK");
+                    //do nothing
                 }
             }
 
-            actName.IsRunning = false;
+            await ActNameOff();
+                
+            
         }
 
         private void entryEnergy_Focused(object sender, FocusEventArgs e)
@@ -59,7 +81,7 @@ namespace AMN.View
 
         private void entryEnergy_Unfocused(object sender, FocusEventArgs e)
         {
-            if(string.IsNullOrEmpty(entryEnergy.Text) == true && MasterModel.currentFoodResult != null)
+            if (string.IsNullOrEmpty(entryEnergy.Text) == true && MasterModel.currentFoodResult != null)
             {
                 entryEnergy.Text = MasterModel.currentFoodResult.resultKcal.ToString();
             }
@@ -287,7 +309,7 @@ namespace AMN.View
             {
                 DisplayActionSheet("Error", ex.Message, "OK");
             }
-            
+
         }
 
         private void RefreshPage()

@@ -13,10 +13,15 @@ namespace AMN.Controller
         private string key = "0f1491147e391def6399e62f6ef207f2";
         private string id = "9d06552c";
         public FoodJSON.Root queryResult;
-        public void Query(string search)
+        public async void Query(string search)
         {
             //string json = new WebClient().DownloadString($"https://api.nal.usda.gov/fdc/v1/foods/search?api_key={key}&query={ConvertSpaces(search)}");
-            string json = new WebClient().DownloadString($"https://api.edamam.com/api/nutrition-data?app_id={id}&app_key={key}&ingr={ConvertSpaces(search)}");
+            string json;
+            using (var client = new WebClient())
+            {
+                  json = await client.DownloadStringTaskAsync(new Uri($"https://api.edamam.com/api/nutrition-data?app_id={id}&app_key={key}&ingr={ConvertSpaces(search)}"));
+
+            }
             queryResult = JsonConvert.DeserializeObject<FoodJSON.Root>(json);
         }
 
