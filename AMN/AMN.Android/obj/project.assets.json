@@ -5464,11 +5464,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Min\\source\\repos\\AMNRepo\\AMN\\AMN.Android\\AMN.Android.csproj",
+      "projectUniqueName": "C:\\Users\\Min\\Source\\Repos\\AMNRepo\\AMN\\AMN.Android\\AMN.Android.csproj",
       "projectName": "AMN.Android",
-      "projectPath": "C:\\Users\\Min\\source\\repos\\AMNRepo\\AMN\\AMN.Android\\AMN.Android.csproj",
+      "projectPath": "C:\\Users\\Min\\Source\\Repos\\AMNRepo\\AMN\\AMN.Android\\AMN.Android.csproj",
       "packagesPath": "C:\\Users\\Min\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Min\\source\\repos\\AMNRepo\\AMN\\AMN.Android\\obj\\",
+      "outputPath": "C:\\Users\\Min\\Source\\Repos\\AMNRepo\\AMN\\AMN.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -5489,8 +5489,8 @@
       "frameworks": {
         "monoandroid90": {
           "projectReferences": {
-            "C:\\Users\\Min\\source\\repos\\AMNRepo\\AMN\\AMN\\AMN.csproj": {
-              "projectPath": "C:\\Users\\Min\\source\\repos\\AMNRepo\\AMN\\AMN\\AMN.csproj"
+            "C:\\Users\\Min\\Source\\Repos\\AMNRepo\\AMN\\AMN\\AMN.csproj": {
+              "projectPath": "C:\\Users\\Min\\Source\\Repos\\AMNRepo\\AMN\\AMN\\AMN.csproj"
             }
           }
         }

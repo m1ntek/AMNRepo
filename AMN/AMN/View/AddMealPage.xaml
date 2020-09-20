@@ -67,7 +67,11 @@
                     </Grid>
                     <StackLayout x:Name="stackFoodItems"></StackLayout>
                     <StackLayout x:Name="macroSummary">
-                        <Label Text="Placeholder Goal: "></Label>
+                        <Label Text="Today's Goal: " FontSize="Medium" TextColor="Black"></Label>
+                        <Label Text="Energy: 1234/1500 kcal" FontSize="Medium" TextColor="Black"></Label>
+                        <Label Text="Protein: 333/500 g" FontSize="Medium" TextColor="Black"></Label>
+                        <Label Text="Carbs: 432/500 g" FontSize="Medium" TextColor="Black"></Label>
+                        <Label Text="Fat: 230/250 g" FontSize="Medium" TextColor="Black"></Label>
                     </StackLayout>
                 </StackLayout>
                 <Button Text="Save meal" Margin="50,10" BackgroundColor="#2196F3" TextColor="White" FontSize="Medium" Clicked="SaveMeal_Clicked"></Button>
