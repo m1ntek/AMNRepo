@@ -56,6 +56,7 @@ namespace AMN.View
             MasterModel.dailyGoal.energyKcal = Convert.ToDouble(entryEnergyGoal.Text);
             MasterModel.dailyGoal.carbs = Convert.ToDouble(entryCarbGoal.Text);
             MasterModel.dailyGoal.fat = Convert.ToDouble(entryFatGoal.Text);
+            MasterModel.dailyGoal.protein = Convert.ToDouble(entryProteinGoal.Text);
             UpdateText();
 
             DisplayAlert("Success", "Goal set!", "OK");
@@ -66,6 +67,7 @@ namespace AMN.View
             entryEnergyGoal.Text = MasterModel.dailyGoal.energyKcal.ToString();
             entryCarbGoal.Text = MasterModel.dailyGoal.carbs.ToString();
             entryFatGoal.Text = MasterModel.dailyGoal.fat.ToString();
+            entryProteinGoal.Text = MasterModel.dailyGoal.protein.ToString();
         }
 
         private void entryEnergyGoal_Focused(object sender, FocusEventArgs e)
@@ -81,6 +83,67 @@ namespace AMN.View
         private void entryFatGoal_Focused(object sender, FocusEventArgs e)
         {
             entryFatGoal.Text = "";
+        }
+
+        private void entryProteinGoal_Focused(object sender, FocusEventArgs e)
+        {
+            entryProteinGoal.Text = "";
+        }
+
+        //method
+
+        private void entryEnergyGoal_Unfocused(object sender, FocusEventArgs e)
+        {
+            if (string.IsNullOrEmpty(entryEnergyGoal.Text) == true)
+            {
+                entryEnergyGoal.Text = MasterModel.dailyGoal.energyKcal.ToString();
+            }
+            else
+            {
+                MasterModel.dailyGoal.energyKcal = Convert.ToDouble(entryEnergyGoal.Text);
+            }
+
+            entryProteinGoal.Focus();
+        }
+
+        private void entryCarbGoal_Unfocused(object sender, FocusEventArgs e)
+        {
+            if (string.IsNullOrEmpty(entryCarbGoal.Text) == true)
+            {
+                entryCarbGoal.Text = MasterModel.dailyGoal.carbs.ToString();
+            }
+            else
+            {
+                MasterModel.dailyGoal.carbs = Convert.ToDouble(entryCarbGoal.Text);
+            }
+
+            entryFatGoal.Focus();
+        }
+
+        private void entryFatGoal_Unfocused(object sender, FocusEventArgs e)
+        {
+            if (string.IsNullOrEmpty(entryFatGoal.Text) == true)
+            {
+                entryFatGoal.Text = MasterModel.dailyGoal.fat.ToString();
+            }
+            else
+            {
+                MasterModel.dailyGoal.fat = Convert.ToDouble(entryFatGoal.Text);
+            }
+        }
+
+        private void entryProteinGoal_Unfocused(object sender, FocusEventArgs e)
+        {
+            if (string.IsNullOrEmpty(entryProteinGoal.Text) == true)
+            {
+                entryProteinGoal.Text = MasterModel.dailyGoal.protein.ToString();
+            }
+            else
+            {
+                MasterModel.dailyGoal.protein = Convert.ToDouble(entryProteinGoal.Text);
+            }
+
+            entryCarbGoal.Focus();
         }
     }
 }

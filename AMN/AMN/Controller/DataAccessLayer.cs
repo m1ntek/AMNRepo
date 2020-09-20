@@ -38,9 +38,14 @@ public class DataAccessLayer
         return reason[reason.Length - 1];
     }
 
+    public async Task UpdateMeals()
+    {
+        //await fb.Child("Meals").Child()
+    }
+
     public async Task UpdateUser()
     {
-        await fb.Child(auth.User.LocalId).PutAsync(MasterModel.currentUser);
+        await fb.Child("Users").Child(auth.User.LocalId).PutAsync(MasterModel.currentUser);
     }
 
     public async Task SignInUser(string _email, string _pw)

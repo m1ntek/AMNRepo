@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Min\\Source\\Repos\\AMNRepo\\AMN\\AMN.Android\\AMN.Android.csproj": {}
+    "C:\\Users\\Min\\source\\repos\\AMNRepo\\AMN\\AMN.Android\\AMN.Android.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Min\\Source\\Repos\\AMNRepo\\AMN\\AMN.Android\\AMN.Android.csproj": {
+    "C:\\Users\\Min\\source\\repos\\AMNRepo\\AMN\\AMN.Android\\AMN.Android.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Min\\Source\\Repos\\AMNRepo\\AMN\\AMN.Android\\AMN.Android.csproj",
+        "projectUniqueName": "C:\\Users\\Min\\source\\repos\\AMNRepo\\AMN\\AMN.Android\\AMN.Android.csproj",
         "projectName": "AMN.Android",
-        "projectPath": "C:\\Users\\Min\\Source\\Repos\\AMNRepo\\AMN\\AMN.Android\\AMN.Android.csproj",
+        "projectPath": "C:\\Users\\Min\\source\\repos\\AMNRepo\\AMN\\AMN.Android\\AMN.Android.csproj",
         "packagesPath": "C:\\Users\\Min\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Min\\Source\\Repos\\AMNRepo\\AMN\\AMN.Android\\obj\\",
+        "outputPath": "C:\\Users\\Min\\source\\repos\\AMNRepo\\AMN\\AMN.Android\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
@@ -32,8 +32,8 @@
         "frameworks": {
           "monoandroid90": {
             "projectReferences": {
-              "C:\\Users\\Min\\Source\\Repos\\AMNRepo\\AMN\\AMN\\AMN.csproj": {
-                "projectPath": "C:\\Users\\Min\\Source\\Repos\\AMNRepo\\AMN\\AMN\\AMN.csproj"
+              "C:\\Users\\Min\\source\\repos\\AMNRepo\\AMN\\AMN\\AMN.csproj": {
+                "projectPath": "C:\\Users\\Min\\source\\repos\\AMNRepo\\AMN\\AMN\\AMN.csproj"
               }
             }
           }
@@ -70,14 +70,14 @@
         }
       }
     },
-    "C:\\Users\\Min\\Source\\Repos\\AMNRepo\\AMN\\AMN\\AMN.csproj": {
+    "C:\\Users\\Min\\source\\repos\\AMNRepo\\AMN\\AMN\\AMN.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Min\\Source\\Repos\\AMNRepo\\AMN\\AMN\\AMN.csproj",
+        "projectUniqueName": "C:\\Users\\Min\\source\\repos\\AMNRepo\\AMN\\AMN\\AMN.csproj",
         "projectName": "AMN",
-        "projectPath": "C:\\Users\\Min\\Source\\Repos\\AMNRepo\\AMN\\AMN\\AMN.csproj",
+        "projectPath": "C:\\Users\\Min\\source\\repos\\AMNRepo\\AMN\\AMN\\AMN.csproj",
         "packagesPath": "C:\\Users\\Min\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Min\\Source\\Repos\\AMNRepo\\AMN\\AMN\\obj\\",
+        "outputPath": "C:\\Users\\Min\\source\\repos\\AMNRepo\\AMN\\AMN\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -149,7 +149,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
