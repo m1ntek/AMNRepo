@@ -68,7 +68,7 @@ namespace AMN.View
         private async void entryName_Unfocused(object sender, FocusEventArgs e)
         {
             //actName.IsRunning = true;
-            await ActNameOn();
+            ActNameOn();
 
             //var queryTask = QueryAPI();
 
@@ -88,7 +88,7 @@ namespace AMN.View
                 }
             }
 
-            await ActNameOff();
+            ActNameOff();
                 
             
         }
@@ -163,18 +163,24 @@ namespace AMN.View
 
         private void entryServing_Unfocused(object sender, FocusEventArgs e)
         {
-            if (string.IsNullOrEmpty(entryServing.Text) == true && MasterModel.currentFoodResult != null)
+            if (string.IsNullOrEmpty(entryServing.Text) == true)
             {
-                entryServing.Text = MasterModel.currentFoodResult.resultServing.ToString();
+                if (MasterModel.currentFoodResult != null)
+                {
+                    entryServing.Text = MasterModel.currentFoodResult.resultServing.ToString();
+                }
             }
 
-            MasterModel.currentFoodResult.resultKcal = MasterModel.currentFoodResult.resultKcal / MasterModel.currentFoodResult.resultServing * Convert.ToDouble(entryServing.Text);
-            MasterModel.currentFoodResult.resultCarb = MasterModel.currentFoodResult.resultCarb / MasterModel.currentFoodResult.resultServing * Convert.ToDouble(entryServing.Text);
-            MasterModel.currentFoodResult.resultFat = MasterModel.currentFoodResult.resultFat / MasterModel.currentFoodResult.resultServing * Convert.ToDouble(entryServing.Text);
-            MasterModel.currentFoodResult.resultProtein = MasterModel.currentFoodResult.resultProtein / MasterModel.currentFoodResult.resultServing * Convert.ToDouble(entryServing.Text);
-            MasterModel.currentFoodResult.resultServing = Convert.ToDouble(entryServing.Text);
+            else
+            {
+                MasterModel.currentFoodResult.resultKcal = MasterModel.currentFoodResult.resultKcal / MasterModel.currentFoodResult.resultServing * Convert.ToDouble(entryServing.Text);
+                MasterModel.currentFoodResult.resultCarb = MasterModel.currentFoodResult.resultCarb / MasterModel.currentFoodResult.resultServing * Convert.ToDouble(entryServing.Text);
+                MasterModel.currentFoodResult.resultFat = MasterModel.currentFoodResult.resultFat / MasterModel.currentFoodResult.resultServing * Convert.ToDouble(entryServing.Text);
+                MasterModel.currentFoodResult.resultProtein = MasterModel.currentFoodResult.resultProtein / MasterModel.currentFoodResult.resultServing * Convert.ToDouble(entryServing.Text);
+                MasterModel.currentFoodResult.resultServing = Convert.ToDouble(entryServing.Text);
 
-            UpdateText();
+                UpdateText(); 
+            }
         }
 
         private void CreateNewItem()
@@ -317,7 +323,7 @@ namespace AMN.View
             }
             catch (Exception ex)
             {
-                DisplayActionSheet("Error", ex.Message, "OK");
+                DisplayAlert("Error", $"Please try logging in or signing up before adding items.\n\n{ex.Message}", "OK");
             }
 
         }
@@ -345,9 +351,25 @@ namespace AMN.View
             RefreshPage();
         }
 
-        private void SaveMeal_Clicked(object sender, EventArgs e)
+        private async void SaveMeal_Clicked(object sender, EventArgs e)
         {
-
+            if(MasterModel.DAL.UserLoggedIn() == true)
+            {
+                try
+                {
+                    actSave.IsRunning = true;
+                    await MasterModel.DAL.SaveMeal();
+                    await Navigation.PopAsync();
+                }
+                catch (Exception ex)
+                {
+                    DisplayAlert("Error", $"Something went wrong:\n{ex.Message}", "OK");
+                }
+            }
+            else
+            {
+                DisplayAlert("Not Logged In", "Please login from the main page to save meals", "OK");
+            }
         }
 
         private void entryProtein_Focused(object sender, FocusEventArgs e)

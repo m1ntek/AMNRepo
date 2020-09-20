@@ -79,6 +79,7 @@
                     </StackLayout>
                 </StackLayout>
                 <Button Text="Save meal" Margin="50,10" BackgroundColor="#2196F3" TextColor="White" FontSize="Medium" Clicked="SaveMeal_Clicked"></Button>
+                <ActivityIndicator x:Name="actSave" IsRunning="False"></ActivityIndicator>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

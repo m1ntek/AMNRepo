@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AMN.Controller;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,7 +7,7 @@ namespace AMN.Model
 {
     public class FoodItem
     {
-        public string name;
+        public string name, currentLocalId;
         public double energyKcal, carbs, fat, protein, serving;
         public int index;
 
@@ -18,6 +19,7 @@ namespace AMN.Model
             fat = _fat;
             protein = _protein;
             serving = _serving;
+            currentLocalId = MasterModel.DAL.GetCurrentLocalId();
         }
     }
 }

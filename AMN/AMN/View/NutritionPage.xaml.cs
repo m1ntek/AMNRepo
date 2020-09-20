@@ -42,11 +42,25 @@ namespace AMN.View
         {
             base.OnAppearing();
             UpdateText();
+            try
+            {
+                MasterModel.DAL.GetUserData();
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private async void AddMeal_Clicked(object sender, EventArgs e)
         {
             actInd.IsRunning = true;
+
+            if(MasterModel.tempMeal.items.Count > 0)
+            {
+                MasterModel.tempMeal = new Meal();
+            }
+
             await Navigation.PushAsync(new AddMealPage());
             actInd.IsRunning = false;
         }
