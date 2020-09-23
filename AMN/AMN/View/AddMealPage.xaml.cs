@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+using System.Xml;
 using Xamarin.Forms;
 using Xamarin.Forms.Markup;
 using Xamarin.Forms.Xaml;
@@ -25,10 +25,11 @@ namespace AMN.View
 
         private void UpdateText()
         {
-            entryEnergy.Text = MasterModel.currentFoodResult.resultKcal.ToString();
-            entryCarbs.Text = MasterModel.currentFoodResult.resultCarb.ToString();
-            entryFat.Text = MasterModel.currentFoodResult.resultFat.ToString();
-            entryServing.Text = MasterModel.currentFoodResult.resultServing.ToString();
+            entryEnergy.Text = MasterModel.currentFoodResult.resultKcal.ToString("0.00");
+            entryCarbs.Text = MasterModel.currentFoodResult.resultCarb.ToString("0.00");
+            entryFat.Text = MasterModel.currentFoodResult.resultFat.ToString("0.00");
+            entryServing.Text = MasterModel.currentFoodResult.resultServing.ToString("0.00");
+            entryProtein.Text = MasterModel.currentFoodResult.resultProtein.ToString("0.00");
         }
 
         private async Task ActNameOn()
@@ -46,19 +47,39 @@ namespace AMN.View
             MasterModel.apiC.Query(entryName.Text);
         }
 
+        private void SetDefaultServing()
+        {
+            double serving, kcal, carb, fat, protein;
+
+            serving = MasterModel.currentFoodResult.resultServing / MasterModel.currentFoodResult.resultServing;
+            kcal = MasterModel.currentFoodResult.resultKcal / MasterModel.currentFoodResult.resultServing;
+            carb = MasterModel.currentFoodResult.resultCarb / MasterModel.currentFoodResult.resultServing;
+            fat = MasterModel.currentFoodResult.resultFat / MasterModel.currentFoodResult.resultServing;
+            protein = MasterModel.currentFoodResult.resultProtein / MasterModel.currentFoodResult.resultServing;
+
+            //separated to resolve a bug
+            MasterModel.currentFoodResult.resultServing = serving;
+            MasterModel.currentFoodResult.resultKcal = kcal;
+            MasterModel.currentFoodResult.resultCarb = carb;
+            MasterModel.currentFoodResult.resultFat = fat;
+            MasterModel.currentFoodResult.resultProtein = protein;
+        }
+
         private async void entryName_Unfocused(object sender, FocusEventArgs e)
         {
             //actName.IsRunning = true;
-            await ActNameOn();
+            ActNameOn();
 
-            var queryTask = QueryAPI();
+            //var queryTask = QueryAPI();
 
             if (string.IsNullOrEmpty(entryName.Text) == false)
             {
                 try
                 {
-                    await queryTask;
-                    await Task.Run(() => MasterModel.currentFoodResult = new Model.FoodResult());
+                    //await queryTask;
+                    await MasterModel.apiC.Query(entryName.Text);
+                    MasterModel.currentFoodResult = new Model.FoodResult();
+                    SetDefaultServing();
                     UpdateText();
                 }
                 catch (Exception)
@@ -67,7 +88,7 @@ namespace AMN.View
                 }
             }
 
-            await ActNameOff();
+            ActNameOff();
                 
             
         }
@@ -79,14 +100,18 @@ namespace AMN.View
 
         private void entryEnergy_Unfocused(object sender, FocusEventArgs e)
         {
-            if (string.IsNullOrEmpty(entryEnergy.Text) == true && MasterModel.currentFoodResult != null)
+            if (string.IsNullOrEmpty(entryEnergy.Text) == true)
             {
-                entryEnergy.Text = MasterModel.currentFoodResult.resultKcal.ToString();
+                if(MasterModel.currentFoodResult != null)
+                {
+                    entryEnergy.Text = MasterModel.currentFoodResult.resultKcal.ToString();
+                }
             }
             else
             {
                 MasterModel.currentFoodResult.resultKcal = Convert.ToDouble(entryEnergy.Text);
             }
+            entryProtein.Focus();
         }
 
         private void entryCarbs_Focused(object sender, FocusEventArgs e)
@@ -96,14 +121,19 @@ namespace AMN.View
 
         private void entryCarbs_Unfocused(object sender, FocusEventArgs e)
         {
-            if (string.IsNullOrEmpty(entryCarbs.Text) == true && MasterModel.currentFoodResult != null)
+            if (string.IsNullOrEmpty(entryCarbs.Text) == true)
             {
-                entryCarbs.Text = MasterModel.currentFoodResult.resultCarb.ToString();
+                if (MasterModel.currentFoodResult != null)
+                {
+                    entryCarbs.Text = MasterModel.currentFoodResult.resultCarb.ToString();
+                }
             }
             else
             {
                 MasterModel.currentFoodResult.resultCarb = Convert.ToDouble(entryCarbs.Text);
             }
+
+            entryFat.Focus();
         }
 
         private void entryFat_Focused(object sender, FocusEventArgs e)
@@ -113,9 +143,12 @@ namespace AMN.View
 
         private void entryFat_Unfocused(object sender, FocusEventArgs e)
         {
-            if (string.IsNullOrEmpty(entryFat.Text) == true && MasterModel.currentFoodResult != null)
+            if (string.IsNullOrEmpty(entryFat.Text) == true)
             {
-                entryFat.Text = MasterModel.currentFoodResult.resultFat.ToString();
+                if (MasterModel.currentFoodResult != null)
+                {
+                    entryFat.Text = MasterModel.currentFoodResult.resultFat.ToString();
+                }
             }
             else
             {
@@ -130,58 +163,30 @@ namespace AMN.View
 
         private void entryServing_Unfocused(object sender, FocusEventArgs e)
         {
-            if (string.IsNullOrEmpty(entryServing.Text) == true && MasterModel.currentFoodResult != null)
+            if (string.IsNullOrEmpty(entryServing.Text) == true)
             {
-                entryServing.Text = MasterModel.currentFoodResult.resultServing.ToString();
+                if (MasterModel.currentFoodResult != null)
+                {
+                    entryServing.Text = MasterModel.currentFoodResult.resultServing.ToString();
+                }
             }
 
-            MasterModel.currentFoodResult.resultKcal = MasterModel.currentFoodResult.resultKcal / MasterModel.currentFoodResult.resultServing * Convert.ToDouble(entryServing.Text);
-            MasterModel.currentFoodResult.resultCarb = MasterModel.currentFoodResult.resultCarb / MasterModel.currentFoodResult.resultServing * Convert.ToDouble(entryServing.Text);
-            MasterModel.currentFoodResult.resultFat = MasterModel.currentFoodResult.resultFat / MasterModel.currentFoodResult.resultServing * Convert.ToDouble(entryServing.Text);
-            MasterModel.currentFoodResult.resultServing = Convert.ToDouble(entryServing.Text);
+            else
+            {
+                MasterModel.currentFoodResult.resultKcal = MasterModel.currentFoodResult.resultKcal / MasterModel.currentFoodResult.resultServing * Convert.ToDouble(entryServing.Text);
+                MasterModel.currentFoodResult.resultCarb = MasterModel.currentFoodResult.resultCarb / MasterModel.currentFoodResult.resultServing * Convert.ToDouble(entryServing.Text);
+                MasterModel.currentFoodResult.resultFat = MasterModel.currentFoodResult.resultFat / MasterModel.currentFoodResult.resultServing * Convert.ToDouble(entryServing.Text);
+                MasterModel.currentFoodResult.resultProtein = MasterModel.currentFoodResult.resultProtein / MasterModel.currentFoodResult.resultServing * Convert.ToDouble(entryServing.Text);
+                MasterModel.currentFoodResult.resultServing = Convert.ToDouble(entryServing.Text);
 
-            UpdateText();
+                UpdateText(); 
+            }
         }
 
         private void CreateNewItem()
         {
-            Grid itemGrid = new Grid();
-            itemGrid.ColumnDefinitions.Add(new ColumnDefinition());
-            itemGrid.ColumnDefinitions.Add(new ColumnDefinition());
-            itemGrid.ColumnDefinitions.Add(new ColumnDefinition());
-            itemGrid.RowDefinitions.Add(new RowDefinition());
-            itemGrid.RowDefinitions.Add(new RowDefinition());
-            itemGrid.RowDefinitions.Add(new RowDefinition());
-
-            itemGrid.RowDefinitions[1].Height = new GridLength(0.5, GridUnitType.Star);
-            itemGrid.RowDefinitions[2].Height = new GridLength(0.5, GridUnitType.Star);
-
-            FoodItem item = new FoodItem(entryName.Text, MasterModel.currentFoodResult.resultKcal, MasterModel.currentFoodResult.resultCarb, MasterModel.currentFoodResult.resultFat, Convert.ToDouble(entryServing.Text));
+            FoodItem item = new FoodItem(entryName.Text, MasterModel.currentFoodResult.resultKcal, MasterModel.currentFoodResult.resultCarb, MasterModel.currentFoodResult.resultFat, MasterModel.currentFoodResult.resultProtein, Convert.ToDouble(entryServing.Text));
             MasterModel.tempMeal.items.Add(item);
-
-            Label lblName = new Label();
-            lblName = CreateLabelTemplate(lblName, LayoutOptions.Start, 0, 0, 1, item.name);
-            Label lblEnergy = new Label();
-            lblEnergy = CreateLabelTemplate(lblEnergy, LayoutOptions.Start, 0, 1, 1, item.energyKcal.ToString());
-            Label lblCarbs = new Label();
-            lblCarbs = CreateLabelTemplate(lblCarbs, LayoutOptions.Center, 1, 1, 1, item.carbs.ToString());
-            Label lblFat = new Label();
-            lblFat = CreateLabelTemplate(lblFat, LayoutOptions.End, 2, 1, 1, item.fat.ToString());
-            Label lblServing = new Label();
-            lblServing = CreateLabelTemplate(lblServing, LayoutOptions.End, 1, 2, 3, item.serving.ToString());
-
-            itemGrid.Children.Add(lblName);
-            itemGrid.Children.Add(lblEnergy);
-            itemGrid.Children.Add(lblCarbs);
-            itemGrid.Children.Add(lblFat);
-            itemGrid.Children.Add(lblServing);
-
-            StackLayout stack = new StackLayout();
-            stack.Orientation = StackOrientation.Horizontal;
-            Grid.SetColumnSpan(stack, 3);
-            stack.HorizontalOptions = LayoutOptions.End;
-
-            itemGrid.Children.Add(stack);
         }
 
         private void LoadFoodItems()
@@ -195,9 +200,13 @@ namespace AMN.View
                 itemGrid.RowDefinitions.Add(new RowDefinition());
                 itemGrid.RowDefinitions.Add(new RowDefinition());
                 itemGrid.RowDefinitions.Add(new RowDefinition());
+                itemGrid.RowDefinitions.Add(new RowDefinition());
 
                 itemGrid.RowDefinitions[1].Height = new GridLength(0.5, GridUnitType.Star);
                 itemGrid.RowDefinitions[2].Height = new GridLength(0.5, GridUnitType.Star);
+
+                itemGrid.BackgroundColor = Color.FromHex("2196F3");
+                itemGrid.Padding = new Thickness(10, 10);
 
                 //save index number per foodItem... To fix a bug
                 MasterModel.tempMeal.items[i].index = i;
@@ -206,17 +215,26 @@ namespace AMN.View
 
                 Label lblName = new Label();
                 lblName = CreateLabelTemplate(lblName, LayoutOptions.Start, 0, 0, 1, item.name);
+                lblName.TextColor = Color.White;
                 Label lblEnergy = new Label();
-                lblEnergy = CreateLabelTemplate(lblEnergy, LayoutOptions.Start, 0, 1, 1, $"E: {item.energyKcal}");
+                lblEnergy = CreateLabelTemplate(lblEnergy, LayoutOptions.Start, 0, 1, 2, $"Energy: {item.energyKcal.ToString("0.00")} kcal");
+                lblEnergy.TextColor = Color.White;
+                Label lblProtein = new Label();
+                lblProtein = CreateLabelTemplate(lblProtein, LayoutOptions.Start, 0, 2, 1, $"P: {item.protein.ToString("0.00")} g");
+                lblProtein.TextColor = Color.White;
                 Label lblCarbs = new Label();
-                lblCarbs = CreateLabelTemplate(lblCarbs, LayoutOptions.Center, 1, 1, 1, $"C: {item.carbs}");
+                lblCarbs = CreateLabelTemplate(lblCarbs, LayoutOptions.Center, 1, 2, 1, $"C: {item.carbs.ToString("0.00")} g");
+                lblCarbs.TextColor = Color.White;
                 Label lblFat = new Label();
-                lblFat = CreateLabelTemplate(lblFat, LayoutOptions.End, 2, 1, 1, $"F: {item.fat}");
+                lblFat = CreateLabelTemplate(lblFat, LayoutOptions.End, 2, 2, 1, $"F: {item.fat.ToString("0.00")} g");
+                lblFat.TextColor = Color.White;
                 Label lblServing = new Label();
-                lblServing = CreateLabelTemplate(lblServing, LayoutOptions.End, 1, 2, 2, $"Serving: {item.serving}");
+                lblServing = CreateLabelTemplate(lblServing, LayoutOptions.End, 1, 3, 2, $"Serving: {item.serving.ToString("0.00")} g");
+                lblServing.TextColor = Color.White;
 
                 itemGrid.Children.Add(lblName);
                 itemGrid.Children.Add(lblEnergy);
+                itemGrid.Children.Add(lblProtein);
                 itemGrid.Children.Add(lblCarbs);
                 itemGrid.Children.Add(lblFat);
                 itemGrid.Children.Add(lblServing);
@@ -230,10 +248,11 @@ namespace AMN.View
                 {
                     Text = "Edit",
                     FontSize = Device.GetNamedSize(NamedSize.Micro, typeof(Button)),
-                    BackgroundColor = Color.FromHex("2196F3"),
+                    BackgroundColor = Color.DarkGoldenrod,
                     TextColor = Color.White,
                     HeightRequest = 35,
-                    WidthRequest = 50
+                    WidthRequest = 50,
+                    CornerRadius = 5
                 };
 
                 Button btnDelete = new Button()
@@ -243,7 +262,8 @@ namespace AMN.View
                     BackgroundColor = Color.DarkRed,
                     TextColor = Color.White,
                     HeightRequest = 35,
-                    WidthRequest = 50
+                    WidthRequest = 50,
+                    CornerRadius = 5
                 };
 
                 btnEdit.Clicked += (sender, args) =>
@@ -285,13 +305,11 @@ namespace AMN.View
             lbl.TextColor = Color.Black;
             lbl.VerticalOptions = LayoutOptions.Center;
             lbl.HorizontalOptions = horizontalLayout;
-            //lbl.Row(gridRow);
             Grid.SetRow(lbl, gridRow);
-            //lbl.Column(gridColumn);
             Grid.SetColumn(lbl, gridColumn);
-            //lbl.ColumnSpan(columnSpan);
             Grid.SetColumnSpan(lbl, columnSpan);
             lbl.Text = name;
+            lbl.FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label));
 
             return lbl;
         }
@@ -305,7 +323,7 @@ namespace AMN.View
             }
             catch (Exception ex)
             {
-                DisplayActionSheet("Error", ex.Message, "OK");
+                DisplayAlert("Error", $"Please try logging in or signing up before adding items.\n\n{ex.Message}", "OK");
             }
 
         }
@@ -333,9 +351,47 @@ namespace AMN.View
             RefreshPage();
         }
 
-        private void SaveMeal_Clicked(object sender, EventArgs e)
+        private async void SaveMeal_Clicked(object sender, EventArgs e)
         {
+            if(MasterModel.DAL.UserLoggedIn() == true)
+            {
+                try
+                {
+                    actSave.IsRunning = true;
+                    await MasterModel.DAL.SaveMeal();
+                    await Navigation.PopAsync();
+                }
+                catch (Exception ex)
+                {
+                    DisplayAlert("Error", $"Something went wrong:\n{ex.Message}", "OK");
+                }
+            }
+            else
+            {
+                DisplayAlert("Not Logged In", "Please login from the main page to save meals", "OK");
+            }
+        }
 
+        private void entryProtein_Focused(object sender, FocusEventArgs e)
+        {
+            entryProtein.Text = "";
+        }
+
+        private void entryProtein_Unfocused(object sender, FocusEventArgs e)
+        {
+            if (string.IsNullOrEmpty(entryProtein.Text) == true)
+            {
+                if (MasterModel.currentFoodResult != null)
+                {
+                    entryProtein.Text = MasterModel.currentFoodResult.resultProtein.ToString();
+                }
+            }
+            else
+            {
+                MasterModel.currentFoodResult.resultProtein = Convert.ToDouble(entryProtein.Text);
+            }
+
+            entryCarbs.Focus();
         }
     }
 }

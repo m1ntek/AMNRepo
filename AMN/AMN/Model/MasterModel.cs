@@ -16,5 +16,6 @@ namespace AMN.Controller
         public static Meal tempMeal = new Meal();
         public static MacroNutrients dailyGoal = new MacroNutrients();
         public static MacroNutrients dailyProgress = new MacroNutrients();
+        public static MealCollection userMeals = new MealCollection();
     }
 }

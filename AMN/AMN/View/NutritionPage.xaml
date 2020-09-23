@@ -22,18 +22,21 @@
                     </Grid.RowDefinitions>
                     <!-- left -->
                     <Label Text="Energy" TextColor="Black" VerticalOptions="Center"></Label>
-                    <Label Text="Carbs" Grid.Row="1" TextColor="Black" VerticalOptions="Center"></Label>
-                    <Label Text="Fat" Grid.Row="2" TextColor="Black" VerticalOptions="Center"></Label>
+                    <Label Text="Carbs" Grid.Row="2" TextColor="Black" VerticalOptions="Center"></Label>
+                    <Label Text="Fat" Grid.Row="3" TextColor="Black" VerticalOptions="Center"></Label>
+                    <Label Text="Protein" Grid.Row="1" TextColor="Black" VerticalOptions="Center"></Label>
                     <!-- center -->
-                    <Entry x:Name="entryEnergyGoal" Grid.Column="1" Focused="entryEnergyGoal_Focused" Keyboard="Numeric"></Entry>
-                    <Entry x:Name="entryCarbGoal" Grid.Column="1" Grid.Row="1" Focused="entryCarbGoal_Focused" Keyboard="Numeric"></Entry>
-                    <Entry x:Name="entryFatGoal" Grid.Column="1" Grid.Row="2" Focused="entryFatGoal_Focused" Keyboard="Numeric"></Entry>
+                    <Entry x:Name="entryEnergyGoal" Grid.Column="1" Focused="entryEnergyGoal_Focused" Unfocused="entryEnergyGoal_Unfocused" Keyboard="Numeric"></Entry>
+                    <Entry x:Name="entryCarbGoal" Grid.Column="1" Grid.Row="2" Focused="entryCarbGoal_Focused" Unfocused="entryCarbGoal_Unfocused" Keyboard="Numeric"></Entry>
+                    <Entry x:Name="entryFatGoal" Grid.Column="1" Grid.Row="3" Focused="entryFatGoal_Focused" Unfocused="entryFatGoal_Unfocused" Keyboard="Numeric"></Entry>
+                    <Entry x:Name="entryProteinGoal" Grid.Column="1" Grid.Row="1" Focused="entryProteinGoal_Focused" Unfocused="entryProteinGoal_Unfocused" Keyboard="Numeric"></Entry>
                     <!-- right -->
                     <Label Text="kcal" TextColor="Black" Grid.Column="2" VerticalOptions="Center"></Label>
-                    <Label Text="g" Grid.Row="1" TextColor="Black" Grid.Column="2" VerticalOptions="Center"></Label>
                     <Label Text="g" Grid.Row="2" TextColor="Black" Grid.Column="2" VerticalOptions="Center"></Label>
+                    <Label Text="g" Grid.Row="3" TextColor="Black" Grid.Column="2" VerticalOptions="Center"></Label>
+                    <Label Text="g" Grid.Row="1" TextColor="Black" Grid.Column="2" VerticalOptions="Center"></Label>
                     <!-- button -->
-                    <Button Text="Set goal" Clicked="SetGoal_Clicked" BackgroundColor="#2196F3" TextColor="White" FontSize="Medium" Grid.Row="3" Grid.ColumnSpan="3"></Button>
+                    <Button Text="Set goal" Clicked="SetGoal_Clicked" BackgroundColor="#2196F3" TextColor="White" FontSize="Medium" Grid.Row="4" Grid.ColumnSpan="3"></Button>
                 </Grid>
                 <StackLayout x:Name="noMeals" Margin="50,10" VerticalOptions="CenterAndExpand">
                     <Label x:Name="lblTest" Text="There are currently no planned meals." TextColor="Black" FontSize="Medium"></Label>

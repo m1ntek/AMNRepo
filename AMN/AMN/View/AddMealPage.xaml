@@ -29,35 +29,39 @@
                         <ActivityIndicator x:Name="actName" IsRunning="False" Grid.Column="2"></ActivityIndicator>
 
                         <!-- grouped form -->
-                        <Grid Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="3" x:Name="macroFormGrid" IsVisible="True">
+                        <Grid Grid.Row="1" Grid.RowSpan="5" Grid.ColumnSpan="3" x:Name="macroFormGrid" IsVisible="True">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="0.5*"></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
                                 <ColumnDefinition Width="0.33*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="50"></RowDefinition>
+                                <RowDefinition Height="50"></RowDefinition>
+                                <RowDefinition Height="50"></RowDefinition>
+                                <RowDefinition Height="50"></RowDefinition>
+                                <RowDefinition Height="50"></RowDefinition>
                             </Grid.RowDefinitions>
                             <!-- left column -->
-                            <Label Text="Energy:" FontSize="Medium" TextColor="Black" Grid.Row="0" VerticalOptions="Center"></Label>
-                            <Label Text="Carbs:" FontSize="Medium" TextColor="Black" Grid.Row="1" VerticalOptions="Center"></Label>
-                            <Label Text="Fat:" FontSize="Medium" TextColor="Black" Grid.Row="2" VerticalOptions="Center"></Label>
-                            <Label Text="Serving:" FontSize="Medium" TextColor="Black" Grid.Row="3" VerticalOptions="Center"></Label>
+                            <Label Text="Energy:" FontSize="Medium" TextColor="Black" Grid.Row="4" VerticalOptions="Center"></Label>
+                            <Label Text="Carbs:" FontSize="Medium" TextColor="Black" Grid.Row="2" VerticalOptions="Center"></Label>
+                            <Label Text="Fat:" FontSize="Medium" TextColor="Black" Grid.Row="3" VerticalOptions="Center"></Label>
+                            <Label Text="Protein:" FontSize="Medium" TextColor="Black" Grid.Row="1" VerticalOptions="Center"></Label>
+                            <Label Text="Serving:" FontSize="Medium" TextColor="Black" Grid.Row="0" VerticalOptions="Center"></Label>
 
                             <!-- mid column -->
-                            <Entry x:Name="entryEnergy" Grid.Column="1" Grid.Row="0" Focused="entryEnergy_Focused" Unfocused="entryEnergy_Unfocused"></Entry>
-                            <Entry x:Name="entryCarbs" Grid.Column="1" Grid.Row="1" Focused="entryCarbs_Focused" Unfocused="entryCarbs_Unfocused"></Entry>
-                            <Entry x:Name="entryFat" Grid.Column="1" Grid.Row="2" Focused="entryFat_Focused" Unfocused="entryFat_Unfocused"></Entry>
-                            <Entry x:Name="entryServing" Grid.Column="1" Grid.Row="3" Focused="entryServing_Focused" Unfocused="entryServing_Unfocused"></Entry>
+                            <Entry x:Name="entryEnergy" Grid.Column="1" Grid.Row="4" Focused="entryEnergy_Focused" Unfocused="entryEnergy_Unfocused" Keyboard="Numeric"></Entry>
+                            <Entry x:Name="entryCarbs" Grid.Column="1" Grid.Row="2" Focused="entryCarbs_Focused" Unfocused="entryCarbs_Unfocused" Keyboard="Numeric"></Entry>
+                            <Entry x:Name="entryFat" Grid.Column="1" Grid.Row="3" Focused="entryFat_Focused" Unfocused="entryFat_Unfocused" Keyboard="Numeric"></Entry>
+                            <Entry x:Name="entryProtein" Grid.Column="1" Grid.Row="1" Focused="entryProtein_Focused" Unfocused="entryProtein_Unfocused" Keyboard="Numeric"></Entry>
+                            <Entry x:Name="entryServing" Grid.Column="1" Grid.Row="0" Focused="entryServing_Focused" Unfocused="entryServing_Unfocused" Keyboard="Numeric"></Entry>
 
                             <!-- right column -->
-                            <Label Text="kcal" FontSize="Medium" TextColor="Black" Grid.Row="0" Grid.Column="2" VerticalOptions="Center"></Label>
+                            <Label Text="kcal" FontSize="Medium" TextColor="Black" Grid.Row="4" Grid.Column="2" VerticalOptions="Center"></Label>
                             <Label Text="g" FontSize="Medium" TextColor="Black" Grid.Row="1" Grid.Column="2" VerticalOptions="Center"></Label>
                             <Label Text="g" FontSize="Medium" TextColor="Black" Grid.Row="2" Grid.Column="2" VerticalOptions="Center"></Label>
                             <Label Text="g" FontSize="Medium" TextColor="Black" Grid.Row="3" Grid.Column="2" VerticalOptions="Center"></Label>
+                            <Label Text="g" FontSize="Medium" TextColor="Black" Grid.Row="0" Grid.Column="2" VerticalOptions="Center"></Label>
                         </Grid>
                     </Grid>
                     <!-- stack buttons on top of each other and switch between them -->
@@ -66,15 +70,16 @@
                         <Button x:Name="btnEditFood" Text="Edit food item" BackgroundColor="#2196F3" TextColor="White" FontSize="Medium" Clicked="editFood_Clicked" IsVisible="False"></Button>
                     </Grid>
                     <StackLayout x:Name="stackFoodItems"></StackLayout>
-                    <StackLayout x:Name="macroSummary">
-                        <Label Text="Today's Goal: " FontSize="Medium" TextColor="Black"></Label>
-                        <Label Text="Energy: 1234/1500 kcal" FontSize="Medium" TextColor="Black"></Label>
-                        <Label Text="Protein: 333/500 g" FontSize="Medium" TextColor="Black"></Label>
-                        <Label Text="Carbs: 432/500 g" FontSize="Medium" TextColor="Black"></Label>
-                        <Label Text="Fat: 230/250 g" FontSize="Medium" TextColor="Black"></Label>
+                    <StackLayout x:Name="macroSummary" BackgroundColor="DarkMagenta" Padding="10,10">
+                        <Label Text="Today's Goal: " FontSize="Medium" TextColor="White"></Label>
+                        <Label Text="Energy: 1234/1500 kcal" FontSize="Medium" TextColor="White"></Label>
+                        <Label Text="Protein: 333/500 g" FontSize="Medium" TextColor="White"></Label>
+                        <Label Text="Carbs: 432/500 g" FontSize="Medium" TextColor="White"></Label>
+                        <Label Text="Fat: 230/250 g" FontSize="Medium" TextColor="White"></Label>
                     </StackLayout>
                 </StackLayout>
                 <Button Text="Save meal" Margin="50,10" BackgroundColor="#2196F3" TextColor="White" FontSize="Medium" Clicked="SaveMeal_Clicked"></Button>
+                <ActivityIndicator x:Name="actSave" IsRunning="False"></ActivityIndicator>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
