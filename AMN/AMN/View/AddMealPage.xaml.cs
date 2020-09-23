@@ -46,8 +46,6 @@ namespace AMN.View
             MasterModel.apiC.Query(entryName.Text);
         }
 
-        bool isFirstSearch = true;
-
         private async void entryName_Unfocused(object sender, FocusEventArgs e)
         {
             //actName.IsRunning = true;
@@ -60,10 +58,10 @@ namespace AMN.View
                 try
                 {
                     await queryTask;
-                    MasterModel.currentFoodResult = new Model.FoodResult();
+                    await Task.Run(() => MasterModel.currentFoodResult = new Model.FoodResult());
                     UpdateText();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     //do nothing
                 }
