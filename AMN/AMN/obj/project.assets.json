@@ -1510,11 +1510,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Min\\source\\repos\\AMNRepo\\AMN\\AMN\\AMN.csproj",
+      "projectUniqueName": "C:\\Users\\Min\\Source\\Repos\\AMNRepo\\AMN\\AMN\\AMN.csproj",
       "projectName": "AMN",
-      "projectPath": "C:\\Users\\Min\\source\\repos\\AMNRepo\\AMN\\AMN\\AMN.csproj",
+      "projectPath": "C:\\Users\\Min\\Source\\Repos\\AMNRepo\\AMN\\AMN\\AMN.csproj",
       "packagesPath": "C:\\Users\\Min\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Min\\source\\repos\\AMNRepo\\AMN\\AMN\\obj\\",
+      "outputPath": "C:\\Users\\Min\\Source\\Repos\\AMNRepo\\AMN\\AMN\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"

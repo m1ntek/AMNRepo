@@ -358,7 +358,7 @@ namespace AMN.View
                 try
                 {
                     actSave.IsRunning = true;
-                    await MasterModel.DAL.SaveMeal();
+                    await MasterModel.DAL.SaveMealV2();
                     await Navigation.PopAsync();
                 }
                 catch (Exception ex)

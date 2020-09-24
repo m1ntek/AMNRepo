@@ -85,6 +85,17 @@ public class DataAccessLayer
         await SaveIds();
     }
 
+    public async Task SaveMealV2()
+    {
+        //get mealId from firebase
+        //save meal as incremented mealId, save new mealId to firebase
+
+        await GetIds();
+        await fb.Child("Users").Child(MasterModel.DAL.GetCurrentLocalId()).Child("Meals").Child(idGen.totalMealIds.ToString("0000")).PutAsync(MasterModel.tempMeal.items);
+        ++idGen.totalMealIds;
+        await SaveIds();
+    }
+
     public async Task UpdateUser()
     {
         await fb.Child("Users").Child(auth.User.LocalId).PutAsync(MasterModel.currentUser);
