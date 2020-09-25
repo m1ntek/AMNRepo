@@ -6145,11 +6145,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Min\\Source\\Repos\\AMNRepo\\AMN\\AMN.iOS\\AMN.iOS.csproj",
+      "projectUniqueName": "C:\\Users\\Min\\source\\repos\\AMNRepo\\AMN\\AMN.iOS\\AMN.iOS.csproj",
       "projectName": "AMN.iOS",
-      "projectPath": "C:\\Users\\Min\\Source\\Repos\\AMNRepo\\AMN\\AMN.iOS\\AMN.iOS.csproj",
+      "projectPath": "C:\\Users\\Min\\source\\repos\\AMNRepo\\AMN\\AMN.iOS\\AMN.iOS.csproj",
       "packagesPath": "C:\\Users\\Min\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Min\\Source\\Repos\\AMNRepo\\AMN\\AMN.iOS\\obj\\",
+      "outputPath": "C:\\Users\\Min\\source\\repos\\AMNRepo\\AMN\\AMN.iOS\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -6170,8 +6170,8 @@
       "frameworks": {
         "xamarinios10": {
           "projectReferences": {
-            "C:\\Users\\Min\\Source\\Repos\\AMNRepo\\AMN\\AMN\\AMN.csproj": {
-              "projectPath": "C:\\Users\\Min\\Source\\Repos\\AMNRepo\\AMN\\AMN\\AMN.csproj"
+            "C:\\Users\\Min\\source\\repos\\AMNRepo\\AMN\\AMN\\AMN.csproj": {
+              "projectPath": "C:\\Users\\Min\\source\\repos\\AMNRepo\\AMN\\AMN\\AMN.csproj"
             }
           }
         }

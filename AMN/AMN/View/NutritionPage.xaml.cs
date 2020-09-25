@@ -19,37 +19,33 @@ namespace AMN.View
             InitializeComponent();
         }
 
-        //private void Button_Clicked(object sender, EventArgs e)
-        //{
-        //    MasterController.apiC.Query(entryQuery.Text);
-        //    var resultInfo = MasterController.apiC.queryResult;
-        //    lblTest.Text = "Top Result:\n" +
-        //        "\n" +
-        //        $"{resultInfo.ingredients[0].parsed[0].food}\n" +
-        //        $"\n" +
-        //        $"{resultInfo.ingredients[0].parsed[0].nutrients.ENERC_KCAL.label}:\t{resultInfo.ingredients[0].parsed[0].nutrients.ENERC_KCAL.quantity}{resultInfo.ingredients[0].parsed[0].nutrients.ENERC_KCAL.unit}\n" +
-        //        $"{resultInfo.ingredients[0].parsed[0].nutrients.PROCNT.label}:\t{resultInfo.ingredients[0].parsed[0].nutrients.PROCNT.quantity}{resultInfo.ingredients[0].parsed[0].nutrients.PROCNT.unit}\n" +
-        //        $"{resultInfo.ingredients[0].parsed[0].nutrients.CA.label}:\t{resultInfo.ingredients[0].parsed[0].nutrients.CA.quantity}{resultInfo.ingredients[0].parsed[0].nutrients.CA.unit}\n" +
-        //        $"{resultInfo.ingredients[0].parsed[0].nutrients.FAT.label}:\t{resultInfo.ingredients[0].parsed[0].nutrients.FAT.quantity}{resultInfo.ingredients[0].parsed[0].nutrients.FAT.unit}";
-        //}
-
         private void RefreshPage()
         {
             var refreshedPage = new NutritionPage(); Navigation.InsertPageBefore(refreshedPage, this); Navigation.PopAsync();
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
-            UpdateText();
+            //MasterModel.dailyGoal = new MacroNutrients(); //to fix an empty object bug?
             try
             {
-                MasterModel.DAL.GetUserData();
+                await MasterModel.DAL.GetUserData();
             }
             catch (Exception)
             {
-
+                //do nothing for the moment.
             }
+
+            try
+            {
+                MasterModel.dailyGoal = await MasterModel.DAL.GetGoalV2();
+            }
+            catch (Exception)
+            {
+                //do nothing for the moment.
+            }
+            UpdateText();
         }
 
         private async void AddMeal_Clicked(object sender, EventArgs e)
@@ -65,7 +61,7 @@ namespace AMN.View
             actInd.IsRunning = false;
         }
 
-        private void SetGoal_Clicked(object sender, EventArgs e)
+        private async void SetGoal_Clicked(object sender, EventArgs e)
         {
             MasterModel.dailyGoal.energyKcal = Convert.ToDouble(entryEnergyGoal.Text);
             MasterModel.dailyGoal.carbs = Convert.ToDouble(entryCarbGoal.Text);
@@ -73,6 +69,7 @@ namespace AMN.View
             MasterModel.dailyGoal.protein = Convert.ToDouble(entryProteinGoal.Text);
             UpdateText();
 
+            MasterModel.DAL.SaveGoal();
             DisplayAlert("Success", "Goal set!", "OK");
         }
 
