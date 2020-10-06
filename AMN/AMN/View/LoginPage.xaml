@@ -15,7 +15,7 @@
                            Placeholder="Your e-mail address..." Keyboard="Email" Unfocused="entryEmail_Unfocused"></Entry>
                     <!--<Label FontSize="Large" TextColor="Black">Password:</Label>-->
                     <Entry x:Name="entryPassword" IsPassword="True" FontSize="Large" TextColor="Black"
-                           Placeholder="Your password..."></Entry>
+                           Placeholder="Your password..." Unfocused="entryPassword_Unfocused"></Entry>
                     <Grid Margin="0,20,0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition></ColumnDefinition>

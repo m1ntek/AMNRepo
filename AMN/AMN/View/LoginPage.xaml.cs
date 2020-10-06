@@ -43,7 +43,7 @@ namespace AMN
                 actInd.IsRunning = true;
                 await MasterModel.DAL.SignInUser(entryEmail.Text, entryPassword.Text);
                 //MasterModel.currentUser.email = entryEmail.Text;
-                MasterModel.currentUser = await MasterModel.DAL.GetUserData();
+                //MasterModel.currentUser = await MasterModel.DAL.GetUserData();
                 ClearForm();
                 Navigation.InsertPageBefore(new MainPage(), this);
                 await Navigation.PopAsync();
@@ -73,6 +73,11 @@ namespace AMN
         private void entryEmail_Unfocused(object sender, FocusEventArgs e)
         {
             entryPassword.Focus();
+        }
+
+        private void entryPassword_Unfocused(object sender, FocusEventArgs e)
+        {
+            Login_Clicked(sender, e);
         }
 
         //private void chkboxRememberMe_CheckedChanged(object sender, CheckedChangedEventArgs e)

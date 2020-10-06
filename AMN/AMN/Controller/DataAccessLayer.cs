@@ -69,7 +69,7 @@ public class DataAccessLayer
 
     public async Task<Person> GetUserData()
     {
-        return await fb.Child("Users").Child(GetCurrentLocalId()).OnceSingleAsync<Person>();
+        return await fb.Child("Users").Child(auth.User.LocalId).OnceSingleAsync<Person>();
     }
 
     public async Task SaveGoal()
