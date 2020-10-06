@@ -45,17 +45,8 @@ namespace AMN
 
         private void UpdateFooter()
         {
-            if(string.IsNullOrEmpty(MasterModel.currentUser.email) != true)
-            {
-                notLoggedIn.IsVisible = false;
-                loggedIn.IsVisible = true;
-                lblLoggedIn.Text = MasterModel.loginC.UpdateFooter(MasterModel.currentUser.email);
-            }
-            else
-            {
-                notLoggedIn.IsVisible = true;
-                loggedIn.IsVisible = false;
-            }
+            loggedIn.IsVisible = true;
+            lblLoggedIn.Text = MasterModel.loginC.UpdateFooter(MasterModel.currentUser.email);
         }
 
         protected override void OnAppearing()

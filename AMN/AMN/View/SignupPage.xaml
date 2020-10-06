@@ -14,9 +14,9 @@
                            Placeholder="Your e-mail address..."></Entry>
                     <Label FontSize="Large" TextColor="Black">Enter new password:</Label>
                     <Entry x:Name="entryPassword1" IsPassword="True" FontSize="Large" TextColor="Black"
-                           Placeholder="Please enter twice to verify..."></Entry>
+                           Placeholder="Please enter a password..."></Entry>
                     <Entry x:Name="entryPassword2" IsPassword="True" FontSize="Large" TextColor="Black"
-                           Placeholder="Please enter twice to verify..."></Entry>
+                           Placeholder="Please confirm password..."></Entry>
                     <Button Text="Sign Up" Margin="0,20,0,0" BackgroundColor="#2196F3" TextColor="White" FontSize="Medium"
                             Clicked="Signup_Clicked"></Button>
                 </StackLayout>

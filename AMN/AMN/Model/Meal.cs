@@ -9,6 +9,7 @@ namespace AMN.Model
     {
         public int mealId;
         public string userLocalId;
+        public string mealName;
         public List<FoodItem> items;
 
         public Meal()

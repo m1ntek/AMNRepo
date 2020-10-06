@@ -30,7 +30,13 @@ namespace AMN.View
             //MasterModel.dailyGoal = new MacroNutrients(); //to fix an empty object bug?
             try
             {
-                await MasterModel.DAL.GetUserData();
+                if(MasterModel.currentUser.Meals.Count > 0)
+                {
+                    //switch status views
+                    noMeals.IsVisible = false;
+                    mealsFound.IsVisible = true;
+                    BindingContext = MasterModel.currentUser;
+                }              
             }
             catch (Exception)
             {
@@ -45,7 +51,7 @@ namespace AMN.View
             {
                 //do nothing for the moment.
             }
-            UpdateText();
+            UpdateGoalText();
         }
 
         private async void AddMeal_Clicked(object sender, EventArgs e)
@@ -67,13 +73,13 @@ namespace AMN.View
             MasterModel.dailyGoal.carbs = Convert.ToDouble(entryCarbGoal.Text);
             MasterModel.dailyGoal.fat = Convert.ToDouble(entryFatGoal.Text);
             MasterModel.dailyGoal.protein = Convert.ToDouble(entryProteinGoal.Text);
-            UpdateText();
+            UpdateGoalText();
 
             MasterModel.DAL.SaveGoal();
             DisplayAlert("Success", "Goal set!", "OK");
         }
 
-        private void UpdateText()
+        private void UpdateGoalText()
         {
             entryEnergyGoal.Text = MasterModel.dailyGoal.energyKcal.ToString();
             entryCarbGoal.Text = MasterModel.dailyGoal.carbs.ToString();

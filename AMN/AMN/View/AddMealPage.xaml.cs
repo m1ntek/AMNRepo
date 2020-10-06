@@ -357,6 +357,9 @@ namespace AMN.View
             {
                 try
                 {
+                    MasterModel.tempMeal.mealName = await DisplayPromptAsync("Meal Name", "Name your meal.");
+                    MasterModel.currentUser.Meals.Add(MasterModel.tempMeal);
+
                     actSave.IsRunning = true;
                     await MasterModel.DAL.SaveMealV2();
                     await Navigation.PopAsync();

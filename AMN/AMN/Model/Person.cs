@@ -17,6 +17,7 @@ namespace AMN.Model
             email = "";
             rememberMe = false;
             DailyGoal = new MacroNutrients();
+            Meals = new List<Meal>();
         }
     }
 }

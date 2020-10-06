@@ -42,17 +42,20 @@ namespace AMN
             {
                 actInd.IsRunning = true;
                 await MasterModel.DAL.SignInUser(entryEmail.Text, entryPassword.Text);
-                MasterModel.currentUser.email = entryEmail.Text;
+                //MasterModel.currentUser.email = entryEmail.Text;
+                MasterModel.currentUser = await MasterModel.DAL.GetUserData();
                 ClearForm();
-                await Navigation.PopToRootAsync();
+                Navigation.InsertPageBefore(new MainPage(), this);
+                await Navigation.PopAsync();
                 actInd.IsRunning = false;
                 //MasterController.currentUser.rememberMe = chkboxRememberMe.IsChecked;
-                await MasterModel.DAL.UpdateUser();
+                //await MasterModel.DAL.UpdateUser();
             }
             catch (Exception exception)
             {
-                string reason = MasterModel.DAL.SimplifyException(exception.Message);
-                await DisplayAlert("Error", reason, "OK");
+                actInd.IsRunning = false;
+                //string reason = MasterModel.DAL.SimplifyException(exception.Message);
+                await DisplayAlert("Error", exception.Message, "OK");
             }
         }
 
@@ -60,6 +63,16 @@ namespace AMN
         {
             entryEmail.Text = "";
             entryPassword.Text = "";
+        }
+
+        private async void Signup_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new SignupPage());
+        }
+
+        private void entryEmail_Unfocused(object sender, FocusEventArgs e)
+        {
+            entryPassword.Focus();
         }
 
         //private void chkboxRememberMe_CheckedChanged(object sender, CheckedChangedEventArgs e)

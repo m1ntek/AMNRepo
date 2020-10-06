@@ -30,6 +30,7 @@ namespace AMN
                     await MasterModel.DAL.SignUpUser(entryEmail.Text, entryPassword1.Text);
                     await DisplayAlert("Successful", "New account created successfully.", "OK");
                     ClearForm();
+                    await MasterModel.DAL.UpdateUser();
                     await Navigation.PopToRootAsync();
                 }
                 catch (Exception exception)

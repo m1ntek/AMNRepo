@@ -6,26 +6,26 @@
         <ScrollView>
             <StackLayout>
                 <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-                    <Label Text="Login" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+                    <Label Text="Advanced Macro Nutrients" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
                 </Frame>
                 <StackLayout Margin="50,10" VerticalOptions="CenterAndExpand">
-                    <Label FontSize="Large" TextColor="Black">E-mail Address:</Label>
+                    <Label FontSize="Large" Text="Login" FontAttributes="Bold" TextColor="Black"></Label>
+                    <!--<Label FontSize="Large" TextColor="Black">E-mail Address:</Label>-->
                     <Entry x:Name="entryEmail" FontSize="Large" TextColor="Black"
-                           Placeholder="Your e-mail address..." Keyboard="Email"></Entry>
-                    <Label FontSize="Large" TextColor="Black">Password:</Label>
+                           Placeholder="Your e-mail address..." Keyboard="Email" Unfocused="entryEmail_Unfocused"></Entry>
+                    <!--<Label FontSize="Large" TextColor="Black">Password:</Label>-->
                     <Entry x:Name="entryPassword" IsPassword="True" FontSize="Large" TextColor="Black"
                            Placeholder="Your password..."></Entry>
-                    <!--
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-                        <Label Text="Remember me?" FontSize="Medium" TextColor="Black" VerticalOptions="Center"></Label>
-                        <CheckBox x:Name="chkboxRememberMe" Color="#2196F3"></CheckBox>
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="RememberMeRow_Tapped"></TapGestureRecognizer>
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
-                    -->
-                    <Button Text="Login" Margin="0,20,0,0" BackgroundColor="#2196F3" TextColor="White" FontSize="Medium"
-                            Clicked="Login_Clicked"></Button>
+                    <Grid Margin="0,20,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Button Text="Sign Up" BackgroundColor="#2196F3" TextColor="White" FontSize="Medium"
+                                Clicked="Signup_Clicked"></Button>
+                        <Button Text="Login" BackgroundColor="#2196F3" TextColor="White" FontSize="Medium"
+                            Clicked="Login_Clicked" Grid.Column="1"></Button>
+                    </Grid>
                     <ActivityIndicator x:Name="actInd" IsRunning="False" VerticalOptions="Center" Margin="0,20,0,0"></ActivityIndicator>
                 </StackLayout>
             </StackLayout>
