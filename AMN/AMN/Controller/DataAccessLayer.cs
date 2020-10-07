@@ -109,9 +109,9 @@ public class DataAccessLayer
         await SaveIds();
     }
 
-    public async Task UpdateUser()
+    public async Task UpdateUser(string _email)
     {
-        await fb.Child("Users").Child(auth.User.LocalId).PutAsync(MasterModel.currentUser);
+        await fb.Child("Users").Child(auth.User.LocalId).PutAsync(new Person() { email = _email });
     }
 
     public async Task SignInUser(string _email, string _pw)

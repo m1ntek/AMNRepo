@@ -268,10 +268,12 @@ namespace AMN.View
 
                 btnEdit.Clicked += (sender, args) =>
                 {
+                    MasterModel.currentFoodResult = new FoodResult();
                     MasterModel.currentFoodResult.resultName = item.name;
                     MasterModel.currentFoodResult.resultKcal = item.energyKcal;
                     MasterModel.currentFoodResult.resultCarb = item.carbs;
                     MasterModel.currentFoodResult.resultFat = item.fat;
+                    MasterModel.currentFoodResult.resultProtein = item.protein;
                     MasterModel.currentFoodResult.resultServing = item.serving;
 
                     UpdateText();
@@ -346,6 +348,7 @@ namespace AMN.View
             MasterModel.tempMeal.items[currentFoodItemIndex].energyKcal = Convert.ToDouble(entryEnergy.Text);
             MasterModel.tempMeal.items[currentFoodItemIndex].carbs = Convert.ToDouble(entryCarbs.Text);
             MasterModel.tempMeal.items[currentFoodItemIndex].fat = Convert.ToDouble(entryFat.Text);
+            MasterModel.tempMeal.items[currentFoodItemIndex].protein = Convert.ToDouble(entryProtein.Text);
             MasterModel.tempMeal.items[currentFoodItemIndex].serving = Convert.ToDouble(entryServing.Text);
 
             RefreshPage();
@@ -357,8 +360,15 @@ namespace AMN.View
             {
                 try
                 {
-                    MasterModel.tempMeal.mealName = await DisplayPromptAsync("Meal Name", "Name your meal.");
-                    MasterModel.currentUser.Meals.Add(MasterModel.tempMeal);
+                    if(MasterModel.tempMeal.index == -1)
+                    {
+                        MasterModel.tempMeal.mealName = await DisplayPromptAsync("Meal Name", "Name your meal.");
+                        MasterModel.currentUser.Meals.Add(MasterModel.tempMeal);
+                    }
+                    else
+                    {
+                        MasterModel.currentUser.Meals[MasterModel.tempMeal.index] = MasterModel.tempMeal;
+                    }
 
                     actSave.IsRunning = true;
                     await MasterModel.DAL.SaveMealV2();

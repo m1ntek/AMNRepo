@@ -14,6 +14,8 @@ namespace AMN.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NutritionPage : ContentPage
     {
+        Person currentUser;
+        List<Meal> meals;
         public NutritionPage()
         {
             InitializeComponent();
@@ -21,13 +23,17 @@ namespace AMN.View
 
         private void RefreshPage()
         {
-            var refreshedPage = new NutritionPage(); Navigation.InsertPageBefore(refreshedPage, this); Navigation.PopAsync();
+            var refreshedPage = new NutritionPage();
+            Navigation.InsertPageBefore(refreshedPage, this);
+            Navigation.PopAsync();
         }
 
         protected async override void OnAppearing()
         {
             base.OnAppearing();
             //MasterModel.dailyGoal = new MacroNutrients(); //to fix an empty object bug?
+            currentUser = await MasterModel.DAL.GetUserData();
+            meals = currentUser.Meals;
             try
             {
                 if(MasterModel.currentUser.Meals.Count > 0)
@@ -35,12 +41,14 @@ namespace AMN.View
                     //switch status views
                     noMeals.IsVisible = false;
                     mealsFound.IsVisible = true;
-                    BindingContext = MasterModel.currentUser;
+                    btnMealsFound.IsVisible = true;
+                    LoadMeals();
                 }              
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 //do nothing for the moment.
+                await DisplayAlert("Error", ex.Message, "OK");
             }
 
             try
@@ -52,6 +60,87 @@ namespace AMN.View
                 //do nothing for the moment.
             }
             UpdateGoalText();
+        }
+
+        private void LoadMeals()
+        {
+            //prevent appendage
+            mealsFound.Children.Clear();
+
+            for (int i = 0; i < meals.Count; i++)
+            {
+                Grid mealGrid = new Grid();
+                mealGrid.ColumnDefinitions.Add(new ColumnDefinition());
+                mealGrid.ColumnDefinitions.Add(new ColumnDefinition());
+                mealGrid.ColumnDefinitions.Add(new ColumnDefinition());
+                mealGrid.RowDefinitions.Add(new RowDefinition());
+                mealGrid.RowDefinitions.Add(new RowDefinition());
+
+                mealGrid.RowDefinitions[1].Height = new GridLength(0.5, GridUnitType.Star);
+
+                mealGrid.BackgroundColor = Color.FromHex("2196F3");
+                mealGrid.Padding = new Thickness(10, 10);
+
+                //save index number per foodItem... To fix a bug
+                meals[i].index = i;
+
+                Meal meal = meals[i];
+
+                Label lblName = new Label();
+                lblName = CardCreator.CreateLabelTemplate(lblName, LayoutOptions.Start, 0, 1, 3, meal.mealName);
+                lblName.TextColor = Color.White;
+
+                mealGrid.Children.Add(lblName);
+
+                StackLayout stack = new StackLayout();
+                stack.Orientation = StackOrientation.Horizontal;
+                Grid.SetColumnSpan(stack, 3);
+                stack.HorizontalOptions = LayoutOptions.End;
+
+                Button btnEdit = new Button()
+                {
+                    Text = "Edit",
+                    FontSize = Device.GetNamedSize(NamedSize.Micro, typeof(Button)),
+                    BackgroundColor = Color.DarkGoldenrod,
+                    TextColor = Color.White,
+                    HeightRequest = 35,
+                    WidthRequest = 50,
+                    CornerRadius = 5
+                };
+
+                Button btnDelete = new Button()
+                {
+                    Text = "Del",
+                    FontSize = Device.GetNamedSize(NamedSize.Micro, typeof(Button)),
+                    BackgroundColor = Color.DarkRed,
+                    TextColor = Color.White,
+                    HeightRequest = 35,
+                    WidthRequest = 50,
+                    CornerRadius = 5
+                };
+
+                btnEdit.Clicked += async (sender, args) =>
+                {
+                    MasterModel.tempMeal = meals[meal.index];
+                    await Navigation.PushAsync(new AddMealPage());
+                };
+
+                btnDelete.Clicked += async (sender, args) =>
+                {
+                    //meals.RemoveAt(meal.index);
+                    MasterModel.currentUser.Meals.RemoveAt(meal.index);
+                    await MasterModel.DAL.SaveMealV2();
+                    RefreshPage();
+                };
+
+                stack.Children.Add(btnEdit);
+                stack.Children.Add(btnDelete);
+
+                mealGrid.Children.Add(stack);
+
+                //mealsFound.Children.Add(mealGrid);
+                mealsFound.Children.Insert(0, mealGrid);
+            }
         }
 
         private async void AddMeal_Clicked(object sender, EventArgs e)
@@ -161,6 +250,11 @@ namespace AMN.View
             }
 
             entryCarbGoal.Focus();
+        }
+
+        private void mealsFound_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+
         }
     }
 }

@@ -22,6 +22,7 @@ namespace AMN
         private async Task GetUserData()
         {
             MasterModel.currentUser = await MasterModel.DAL.GetUserData();
+            UpdateFooter();
         }
 
         private async void Nutrition_Clicked(object sender, EventArgs e)

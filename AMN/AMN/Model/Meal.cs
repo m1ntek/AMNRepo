@@ -7,6 +7,7 @@ namespace AMN.Model
 {
     public class Meal
     {
+        public int index;
         public int mealId;
         public string userLocalId;
         public string mealName;
@@ -14,6 +15,7 @@ namespace AMN.Model
 
         public Meal()
         {
+            index = -1;
             mealId = 0;
             items = new List<FoodItem>();
         }

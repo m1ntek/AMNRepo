@@ -26,6 +26,8 @@
                         <Button Text="Login" BackgroundColor="#2196F3" TextColor="White" FontSize="Medium"
                             Clicked="Login_Clicked" Grid.Column="1"></Button>
                     </Grid>
+                    <!-- tester button -->
+                    <Button Text="Test Login" Clicked="Button_Clicked"></Button>
                     <ActivityIndicator x:Name="actInd" IsRunning="False" VerticalOptions="Center" Margin="0,20,0,0"></ActivityIndicator>
                 </StackLayout>
             </StackLayout>

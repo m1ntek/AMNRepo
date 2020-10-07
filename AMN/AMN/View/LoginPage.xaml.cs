@@ -37,7 +37,6 @@ namespace AMN
             //{
                 
             //}
-
             try
             {
                 actInd.IsRunning = true;
@@ -77,7 +76,34 @@ namespace AMN
 
         private void entryPassword_Unfocused(object sender, FocusEventArgs e)
         {
-            Login_Clicked(sender, e);
+            if(string.IsNullOrEmpty(entryEmail.Text) == false && string.IsNullOrEmpty(entryPassword.Text) == false)
+            {
+                Login_Clicked(sender, e);
+            }
+        }
+
+        //tester login
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                actInd.IsRunning = true;
+                await MasterModel.DAL.SignInUser("tester@123.com", "123123qwe");
+                //MasterModel.currentUser.email = entryEmail.Text;
+                //MasterModel.currentUser = await MasterModel.DAL.GetUserData();
+                ClearForm();
+                Navigation.InsertPageBefore(new MainPage(), this);
+                await Navigation.PopAsync();
+                actInd.IsRunning = false;
+                //MasterController.currentUser.rememberMe = chkboxRememberMe.IsChecked;
+                //await MasterModel.DAL.UpdateUser();
+            }
+            catch (Exception exception)
+            {
+                actInd.IsRunning = false;
+                //string reason = MasterModel.DAL.SimplifyException(exception.Message);
+                await DisplayAlert("Error", exception.Message, "OK");
+            }
         }
 
         //private void chkboxRememberMe_CheckedChanged(object sender, CheckedChangedEventArgs e)

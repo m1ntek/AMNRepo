@@ -16,12 +16,21 @@ namespace AMN.Model
 
         public FoodResult()
         {
-            resultName = MasterModel.apiC.queryResult.ingredients[0].parsed[0].foodMatch;
-            resultKcal = MasterModel.apiC.queryResult.ingredients[0].parsed[0].nutrients.ENERC_KCAL.quantity;
-            resultCarb = MasterModel.apiC.queryResult.ingredients[0].parsed[0].nutrients.CHOCDF.quantity;
-            resultProtein = MasterModel.apiC.queryResult.ingredients[0].parsed[0].nutrients.PROCNT.quantity;
-            resultFat = MasterModel.apiC.queryResult.ingredients[0].parsed[0].nutrients.FAT.quantity;
-            resultServing = MasterModel.apiC.queryResult.ingredients[0].parsed[0].weight;
+            //had to implement this to fix a bug... made it a little messy
+            try
+            {
+                resultName = MasterModel.apiC.queryResult.ingredients[0].parsed[0].foodMatch;
+                resultKcal = MasterModel.apiC.queryResult.ingredients[0].parsed[0].nutrients.ENERC_KCAL.quantity;
+                resultCarb = MasterModel.apiC.queryResult.ingredients[0].parsed[0].nutrients.CHOCDF.quantity;
+                resultProtein = MasterModel.apiC.queryResult.ingredients[0].parsed[0].nutrients.PROCNT.quantity;
+                resultFat = MasterModel.apiC.queryResult.ingredients[0].parsed[0].nutrients.FAT.quantity;
+                resultServing = MasterModel.apiC.queryResult.ingredients[0].parsed[0].weight;
+            }
+            catch (Exception)
+            {
+                resultName = "";
+                resultKcal = resultCarb = resultProtein = resultFat = resultServing = 0;
+            }
         }
     }
 }

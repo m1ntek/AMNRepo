@@ -43,17 +43,10 @@
                     <Button Text="Add a meal" Clicked="AddMeal_Clicked" BackgroundColor="#2196F3" TextColor="White" FontSize="Medium"></Button>
                     <ActivityIndicator x:Name="actInd" IsRunning="False" HorizontalOptions="Center"></ActivityIndicator>
                 </StackLayout>
-                <StackLayout x:Name="mealsFound" Margin="50,10" VerticalOptions="CenterAndExpand" IsVisible="False"
-                             BindableLayout.ItemsSource="{Binding Meals}">
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout>
-                                <Label Text="{Binding mealName}"></Label>
-                            </StackLayout>
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>
-                    
+                <StackLayout x:Name="mealsFound" Margin="50,10" VerticalOptions="CenterAndExpand" IsVisible="False">
+                    <!-- "Cards" get created form back-end -->
                 </StackLayout>
+                <Button x:Name="btnMealsFound" Text="Add a meal" Clicked="AddMeal_Clicked" BackgroundColor="#2196F3" TextColor="White" FontSize="Medium" Margin="50,10" IsVisible="False"></Button>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
