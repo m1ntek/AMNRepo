@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AMN.View.NutritionPageV2">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+                    <Label Text="Nutrition" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+                </Frame>
+                <!-- Daily goals -->
+                <Grid Margin="50,10" HorizontalOptions="CenterAndExpand" BackgroundColor="DarkMagenta" Padding="10,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="35"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Text="Today's Progress" Grid.ColumnSpan="4" HorizontalTextAlignment="Center" TextColor="White"/>
+                    <Label Text="Energy:" Grid.ColumnSpan="2" Grid.Row="1" TextColor="White"/>
+                    <Label  Text="0/0" Grid.Row="2" TextColor="White" HorizontalTextAlignment="Center"/>
+                    <Label Text="kcal"  Grid.Column="1" Grid.Row="2" TextColor="White"/>
+                    <Label Text="Protein:" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="1" TextColor="White"/>
+                    <Label Text="0/0" Grid.Column="2" Grid.Row="2" TextColor="White" HorizontalTextAlignment="Center" />
+                    <Label Text="g" Grid.Column="3" Grid.Row="2" TextColor="White"/>
+                    <Label Text="Carbs:" Grid.ColumnSpan="2" Grid.Row="3" TextColor="White"/>
+                    <Label Text="0/0" Grid.Row="4" TextColor="White"  HorizontalTextAlignment="Center"/>
+                    <Label Text="g" Grid.Column="1" Grid.Row="4" TextColor="White"/>
+                    <Label Text="Fat:" Grid.ColumnSpan="2" Grid.Row="3" Grid.Column="2" TextColor="White"/>
+                    <Label Text="0/0" Grid.Column="2" Grid.Row="4" TextColor="White"  HorizontalTextAlignment="Center"/>
+                    <Label Text="g" Grid.Column="3" Grid.Row="4" TextColor="White"/>
+                    <Button Text="Edit Goals" Grid.Row="5" Grid.ColumnSpan="4" FontSize="Micro"/>
+                </Grid><!-- Daily goals end -->
+                <Button Text="Edit Saved Meals" Margin="50,10" Clicked="EditSavedMeals_Clicked"/>
+                <!-- The day's meals -->
+                <StackLayout Margin="50,10">
+                    <Label Text="Today's Meals" HorizontalTextAlignment="Center"/>
+                    <StackLayout BindableLayout.ItemsSource="{Binding daysMeals}" BindableLayout.EmptyView="No meals setup for today.">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding mealName}"
+                                           FontSize="24"
+                                           VerticalOptions="Center"/>
+                                </StackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                    <Button Text="Add Meals" Clicked="AddMeals_Clicked"></Button>
+                </StackLayout><!-- The day's meals end -->
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

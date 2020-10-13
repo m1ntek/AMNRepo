@@ -7,7 +7,8 @@ namespace AMN.Model
 {
     public class FoodItem
     {
-        public string name, currentLocalId;
+        public string name { get; set; }
+        public string currentLocalId;
         public double energyKcal, carbs, fat, protein, serving;
         public int index;
 

@@ -11,6 +11,7 @@ namespace AMN.Model
         public bool rememberMe;
         public MacroNutrients DailyGoal;
         public List<Meal> Meals;
+        public List<Meal> DaysMeals;
 
         public Person()
         {

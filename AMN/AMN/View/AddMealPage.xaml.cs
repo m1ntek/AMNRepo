@@ -68,6 +68,7 @@ namespace AMN.View
         private async void entryName_Unfocused(object sender, FocusEventArgs e)
         {
             //actName.IsRunning = true;
+
             ActNameOn();
 
             //var queryTask = QueryAPI();

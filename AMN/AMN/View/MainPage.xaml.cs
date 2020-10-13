@@ -27,7 +27,7 @@ namespace AMN
 
         private async void Nutrition_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NutritionPage());
+            await Navigation.PushAsync(new NutritionPageV2());
         }
 
         private void Exercises_Clicked(object sender, EventArgs e)
