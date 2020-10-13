@@ -15,6 +15,7 @@ namespace AMN.View
     public partial class SavedMealsPage : ContentPage
     {
         public List<Meal> savedMeals { get; set; }
+        public ICommand DeleteClickedCommand { get; set; }
 
         public SavedMealsPage()
         {
@@ -48,6 +49,16 @@ namespace AMN.View
         private async void AddMeal_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AddMealPage());
+        }
+
+        private void Delete_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Edit_Clicked(object sender, EventArgs e)
+        {
+
         }
     }
 }
