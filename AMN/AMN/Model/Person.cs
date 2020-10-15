@@ -12,6 +12,7 @@ namespace AMN.Model
         public MacroNutrients DailyGoal;
         public List<Meal> Meals;
         public List<Meal> DaysMeals;
+        public List<Loadout> Loadouts;
 
         public Person()
         {
@@ -19,6 +20,7 @@ namespace AMN.Model
             rememberMe = false;
             DailyGoal = new MacroNutrients();
             Meals = new List<Meal>();
+            Loadouts = new List<Loadout>();
         }
     }
 }

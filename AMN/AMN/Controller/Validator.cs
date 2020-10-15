@@ -8,6 +8,20 @@ namespace AMN.Controller
     public class Validator
     {
         public string error = null;
+
+        public bool FoodItem(string[] formEntries)
+        {
+            foreach (var item in formEntries)
+            {
+                if(string.IsNullOrEmpty(item) == true)
+                {
+                    error = "Please don't leave any entries blank.";
+                    return false;
+                }
+            }
+            return true;
+        }
+
         public bool Signup(string em, string pw1, string pw2)
         {
             if (!string.IsNullOrEmpty(pw1) && !string.IsNullOrEmpty(pw2) && !string.IsNullOrEmpty(em))

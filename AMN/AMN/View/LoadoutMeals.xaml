@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AMN.View.LoadoutMeals">
+    <ContentPage.Content>
+        <!--<ScrollView>-->
+        <StackLayout>
+            <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+                <Label Text="New Loadout" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+            </Frame>
+            <ActivityIndicator x:Name="actInd"></ActivityIndicator>
+            <StackLayout HeightRequest="100">
+                <Grid Margin="50,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="0.33*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Name:" VerticalOptions="Center"/>
+                        <Entry x:Name="entryLoadoutName" Grid.Column="1" VerticalOptions="Center"/>
+                    </Grid>
+                </StackLayout>
+            <!-- Saved meals -->
+            <ListView x:Name="lvSavedMeals" ItemsSource="{Binding savedMeals}" ItemTapped="Meal_ItemTapped" Header="Saved Meals" Margin="50,0">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Margin="50,0" x:Name="stackMeal">
+                                <Label Text="{Binding mealName}" FontSize="24" VerticalOptions="Center"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <!-- Saved meals end -->
+            <Button Text="Add Meal" Clicked="AddMeal_Clicked" Margin="50,0"/>
+            <Button Text="Save Loadout" Clicked="SaveLoadout_Clicked" Margin="50,0,50,10"/>
+        </StackLayout>
+        <!--</ScrollView>-->
+    </ContentPage.Content>
+</ContentPage>

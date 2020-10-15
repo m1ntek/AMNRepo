@@ -15,7 +15,6 @@ namespace AMN.View
     public partial class SavedMealsPage : ContentPage
     {
         public List<Meal> savedMeals { get; set; }
-        public ICommand DeleteClickedCommand { get; set; }
 
         public SavedMealsPage()
         {
@@ -26,9 +25,12 @@ namespace AMN.View
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+
             actInd.IsVisible = true;
+            //savedMeals.Clear();
             await GetMeals();
-            BindingContext = this;
+            //BindingContext = this;
+            lvSavedMeals.ItemsSource = savedMeals;
             actInd.IsVisible = false;
         }
 
@@ -36,7 +38,6 @@ namespace AMN.View
         {
             try
             {
-                //savedMeals = await MasterModel.DAL.GetSavedMeals();
                 MasterModel.currentUser = await MasterModel.DAL.GetUserData();
                 savedMeals = MasterModel.currentUser.Meals;
             }
@@ -51,14 +52,28 @@ namespace AMN.View
             await Navigation.PushAsync(new AddMealPage());
         }
 
-        private void Delete_Clicked(object sender, EventArgs e)
+        private async void Meal_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-
+            MasterModel.tempMeal = savedMeals[e.ItemIndex];
+            MasterModel.tempMeal.index = e.ItemIndex;
+            await Navigation.PushAsync(new AddMealPageV2());
         }
 
-        private void Edit_Clicked(object sender, EventArgs e)
+        private async void MealDelete_Clicked(object sender, EventArgs e)
         {
+            var mealItem = (Meal)sender;
 
+            MasterModel.currentUser.Meals.RemoveAt(mealItem.index);
+            await MasterModel.DAL.SaveUserData(MasterModel.currentUser);
+            savedMeals = MasterModel.currentUser.Meals;
+
+            lvSavedMeals.ItemsSource = savedMeals;
+        }
+
+        private async void NewMeal_Clicked(object sender, EventArgs e)
+        {
+            MasterModel.tempMeal = new Meal();
+            await Navigation.PushAsync(new AddMealPageV2());
         }
     }
 }

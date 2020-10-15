@@ -21,6 +21,11 @@ namespace AMN.View
         public AddMealPageV2()
         {
             InitializeComponent();
+
+            if(MasterModel.tempMeal.index == -1)
+            {
+                btnDeleteMeal.IsVisible = false;
+            }
         }
 
         private void UpdateText()
@@ -47,6 +52,7 @@ namespace AMN.View
             MasterModel.apiC.Query(entryName.Text);
         }
 
+        //set to 1 gram on default
         private void SetDefaultServing()
         {
             double serving, kcal, carb, fat, protein;
@@ -316,29 +322,51 @@ namespace AMN.View
             return lbl;
         }
 
-        private void addFood_Clicked(object sender, EventArgs e)
+        private async void addFood_Clicked(object sender, EventArgs e)
         {
-            try
+            bool isValid = MasterModel.vd.FoodItem(new string[]
             {
-                CreateNewItem();
-                RefreshPage();
-            }
-            catch (Exception ex)
-            {
-                DisplayAlert("Error", $"Please try logging in or signing up before adding items.\n\n{ex.Message}", "OK");
-            }
+                entryName.Text,
+                entryServing.Text,
+                entryProtein.Text,
+                entryCarbs.Text,
+                entryFat.Text,
+                entryEnergy.Text
+            });
 
+            if(isValid == true)
+            {
+                try
+                {
+                    CreateNewItem();
+                    RefreshPage();
+                }
+                catch (Exception ex)
+                {
+                    await DisplayAlert("Error", $"Please try logging in or signing up before adding items.\n\n{ex.Message}", "OK");
+                }
+            }
+            else
+            {
+                await DisplayAlert("Error", MasterModel.vd.error, "OK");
+            }
         }
 
         private void RefreshPage()
         {
-            var refreshedPage = new AddMealPage(); Navigation.InsertPageBefore(refreshedPage, this); Navigation.PopAsync();
+            var refreshedPage = new AddMealPageV2(); Navigation.InsertPageBefore(refreshedPage, this); Navigation.PopAsync();
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            LoadMealName();
             LoadFoodItems();
+        }
+
+        private void LoadMealName()
+        {
+            entryMealName.Text = MasterModel.tempMeal.mealName;
         }
 
         //appears on edit food item clicked
@@ -362,7 +390,26 @@ namespace AMN.View
                 {
                     if(MasterModel.tempMeal.index == -1)
                     {
-                        MasterModel.tempMeal.mealName = await DisplayPromptAsync("Meal Name", "Name your meal.");
+                        //MasterModel.tempMeal.mealName = await DisplayPromptAsync("Meal Name", "Name your meal.");
+                        bool isValid = MasterModel.vd.FoodItem(new string[]
+                        {
+                            entryMealName.Text
+                        });
+
+                        if(isValid == false)
+                        {
+                            
+                            await DisplayAlert("Meal Name", MasterModel.vd.error, "OK");
+                            return;
+                        }
+
+                        if (MasterModel.tempMeal.items.Count == 0)
+                        {
+                            await DisplayAlert("Error", "The meal must contain at least 1 food item.", "OK");
+                            return;
+                        }
+
+
                         MasterModel.currentUser.Meals.Add(MasterModel.tempMeal);
                     }
                     else
@@ -372,7 +419,7 @@ namespace AMN.View
 
                     actSave.IsRunning = true;
                     //await MasterModel.DAL.SaveMealV3(MasterModel.tempMeal);
-                    MasterModel.currentUser.Meals.Add(MasterModel.tempMeal);
+                    //MasterModel.currentUser.Meals.Add(MasterModel.tempMeal);
                     await MasterModel.DAL.SaveUserData(MasterModel.currentUser);
                     await Navigation.PopAsync();
                 }
@@ -407,6 +454,31 @@ namespace AMN.View
             }
 
             entryCarbs.Focus();
+        }
+
+        private void entryMealName_Unfocused(object sender, FocusEventArgs e)
+        {
+            MasterModel.tempMeal.mealName = entryMealName.Text;
+        }
+
+        private async void btnDeleteMeal_Clicked(object sender, EventArgs e)
+        {
+            //confirmation before deleting meal
+            bool userConfirmed = await DisplayAlert("Confirmation", "Delete this meal?", "Yes", "No");
+
+            if (userConfirmed == true)
+            {
+                try
+                {
+                    MasterModel.currentUser.Meals.RemoveAt(MasterModel.tempMeal.index);
+                    await MasterModel.DAL.SaveUserData(MasterModel.currentUser);
+                    await Navigation.PopAsync();
+                }
+                catch (Exception)
+                {
+                    //do nothing for now
+                }
+            }
         }
     }
 }

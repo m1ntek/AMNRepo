@@ -35,7 +35,7 @@ namespace AMN.View
             }
         }
 
-        private async void EditSavedMeals_Clicked(object sender, EventArgs e)
+        private async void SavedMeals_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new SavedMealsPage());
         }
@@ -43,6 +43,11 @@ namespace AMN.View
         private async void AddMeals_Clicked(object sender, EventArgs e)
         {
 
+        }
+
+        private async void Loadouts_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new LoadoutsPage());
         }
     }
 }

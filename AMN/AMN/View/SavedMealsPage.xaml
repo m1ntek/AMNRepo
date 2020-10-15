@@ -3,87 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AMN.View.SavedMealsPage">
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout>
-                <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-                    <Label Text="Saved Meals" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-                </Frame>
-                <ActivityIndicator x:Name="actInd"></ActivityIndicator>
-                <!-- Saved meals -->
-                <!--<ListView ItemsSource="{Binding savedMeals}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout Margin="50,0" x:Name="stackMeal">
-                                    <Label Text="{Binding mealName}" FontSize="24" VerticalOptions="Center"/>
-                                    <StackLayout BindableLayout.ItemsSource="{Binding items}">
-                                        <BindableLayout.ItemTemplate>
-                                            <DataTemplate>
-                                                <StackLayout>
-                                                    <Label Text="{Binding name}"/>
-                                                </StackLayout>
-                                            </DataTemplate>
-                                        </BindableLayout.ItemTemplate>
-                                    </StackLayout>
-                                    <StackLayout Orientation="Horizontal">
-                                        <StackLayout>
-                                            <Label Text="{Binding totalEnergy}"/>
-                                            <Label Text="{Binding totalProtein}"/>
-                                        </StackLayout>
-                                        <StackLayout>
-                                            <Label Text="{Binding totalCarbs}"/>
-                                            <Label Text="{Binding totalFat}"/>
-                                        </StackLayout>
-                                    </StackLayout>
-                                    <StackLayout Orientation="Horizontal" HorizontalOptions="End">
-                                        <Button Text="Delete" Clicked="Button_Clicked"/>
-                                        <Button Text="Edit" Clicked="Button_Clicked_1"/>
-                                    </StackLayout>
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>-->
-
-            <StackLayout Margin="50,10">
-                <StackLayout x:Name="savedMealsList" BindableLayout.ItemsSource="{Binding savedMeals}" BindableLayout.EmptyView="You have no saved meals.">
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout x:Name="stackMeal">
-                                <Label Text="{Binding mealName}"
-                                           FontSize="24"
-                                           VerticalOptions="Center"/>
-                                <StackLayout BindableLayout.ItemsSource="{Binding items}">
-                                    <BindableLayout.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackLayout>
-                                                <Label Text="{Binding name}"/>
-                                            </StackLayout>
-                                        </DataTemplate>
-                                    </BindableLayout.ItemTemplate>
-                                </StackLayout>
-                                <StackLayout Orientation="Horizontal">
-                                    <StackLayout>
-                                        <Label Text="{Binding totalEnergy}"/>
-                                        <Label Text="{Binding totalProtein}"/>
-                                    </StackLayout>
-                                    <StackLayout>
-                                        <Label Text="{Binding totalCarbs}"/>
-                                        <Label Text="{Binding totalFat}"/>
-                                    </StackLayout>
-                                </StackLayout>
-                                <StackLayout Orientation="Horizontal" HorizontalOptions="End">
-                                    <Button Text="Delete" Clicked="Delete_Clicked"/>
-                                    <Button Text="Edit" Clicked="Edit_Clicked"/>
-                                </StackLayout>
+        <!--<ScrollView>-->
+        <StackLayout>
+            <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+                <Label Text="Saved Meals" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+            </Frame>
+            <ActivityIndicator x:Name="actInd"></ActivityIndicator>
+            <!-- Saved meals -->
+            <ListView x:Name="lvSavedMeals" ItemsSource="{Binding savedMeals}" ItemTapped="Meal_ItemTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Margin="50,0" x:Name="stackMeal">
+                                <Label Text="{Binding mealName}" FontSize="24" VerticalOptions="Center"/>
                             </StackLayout>
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>
-                </StackLayout>
-                <Button Text="Add Meal" Clicked="AddMeal_Clicked"></Button>
-            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
             <!-- Saved meals end -->
-            </StackLayout>
-        </ScrollView>
+            <Button Text="New Meal" Clicked="NewMeal_Clicked" Margin="50,10"/>
+        </StackLayout>
+        <!--</ScrollView>-->
     </ContentPage.Content>
 </ContentPage>

@@ -39,10 +39,17 @@
                     <Label Text="g" Grid.Column="3" Grid.Row="4" TextColor="White"/>
                     <Button Text="Edit Goals" Grid.Row="5" Grid.ColumnSpan="4" FontSize="Micro"/>
                 </Grid><!-- Daily goals end -->
-                <Button Text="Edit Saved Meals" Margin="50,10" Clicked="EditSavedMeals_Clicked"/>
+                <Grid Margin="50,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Text="Saved Meals" Clicked="SavedMeals_Clicked"/>
+                    <Button Text="Loadouts" Clicked="Loadouts_Clicked" Grid.Column="1"/>
+                </Grid>
                 <!-- The day's meals -->
                 <StackLayout Margin="50,10">
-                    <Label Text="Today's Meals" HorizontalTextAlignment="Center"/>
+                    <Label Text="Current Meal Loadout" HorizontalTextAlignment="Center"/>
                     <StackLayout BindableLayout.ItemsSource="{Binding daysMeals}" BindableLayout.EmptyView="No meals setup for today.">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
