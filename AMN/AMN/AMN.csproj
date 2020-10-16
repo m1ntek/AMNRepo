@@ -20,6 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="View\LoadoutAddMealPage.xaml.cs">
+      <DependentUpon>LoadoutAddMealPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="View\AddMealPageV2.xaml.cs">
       <DependentUpon>AddMealPageV2.xaml</DependentUpon>
     </Compile>

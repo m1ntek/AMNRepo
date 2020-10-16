@@ -9,7 +9,7 @@ namespace AMN.Controller
     {
         public string error = null;
 
-        public bool FoodItem(string[] formEntries)
+        public bool FormEntries(string[] formEntries)
         {
             foreach (var item in formEntries)
             {

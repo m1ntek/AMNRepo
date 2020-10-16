@@ -324,7 +324,7 @@ namespace AMN.View
 
         private async void addFood_Clicked(object sender, EventArgs e)
         {
-            bool isValid = MasterModel.vd.FoodItem(new string[]
+            bool isValid = MasterModel.vd.FormEntries(new string[]
             {
                 entryName.Text,
                 entryServing.Text,
@@ -391,7 +391,7 @@ namespace AMN.View
                     if(MasterModel.tempMeal.index == -1)
                     {
                         //MasterModel.tempMeal.mealName = await DisplayPromptAsync("Meal Name", "Name your meal.");
-                        bool isValid = MasterModel.vd.FoodItem(new string[]
+                        bool isValid = MasterModel.vd.FormEntries(new string[]
                         {
                             entryMealName.Text
                         });
@@ -425,12 +425,12 @@ namespace AMN.View
                 }
                 catch (Exception ex)
                 {
-                    DisplayAlert("Error", $"Something went wrong:\n{ex.Message}", "OK");
+                    await DisplayAlert("Error", $"Something went wrong:\n{ex.Message}", "OK");
                 }
             }
             else
             {
-                DisplayAlert("Not Logged In", "Please login from the main page to save meals", "OK");
+                await DisplayAlert("Not Logged In", "Please login from the main page to save meals", "OK");
             }
         }
 

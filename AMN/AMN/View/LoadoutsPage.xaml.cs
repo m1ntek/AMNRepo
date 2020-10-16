@@ -44,13 +44,16 @@ namespace AMN.View
             }
         }
 
-        private void lvLoadouts_ItemTapped(object sender, ItemTappedEventArgs e)
+        private async void lvLoadouts_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-
+            MasterModel.currentUser.TempLoadoutMeals = userLoadouts[e.ItemIndex].Meals;
+            await Navigation.PushAsync(new LoadoutMeals());
         }
 
         private async void NewLoadout_Clicked(object sender, EventArgs e)
         {
+            MasterModel.currentUser.TempLoadoutMeals = new List<Meal>();
+            await MasterModel.DAL.SaveUserData(MasterModel.currentUser);
             await Navigation.PushAsync(new LoadoutMeals());
         }
     }

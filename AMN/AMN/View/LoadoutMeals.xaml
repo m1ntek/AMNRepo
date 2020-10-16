@@ -20,6 +20,19 @@
                         <Entry x:Name="entryLoadoutName" Grid.Column="1" VerticalOptions="Center"/>
                     </Grid>
                 </StackLayout>
+            <!-- Loadout meals -->
+            <ListView x:Name="lvLoadoutMeals" ItemsSource="{Binding newLoadoutMeals}" ItemTapped="lvLoadoutMeals_ItemTapped" Header="Loadout Meals" Margin="50,0">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Margin="50,0">
+                                <Label Text="{Binding mealName}" FontSize="24" VerticalOptions="Center"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <!-- Loadout meals end -->
             <!-- Saved meals -->
             <ListView x:Name="lvSavedMeals" ItemsSource="{Binding savedMeals}" ItemTapped="Meal_ItemTapped" Header="Saved Meals" Margin="50,0">
                 <ListView.ItemTemplate>

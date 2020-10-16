@@ -15,11 +15,13 @@ namespace AMN.View
     public partial class LoadoutMeals : ContentPage
     {
         public List<Meal> savedMeals { get; set; }
+        public List<Meal> newLoadoutMeals { get; set; }
 
         public LoadoutMeals()
         {
             InitializeComponent();
             savedMeals = new List<Meal>();
+            newLoadoutMeals = new List<Meal>();
         }
 
         protected async override void OnAppearing()
@@ -29,6 +31,7 @@ namespace AMN.View
             actInd.IsVisible = true;
             await GetMeals();
             lvSavedMeals.ItemsSource = savedMeals;
+            lvLoadoutMeals.ItemsSource = newLoadoutMeals;
             actInd.IsVisible = false;
         }
 
@@ -38,6 +41,7 @@ namespace AMN.View
             {
                 MasterModel.currentUser = await MasterModel.DAL.GetUserData();
                 savedMeals = MasterModel.currentUser.Meals;
+                newLoadoutMeals = MasterModel.currentUser.TempLoadoutMeals;
             }
             catch (Exception ex)
             {
@@ -45,26 +49,39 @@ namespace AMN.View
             }
         }
 
-        private async void AddMeal_Clicked(object sender, EventArgs e)
+        private void SetMealTotals()
         {
-            await Navigation.PushAsync(new AddMealPage());
+            //prevents continuous appending of text
+            MasterModel.tempMeal.totalEnergy = "Energy: ";
+            MasterModel.tempMeal.totalProtein = "Protein: ";
+            MasterModel.tempMeal.totalCarbs = "Carbs: ";
+            MasterModel.tempMeal.totalFat = "Fat: ";
         }
+
 
         private async void Meal_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             MasterModel.tempMeal = savedMeals[e.ItemIndex];
             MasterModel.tempMeal.index = e.ItemIndex;
 
+            SetMealTotals();
+            MasterModel.tempMeal = Calculator.MacroTotals(MasterModel.tempMeal);
+
             bool addMeal = await DisplayAlert(
                 MasterModel.tempMeal.mealName,
                 "Add this meal?\n\n" +
                 MealItemSummary() +
-                MasterModel.tempMeal.totalEnergy + "\n" +
-                MasterModel.tempMeal.totalProtein + "\n" +
-                MasterModel.tempMeal.totalCarbs + "\n" +
-                MasterModel.tempMeal.totalFat + "\n", "Yes", "No");
+                string.Format("{0:0.00} kcal", MasterModel.tempMeal.totalEnergy) + "\n" +
+                string.Format("{0:0.00} g", MasterModel.tempMeal.totalProtein) + "\n" +
+                string.Format("{0:0.00} g", MasterModel.tempMeal.totalCarbs) + "\n" +
+                string.Format("{0:0.00} g", MasterModel.tempMeal.totalFat) + "\n", "Yes", "No");
+            //number format not working for some reason
 
-
+            if(addMeal == true)
+            {
+                newLoadoutMeals.Add(MasterModel.tempMeal);
+                lvLoadoutMeals.ItemsSource = newLoadoutMeals;
+            }
         }
 
         private string MealItemSummary()
@@ -91,13 +108,39 @@ namespace AMN.View
 
         private async void AddMeal_Clicked(object sender, EventArgs e)
         {
+            MasterModel.currentUser.TempLoadoutMeals = newLoadoutMeals;
             MasterModel.tempMeal = new Meal();
-            await Navigation.PushAsync(new AddMealPageV2());
+            await MasterModel.DAL.SaveUserData(MasterModel.currentUser);
+            await Navigation.PushAsync(new LoadoutAddMealPage());
         }
 
-        private void SaveLoadout_Clicked(object sender, EventArgs e)
+        private async void SaveLoadout_Clicked(object sender, EventArgs e)
         {
+            bool isValid = MasterModel.vd.FormEntries(new string[] { entryLoadoutName.Text });
 
+            if(isValid == false)
+            {
+                await DisplayAlert("Error", MasterModel.vd.error, "OK");
+                return;
+            }
+            else
+            {
+                MasterModel.currentUser.Loadouts.Add(new Loadout()
+                {
+                    LoadoutName = entryLoadoutName.Text,
+                    Meals = newLoadoutMeals
+                });
+            }
+
+            await MasterModel.DAL.SaveUserData(MasterModel.currentUser);
+            await Navigation.PopAsync();
+        }
+
+        private async void lvLoadoutMeals_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            MasterModel.tempMeal = savedMeals[e.ItemIndex];
+            MasterModel.tempMeal.index = e.ItemIndex;
+            await Navigation.PushAsync(new AddMealPageV2());
         }
     }
 }
