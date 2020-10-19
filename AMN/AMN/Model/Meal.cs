@@ -15,10 +15,10 @@ namespace AMN.Model
         public string mealName { get; set; }
         //public List<FoodItem> items;
         public List<FoodItem> items { get; set; }
-        public string totalEnergy { get; set; }
-        public string totalProtein { get; set; }
-        public string totalCarbs { get; set; }
-        public string totalFat { get; set; }
+        public double totalEnergy { get; set; }
+        public double totalProtein { get; set; }
+        public double totalCarbs { get; set; }
+        public double totalFat { get; set; }
 
         public Meal()
         {

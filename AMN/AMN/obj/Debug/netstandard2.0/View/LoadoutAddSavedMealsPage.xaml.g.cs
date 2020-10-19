@@ -8,13 +8,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("AMN.View.LoadoutMeals.xaml", "View/LoadoutMeals.xaml", typeof(global::AMN.View.LoadoutMeals))]
+[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("AMN.View.LoadoutAddSavedMealsPage.xaml", "View/LoadoutAddSavedMealsPage.xaml", typeof(global::AMN.View.LoadoutAddSavedMealsPage))]
 
 namespace AMN.View {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("View\\LoadoutMeals.xaml")]
-    public partial class LoadoutMeals : global::Xamarin.Forms.ContentPage {
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("View\\LoadoutAddSavedMealsPage.xaml")]
+    public partial class LoadoutAddSavedMealsPage : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private global::Xamarin.Forms.Label lblHeader;
@@ -23,18 +23,14 @@ namespace AMN.View {
         private global::Xamarin.Forms.ActivityIndicator actInd;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Entry entryLoadoutName;
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.ListView lvLoadoutMeals;
+        private global::Xamarin.Forms.ListView lvSavedMeals;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
-            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(LoadoutMeals));
+            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(LoadoutAddSavedMealsPage));
             lblHeader = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Label>(this, "lblHeader");
             actInd = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ActivityIndicator>(this, "actInd");
-            entryLoadoutName = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Entry>(this, "entryLoadoutName");
-            lvLoadoutMeals = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ListView>(this, "lvLoadoutMeals");
+            lvSavedMeals = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ListView>(this, "lvSavedMeals");
         }
     }
 }

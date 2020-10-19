@@ -354,7 +354,7 @@ namespace AMN.View
 
         private void RefreshPage()
         {
-            var refreshedPage = new AddMealPageV2(); Navigation.InsertPageBefore(refreshedPage, this); Navigation.PopAsync();
+            var refreshedPage = new LoadoutAddMealPage(); Navigation.InsertPageBefore(refreshedPage, this); Navigation.PopAsync();
         }
 
         protected async override void OnAppearing()
