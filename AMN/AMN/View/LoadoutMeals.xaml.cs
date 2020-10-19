@@ -24,13 +24,26 @@ namespace AMN.View
             newLoadoutMeals = new List<Meal>();
         }
 
+        public ICommand DeleteLoadoutCommand
+        {
+            get
+            {
+                return new Command((e) =>
+                {
+                    var item = (e as Meal);
+                    newLoadoutMeals.RemoveAt(item.index);
+                });
+
+            }
+        }
+
         protected async override void OnAppearing()
         {
             base.OnAppearing();
 
             actInd.IsVisible = true;
             await GetMeals();
-            lvSavedMeals.ItemsSource = savedMeals;
+            //lvSavedMeals.ItemsSource = savedMeals;
             lvLoadoutMeals.ItemsSource = newLoadoutMeals;
             actInd.IsVisible = false;
         }
@@ -64,8 +77,12 @@ namespace AMN.View
             MasterModel.tempMeal = savedMeals[e.ItemIndex];
             MasterModel.tempMeal.index = e.ItemIndex;
 
+            //var macroTotalsTask = CalculatorV2.MacroTotals(MasterModel.tempMeal);
+
             SetMealTotals();
-            MasterModel.tempMeal = Calculator.MacroTotals(MasterModel.tempMeal);
+            //MasterModel.tempMeal = CalculatorV2.MacroTotals(MasterModel.tempMeal);
+            //MasterModel.tempMeal = await macroTotalsTask;
+            MasterModel.tempMeal = await CalculatorV2.MacroTotals(MasterModel.tempMeal);
 
             bool addMeal = await DisplayAlert(
                 MasterModel.tempMeal.mealName,
@@ -80,7 +97,7 @@ namespace AMN.View
             if(addMeal == true)
             {
                 newLoadoutMeals.Add(MasterModel.tempMeal);
-                lvLoadoutMeals.ItemsSource = newLoadoutMeals;
+                //lvLoadoutMeals.ItemsSource = newLoadoutMeals;
             }
         }
 
@@ -103,7 +120,7 @@ namespace AMN.View
             await MasterModel.DAL.SaveUserData(MasterModel.currentUser);
             savedMeals = MasterModel.currentUser.Meals;
 
-            lvSavedMeals.ItemsSource = savedMeals;
+            //lvSavedMeals.ItemsSource = savedMeals;
         }
 
         private async void AddMeal_Clicked(object sender, EventArgs e)
@@ -117,8 +134,10 @@ namespace AMN.View
         private async void SaveLoadout_Clicked(object sender, EventArgs e)
         {
             bool isValid = MasterModel.vd.FormEntries(new string[] { entryLoadoutName.Text });
+            await MasterModel.DAL.GetIds();
+            MasterModel.DAL.idGen.totalLoadoutIds = 0; //delete after run once
 
-            if(isValid == false)
+            if (isValid == false)
             {
                 await DisplayAlert("Error", MasterModel.vd.error, "OK");
                 return;
@@ -128,9 +147,13 @@ namespace AMN.View
                 MasterModel.currentUser.Loadouts.Add(new Loadout()
                 {
                     LoadoutName = entryLoadoutName.Text,
-                    Meals = newLoadoutMeals
+                    Meals = newLoadoutMeals,
+                    LoadoutId = MasterModel.DAL.idGen.totalLoadoutIds
                 });
             }
+
+            MasterModel.DAL.idGen.totalLoadoutIds++;
+            await MasterModel.DAL.SaveIds();
 
             await MasterModel.DAL.SaveUserData(MasterModel.currentUser);
             await Navigation.PopAsync();

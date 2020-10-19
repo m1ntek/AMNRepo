@@ -7,5 +7,6 @@ namespace AMN.Model
     public class IDGen
     {
         public int totalMealIds;
+        public int totalLoadoutIds;
     }
 }

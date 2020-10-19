@@ -11,15 +11,15 @@
             <ActivityIndicator x:Name="actInd"></ActivityIndicator>
             <StackLayout HeightRequest="100">
                 <Grid Margin="50,10">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.5*"></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition Width="0.33*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Label Text="Name:" VerticalOptions="Center"/>
-                        <Entry x:Name="entryLoadoutName" Grid.Column="1" VerticalOptions="Center"/>
-                    </Grid>
-                </StackLayout>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="0.33*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Name:" VerticalOptions="Center"/>
+                    <Entry x:Name="entryLoadoutName" Grid.Column="1" VerticalOptions="Center"/>
+                </Grid>
+            </StackLayout>
             <!-- Loadout meals -->
             <ListView x:Name="lvLoadoutMeals" ItemsSource="{Binding newLoadoutMeals}" ItemTapped="lvLoadoutMeals_ItemTapped" Header="Loadout Meals" Margin="50,0">
                 <ListView.ItemTemplate>
@@ -34,7 +34,7 @@
             </ListView>
             <!-- Loadout meals end -->
             <!-- Saved meals -->
-            <ListView x:Name="lvSavedMeals" ItemsSource="{Binding savedMeals}" ItemTapped="Meal_ItemTapped" Header="Saved Meals" Margin="50,0">
+            <!--<ListView x:Name="lvSavedMeals" ItemsSource="{Binding savedMeals}" ItemTapped="Meal_ItemTapped" Header="Saved Meals" Margin="50,0">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -44,7 +44,7 @@
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            </ListView>
+            </ListView>-->
             <!-- Saved meals end -->
             <Button Text="Add Meal" Clicked="AddMeal_Clicked" Margin="50,0"/>
             <Button Text="Save Loadout" Clicked="SaveLoadout_Clicked" Margin="50,0,50,10"/>
