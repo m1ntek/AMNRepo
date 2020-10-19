@@ -65,7 +65,6 @@ namespace AMN.View
                 string.Format("Total Protein: {0:0.00} g", SavedMeals[e.ItemIndex].totalProtein) + "\n" +
                 string.Format("Total Carbs: {0:0.00} g", SavedMeals[e.ItemIndex].totalCarbs) + "\n" +
                 string.Format("Total Fat: {0:0.00} g", SavedMeals[e.ItemIndex].totalFat) + "\n", "Yes", "No");
-            //number format not working for some reason
 
             if (addMeal == true)
             {
