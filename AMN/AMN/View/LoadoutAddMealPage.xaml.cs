@@ -17,6 +17,7 @@ namespace AMN.View
     public partial class LoadoutAddMealPage : ContentPage
     {
         int currentFoodItemIndex = -1;
+        int currentLoadoutIndex = -1;
 
         public LoadoutAddMealPage()
         {
@@ -26,6 +27,17 @@ namespace AMN.View
             {
                 btnDeleteMeal.IsVisible = false;
             }
+        }
+
+        public LoadoutAddMealPage(int index)
+        {
+            InitializeComponent();
+
+            if (MasterModel.tempMeal.index == -1)
+            {
+                btnDeleteMeal.IsVisible = false;
+            }
+            currentLoadoutIndex = index;
         }
 
         private void UpdateText()
@@ -360,7 +372,7 @@ namespace AMN.View
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            MasterModel.currentUser = await MasterModel.DAL.GetUserData();
+            MasterModel.currentUser = await MasterModel.DAL.GetUserDataAsync();
             LoadMealName();
             LoadFoodItems();
         }
@@ -423,7 +435,7 @@ namespace AMN.View
                     //add it to loadout too
                     MasterModel.currentUser.TempLoadoutMeals.Add(MasterModel.tempMeal);
 
-                    await MasterModel.DAL.SaveUserData(MasterModel.currentUser);
+                    await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
                     await Navigation.PopAsync();
                 }
                 catch (Exception ex)
@@ -473,8 +485,17 @@ namespace AMN.View
             {
                 try
                 {
-                    MasterModel.currentUser.Meals.RemoveAt(MasterModel.tempMeal.index);
-                    await MasterModel.DAL.SaveUserData(MasterModel.currentUser);
+                    MasterModel.currentUser.TempLoadoutMeals.RemoveAt(MasterModel.tempMeal.index);
+                    //MasterModel.currentUser.Meals.RemoveAt(MasterModel.tempMeal.index);
+
+                    //update the selected loadout's meals as well if the currently editing loadout is the same
+                    if (MasterModel.currentUser.Loadouts[currentLoadoutIndex].LoadoutId
+                        == MasterModel.currentUser.SelectedLoadout.LoadoutId)
+                    {
+                        MasterModel.currentUser.SelectedLoadout.Meals.RemoveAt(MasterModel.tempMeal.index);
+                    }
+
+                    await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
                     await Navigation.PopAsync();
                 }
                 catch (Exception)
@@ -488,7 +509,7 @@ namespace AMN.View
         private async void AddMeal_Clicked(object sender, EventArgs e)
         {
             MasterModel.currentUser.TempLoadoutMeals.Add(MasterModel.tempMeal);
-            await MasterModel.DAL.SaveUserData(MasterModel.currentUser);
+            await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
             await Navigation.PopAsync();
         }
     }

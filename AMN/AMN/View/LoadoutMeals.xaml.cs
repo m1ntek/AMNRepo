@@ -51,7 +51,7 @@ namespace AMN.View
         {
             try
             {
-                MasterModel.currentUser = await MasterModel.DAL.GetUserData();
+                MasterModel.currentUser = await MasterModel.DAL.GetUserDataAsync();
                 //savedMeals = MasterModel.currentUser.Meals;
                 newLoadoutMeals = MasterModel.currentUser.TempLoadoutMeals;
             }
@@ -81,7 +81,7 @@ namespace AMN.View
             //SetMealTotals();
             //MasterModel.tempMeal = CalculatorV2.MacroTotals(MasterModel.tempMeal);
             //MasterModel.tempMeal = await macroTotalsTask;
-            MasterModel.tempMeal = await CalculatorV2.MacroTotals(MasterModel.tempMeal);
+            MasterModel.tempMeal = await CalculatorV2.MacroTotalsAsync(MasterModel.tempMeal);
 
             bool addMeal = await DisplayAlert(
                 MasterModel.tempMeal.mealName,
@@ -116,7 +116,7 @@ namespace AMN.View
             var mealItem = (Meal)sender;
 
             MasterModel.currentUser.Meals.RemoveAt(mealItem.index);
-            await MasterModel.DAL.SaveUserData(MasterModel.currentUser);
+            await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
             //savedMeals = MasterModel.currentUser.Meals;
 
             //lvSavedMeals.ItemsSource = savedMeals;
@@ -126,14 +126,14 @@ namespace AMN.View
         {
             MasterModel.currentUser.TempLoadoutMeals = newLoadoutMeals;
             MasterModel.tempMeal = new Meal();
-            await MasterModel.DAL.SaveUserData(MasterModel.currentUser);
+            await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
             await Navigation.PushAsync(new LoadoutAddSavedMealsPage());
         }
 
         private async void SaveLoadout_Clicked(object sender, EventArgs e)
         {
             bool isValid = MasterModel.vd.FormEntries(new string[] { entryLoadoutName.Text });
-            await MasterModel.DAL.GetIds();
+            await MasterModel.DAL.GetIdsAsync();
             newLoadoutMeals = MasterModel.currentUser.TempLoadoutMeals;
 
             if (isValid == false)
@@ -167,10 +167,16 @@ namespace AMN.View
                 
             }
 
-            
-            await MasterModel.DAL.SaveIds();
+            //if this loadout is the current selected loadout, update that too.
+            if(MasterModel.currentUser.Loadouts[currentLoadoutIndex].LoadoutId == MasterModel.currentUser.SelectedLoadout.LoadoutId)
+            {
+                MasterModel.currentUser.SelectedLoadout = MasterModel.currentUser.Loadouts[currentLoadoutIndex];
+            }
 
-            await MasterModel.DAL.SaveUserData(MasterModel.currentUser);
+            
+            await MasterModel.DAL.SaveIdsAsync();
+
+            await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
             await Navigation.PopAsync();
         }
 
@@ -178,14 +184,21 @@ namespace AMN.View
         {
             MasterModel.tempMeal = MasterModel.currentUser.TempLoadoutMeals[e.ItemIndex];
             MasterModel.tempMeal.index = e.ItemIndex;
-            await Navigation.PushAsync(new AddMealPageV2());
+            await Navigation.PushAsync(new LoadoutAddMealPage(currentLoadoutIndex));
         }
 
         private async void DeleteLoadout_Clicked(object sender, EventArgs e)
         {
-            MasterModel.currentUser.Loadouts.RemoveAt(currentLoadoutIndex);
-            await MasterModel.DAL.SaveUserData(MasterModel.currentUser);
-            await Navigation.PopAsync();
+            var deleteConfirmed = await DisplayAlert(
+                MasterModel.currentUser.Loadouts[currentLoadoutIndex].LoadoutName,
+                "Delete this loadout?", "Yes", "No");
+
+            if(deleteConfirmed == true)
+            {
+                MasterModel.currentUser.Loadouts.RemoveAt(currentLoadoutIndex);
+                await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
+                await Navigation.PopAsync();
+            }
         }
     }
 }

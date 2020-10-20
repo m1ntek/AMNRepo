@@ -34,7 +34,7 @@ namespace AMN.View
         {
             try
             {
-                MasterModel.currentUser = await MasterModel.DAL.GetUserData();
+                MasterModel.currentUser = await MasterModel.DAL.GetUserDataAsync();
                 SavedMeals = MasterModel.currentUser.Meals;
             }
             catch (Exception ex)
@@ -45,16 +45,8 @@ namespace AMN.View
 
         private async void lvSavedMeals_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            //MasterModel.tempMeal = savedMeals[e.ItemIndex];
-            //MasterModel.tempMeal.index = e.ItemIndex;
             SavedMeals[e.ItemIndex].index = e.ItemIndex;
-
-            //var macroTotalsTask = CalculatorV2.MacroTotals(MasterModel.tempMeal);
-
-            //SetMealTotals(e.ItemIndex);
-            //MasterModel.tempMeal = CalculatorV2.MacroTotals(MasterModel.tempMeal);
-            //MasterModel.tempMeal = await macroTotalsTask;
-            SavedMeals[e.ItemIndex] = await CalculatorV2.MacroTotals(SavedMeals[e.ItemIndex]);
+            SavedMeals[e.ItemIndex] = await CalculatorV2.MacroTotalsAsync(SavedMeals[e.ItemIndex]);
 
             bool addMeal = await DisplayAlert(
                 SavedMeals[e.ItemIndex].mealName,
@@ -69,7 +61,7 @@ namespace AMN.View
             if (addMeal == true)
             {
                 MasterModel.currentUser.TempLoadoutMeals.Add(SavedMeals[e.ItemIndex]);
-                await MasterModel.DAL.SaveUserData(MasterModel.currentUser);
+                await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
                 //newLoadoutMeals.Add(MasterModel.tempMeal);
                 //lvLoadoutMeals.ItemsSource = newLoadoutMeals;
             }

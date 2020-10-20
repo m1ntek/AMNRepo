@@ -27,10 +27,10 @@ namespace AMN
             {
                 try
                 {
-                    await MasterModel.DAL.SignUpUser(entryEmail.Text, entryPassword1.Text);
+                    await MasterModel.DAL.SignUpUserAsync(entryEmail.Text, entryPassword1.Text);
                     await DisplayAlert("Successful", "New account created successfully.", "OK");
-                    await MasterModel.DAL.SignInUser(entryEmail.Text, entryPassword1.Text);
-                    await MasterModel.DAL.UpdateUser(entryEmail.Text);
+                    await MasterModel.DAL.SignInUserAsync(entryEmail.Text, entryPassword1.Text);
+                    await MasterModel.DAL.UpdateUserAsync(entryEmail.Text);
                     ClearForm();
                     await Navigation.PopToRootAsync();
                 }

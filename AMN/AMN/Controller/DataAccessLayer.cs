@@ -57,26 +57,26 @@ public class DataAccessLayer
         return reason[reason.Length - 1];
     }
 
-    public async Task GetIds()
+    public async Task GetIdsAsync()
     {
         idGen = await fb.Child("IDGen").OnceSingleAsync<IDGen>();
     }
 
-    public async Task SaveIds()
+    public async Task SaveIdsAsync()
     {
         await fb.Child("IDGen").PutAsync(idGen);
     }
 
-    public async Task<Person> GetUserData()
+    public async Task<Person> GetUserDataAsync()
     {
         return await fb.Child("Users").Child(auth.User.LocalId).OnceSingleAsync<Person>();
     }
 
-    public async Task SaveUserData(Person _user)
+    public async Task SaveUserDataAsync(Person _user)
     {
         await fb.Child("Users").Child(auth.User.LocalId).PutAsync<Person>(_user);
     }
-    public async Task SaveGoal()
+    public async Task SaveGoalAsync()
     {
         await fb.Child("Users").Child(GetCurrentLocalId()).Child("DailyGoal").PutAsync(MasterModel.dailyGoal);
     }
@@ -86,7 +86,7 @@ public class DataAccessLayer
         MasterModel.dailyGoal = await fb.Child("Users").Child(GetCurrentLocalId()).Child("DailyGoal").OnceSingleAsync<MacroNutrients>();
     }
 
-    public async Task<MacroNutrients> GetGoalV2()
+    public async Task<MacroNutrients> GetGoalV2Async()
     {
         return await fb.Child("Users").Child(GetCurrentLocalId()).Child("DailyGoal").OnceSingleAsync<MacroNutrients>();
     }
@@ -96,10 +96,10 @@ public class DataAccessLayer
         //get mealId from firebase
         //save meal as incremented mealId, save new mealId to firebase
 
-        await GetIds();
+        await GetIdsAsync();
         await fb.Child("Meals").Child(idGen.totalMealIds.ToString("0000")).PutAsync(MasterModel.tempMeal.items);
         ++idGen.totalMealIds;
-        await SaveIds();
+        await SaveIdsAsync();
     }
 
     public async Task SaveMealV2()
@@ -107,18 +107,18 @@ public class DataAccessLayer
         //get mealId from firebase
         //save meal as incremented mealId, save new mealId to firebase
 
-        await GetIds();
+        await GetIdsAsync();
         await fb.Child("Users").Child(GetCurrentLocalId()).Child("Meals").PutAsync(MasterModel.currentUser.Meals);
         ++idGen.totalMealIds;
-        await SaveIds();
+        await SaveIdsAsync();
     }
 
-    public async Task SaveMealV3(Meal _tempMeal) //testing post async
+    public async Task SaveMealV3Async(Meal _tempMeal) //testing post async
     {
         //get mealId from firebase
         //save meal as incremented mealId, save new mealId to firebase
 
-        await GetIds();
+        await GetIdsAsync();
         await fb.Child("Users").Child(auth.User.LocalId).Child("Meals").PostAsync(new Meal()
         {
             index = _tempMeal.index,
@@ -128,15 +128,15 @@ public class DataAccessLayer
             userLocalId = _tempMeal.userLocalId
         });
         ++idGen.totalMealIds;
-        await SaveIds();
+        await SaveIdsAsync();
     }
 
-    public async Task UpdateUser(string _email)
+    public async Task UpdateUserAsync(string _email)
     {
         await fb.Child("Users").Child(auth.User.LocalId).PutAsync(new Person() { email = _email });
     }
 
-    public async Task SignInUser(string _email, string _pw)
+    public async Task SignInUserAsync(string _email, string _pw)
     {
         auth = await authProvider.SignInWithEmailAndPasswordAsync(_email, _pw);
 
@@ -146,24 +146,12 @@ public class DataAccessLayer
         });
     }
 
-    public async Task SignUpUser(string _email, string _pw)
+    public async Task SignUpUserAsync(string _email, string _pw)
     {
         auth = await authProvider.CreateUserWithEmailAndPasswordAsync(_email, _pw, _email, false);
     }
 
-    public async Task<List<Meal>> GetDaysMeals()
-    {
-        return (await fb.Child("Users").Child(auth.User.LocalId).Child("DaysMeals").OnceAsync<Meal>()).Select(item => new Meal
-        {
-            index = item.Object.index,
-            mealId = item.Object.mealId,
-            items = item.Object.items,
-            mealName = item.Object.mealName,
-            userLocalId = item.Object.userLocalId
-        }).ToList();
-    }
-
-    public async Task<List<Meal>> GetSavedMeals()
+    public async Task<List<Meal>> GetSavedMealsAsync()
     {
         return (await fb.Child("Users").Child(auth.User.LocalId).Child("Meals").OnceAsync<Meal>()).Select(item => new Meal
         {

@@ -26,6 +26,9 @@
     <Compile Update="View\AddMealPageV2.xaml.cs">
       <DependentUpon>AddMealPageV2.xaml</DependentUpon>
     </Compile>
+    <Compile Update="View\SelectLoadoutPage.xaml.cs">
+      <DependentUpon>SelectLoadoutPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="View\NutritionPage V2.xaml.cs">
       <DependentUpon>NutritionPage V2.xaml</DependentUpon>
     </Compile>

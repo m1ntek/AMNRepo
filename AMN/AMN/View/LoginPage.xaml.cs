@@ -40,7 +40,7 @@ namespace AMN
             try
             {
                 actInd.IsRunning = true;
-                await MasterModel.DAL.SignInUser(entryEmail.Text, entryPassword.Text);
+                await MasterModel.DAL.SignInUserAsync(entryEmail.Text, entryPassword.Text);
                 //MasterModel.currentUser.email = entryEmail.Text;
                 //MasterModel.currentUser = await MasterModel.DAL.GetUserData();
                 ClearForm();
@@ -88,7 +88,7 @@ namespace AMN
             try
             {
                 actInd.IsRunning = true;
-                await MasterModel.DAL.SignInUser("tester@123.com", "123123qwe");
+                await MasterModel.DAL.SignInUserAsync("tester@123.com", "123123qwe");
                 //MasterModel.currentUser.email = entryEmail.Text;
                 //MasterModel.currentUser = await MasterModel.DAL.GetUserData();
                 ClearForm();

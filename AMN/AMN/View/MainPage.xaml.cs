@@ -21,7 +21,7 @@ namespace AMN
 
         private async Task GetUserData()
         {
-            MasterModel.currentUser = await MasterModel.DAL.GetUserData();
+            MasterModel.currentUser = await MasterModel.DAL.GetUserDataAsync();
             UpdateFooter();
         }
 

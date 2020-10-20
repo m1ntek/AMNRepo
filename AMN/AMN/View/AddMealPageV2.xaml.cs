@@ -117,7 +117,6 @@ namespace AMN.View
             {
                 MasterModel.currentFoodResult.resultKcal = Convert.ToDouble(entryEnergy.Text);
             }
-            entryProtein.Focus();
         }
 
         private void entryCarbs_Focused(object sender, FocusEventArgs e)
@@ -160,6 +159,7 @@ namespace AMN.View
             {
                 MasterModel.currentFoodResult.resultFat = Convert.ToDouble(entryFat.Text);
             }
+            entryEnergy.Focus();
         }
 
         private void entryServing_Focused(object sender, FocusEventArgs e)
@@ -420,7 +420,7 @@ namespace AMN.View
                     actSave.IsRunning = true;
                     //await MasterModel.DAL.SaveMealV3(MasterModel.tempMeal);
                     //MasterModel.currentUser.Meals.Add(MasterModel.tempMeal);
-                    await MasterModel.DAL.SaveUserData(MasterModel.currentUser);
+                    await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
                     await Navigation.PopAsync();
                 }
                 catch (Exception ex)
@@ -471,7 +471,7 @@ namespace AMN.View
                 try
                 {
                     MasterModel.currentUser.Meals.RemoveAt(MasterModel.tempMeal.index);
-                    await MasterModel.DAL.SaveUserData(MasterModel.currentUser);
+                    await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
                     await Navigation.PopAsync();
                 }
                 catch (Exception)

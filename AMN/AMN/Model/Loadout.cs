@@ -9,6 +9,10 @@ namespace AMN.Model
         public int LoadoutId { get; set; }
         public List<Meal> Meals { get; set; }
         public string LoadoutName { get; set; }
+        public double totalEnergy { get; set; }
+        public double totalProtein { get; set; }
+        public double totalCarbs { get; set; }
+        public double totalFat { get; set; }
         public Loadout()
         {
             Meals = new List<Meal>();

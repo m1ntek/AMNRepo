@@ -38,7 +38,8 @@
                     <Label Text="0/0" Grid.Column="2" Grid.Row="4" TextColor="White"  HorizontalTextAlignment="Center"/>
                     <Label Text="g" Grid.Column="3" Grid.Row="4" TextColor="White"/>
                     <Button Text="Edit Goals" Grid.Row="5" Grid.ColumnSpan="4" FontSize="Micro"/>
-                </Grid><!-- Daily goals end -->
+                </Grid>
+                <!-- Daily goals end -->
                 <Grid Margin="50,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
@@ -50,19 +51,10 @@
                 <!-- The day's meals -->
                 <StackLayout Margin="50,10">
                     <Label Text="Current Meal Loadout" HorizontalTextAlignment="Center"/>
-                    <StackLayout BindableLayout.ItemsSource="{Binding daysMeals}" BindableLayout.EmptyView="No meals setup for today.">
-                        <BindableLayout.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding mealName}"
-                                           FontSize="24"
-                                           VerticalOptions="Center"/>
-                                </StackLayout>
-                            </DataTemplate>
-                        </BindableLayout.ItemTemplate>
-                    </StackLayout>
-                    <Button Text="Add Meals" Clicked="AddMeals_Clicked"></Button>
-                </StackLayout><!-- The day's meals end -->
+                    <StackLayout x:Name="loadoutMealsStack"></StackLayout>
+                    <Button Text="Select Loadout" Clicked="SelectLoadout_Clicked"></Button>
+                </StackLayout>
+                <!-- The day's meals end -->
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

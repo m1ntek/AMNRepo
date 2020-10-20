@@ -35,7 +35,7 @@ namespace AMN.View
         {
             try
             {
-                MasterModel.currentUser = await MasterModel.DAL.GetUserData();
+                MasterModel.currentUser = await MasterModel.DAL.GetUserDataAsync();
                 userLoadouts = MasterModel.currentUser.Loadouts;
             }
             catch (Exception ex)
@@ -53,7 +53,7 @@ namespace AMN.View
         private async void NewLoadout_Clicked(object sender, EventArgs e)
         {
             MasterModel.currentUser.TempLoadoutMeals = new List<Meal>();
-            await MasterModel.DAL.SaveUserData(MasterModel.currentUser);
+            await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
             await Navigation.PushAsync(new LoadoutMeals("New Loadout"));
         }
     }

@@ -32,7 +32,7 @@ namespace AMN.View
         {
             base.OnAppearing();
             //MasterModel.dailyGoal = new MacroNutrients(); //to fix an empty object bug?
-            currentUser = await MasterModel.DAL.GetUserData();
+            currentUser = await MasterModel.DAL.GetUserDataAsync();
             meals = currentUser.Meals;
             try
             {
@@ -53,7 +53,7 @@ namespace AMN.View
 
             try
             {
-                MasterModel.dailyGoal = await MasterModel.DAL.GetGoalV2();
+                MasterModel.dailyGoal = await MasterModel.DAL.GetGoalV2Async();
             }
             catch (Exception)
             {
@@ -164,7 +164,7 @@ namespace AMN.View
             MasterModel.dailyGoal.protein = Convert.ToDouble(entryProteinGoal.Text);
             UpdateGoalText();
 
-            MasterModel.DAL.SaveGoal();
+            MasterModel.DAL.SaveGoalAsync();
             DisplayAlert("Success", "Goal set!", "OK");
         }
 
