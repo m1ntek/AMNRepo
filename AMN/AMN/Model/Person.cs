@@ -10,6 +10,7 @@ namespace AMN.Model
         public string email;
         public bool rememberMe;
         public MacroNutrients DailyGoal;
+        public MacroNutrients GoalProgress;
         public List<Meal> Meals;
         public Loadout SelectedLoadout;
         public List<Meal> TempLoadoutMeals;
@@ -20,6 +21,7 @@ namespace AMN.Model
             email = "";
             rememberMe = false;
             DailyGoal = new MacroNutrients();
+            GoalProgress = new MacroNutrients();
             Meals = new List<Meal>();
             Loadouts = new List<Loadout>();
             TempLoadoutMeals = new List<Meal>();

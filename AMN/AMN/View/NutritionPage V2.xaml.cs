@@ -16,6 +16,7 @@ namespace AMN.View
     {
         public List<Meal> loadoutMeals;
         public MacroNutrients dailyGoal;
+        public MacroNutrients goalProgress;
         public NutritionPageV2()
         {
             InitializeComponent();
@@ -27,6 +28,15 @@ namespace AMN.View
             loadoutMeals = new List<Meal>();
             await GetUserData();
             await DisplayLoadoutMeals();
+            await DisplayGoalAndProgress();
+        }
+
+        private async Task DisplayGoalAndProgress()
+        {
+            lblEnergy.Text = $"{string.Format("{0:0}", goalProgress.energyKcal)}/{dailyGoal.energyKcal}";
+            lblProtein.Text = $"{string.Format("{0:0}", goalProgress.protein)}/{dailyGoal.protein}";
+            lblCarbs.Text = $"{string.Format("{0:0}", goalProgress.carbs)}/{dailyGoal.carbs}";
+            lblFat.Text = $"{string.Format("{0:0}", goalProgress.fat)}/{dailyGoal.fat}";
         }
 
         private async Task GetUserData()
@@ -34,6 +44,7 @@ namespace AMN.View
             MasterModel.currentUser = await MasterModel.DAL.GetUserDataAsync();
             loadoutMeals = MasterModel.currentUser.SelectedLoadout.Meals;
             dailyGoal = MasterModel.currentUser.DailyGoal;
+            goalProgress = MasterModel.currentUser.GoalProgress;
         }
 
         private async void SavedMeals_Clicked(object sender, EventArgs e)
@@ -104,16 +115,41 @@ namespace AMN.View
 
                 CheckBox chkbxEaten = new CheckBox();
 
-                chkbxEaten.CheckedChanged += (sender, args) =>
+                //check meal status from database and set accordingly.
+                if(loadoutMeals[meal.index].isEaten == true)
+                {
+                    chkbxEaten.IsChecked = true;
+                }
+                else
+                {
+                    chkbxEaten.IsChecked = false;
+                }
+
+                chkbxEaten.CheckedChanged += async (sender, args) =>
                 {
                     if(chkbxEaten.IsChecked == true)
                     {
+                        goalProgress.energyKcal += loadoutMeals[meal.index].totalEnergy;
+                        goalProgress.protein += loadoutMeals[meal.index].totalProtein;
+                        goalProgress.carbs += loadoutMeals[meal.index].totalCarbs;
+                        goalProgress.fat += loadoutMeals[meal.index].totalFat;
 
+                        loadoutMeals[meal.index].isEaten = true;
                     }
                     else
                     {
+                        goalProgress.energyKcal -= loadoutMeals[meal.index].totalEnergy;
+                        goalProgress.protein -= loadoutMeals[meal.index].totalProtein;
+                        goalProgress.carbs -= loadoutMeals[meal.index].totalCarbs;
+                        goalProgress.fat -= loadoutMeals[meal.index].totalFat;
 
+                        loadoutMeals[meal.index].isEaten = false;
                     }
+                    await DisplayGoalAndProgress(); //update
+
+                    //update db per tick
+                    MasterModel.currentUser.SelectedLoadout.Meals = loadoutMeals;
+                    await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
                 };
 
                 stack.Children.Add(chkbxEaten);

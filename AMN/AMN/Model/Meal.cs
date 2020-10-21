@@ -20,11 +20,14 @@ namespace AMN.Model
         public double totalCarbs { get; set; }
         public double totalFat { get; set; }
 
+        public bool isEaten { get; set; }
+
         public Meal()
         {
             index = -1;
             mealId = 0;
             items = new List<FoodItem>();
+            isEaten = false;
         }
     }
 }

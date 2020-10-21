@@ -26,16 +26,16 @@
                     </Grid.RowDefinitions>
                     <Label Text="Today's Progress" Grid.ColumnSpan="4" HorizontalTextAlignment="Center" TextColor="White"/>
                     <Label Text="Energy:" Grid.ColumnSpan="2" Grid.Row="1" TextColor="White"/>
-                    <Label  Text="0/0" Grid.Row="2" TextColor="White" HorizontalTextAlignment="Center"/>
+                    <Label x:Name="lblEnergy" Text="0/0" Grid.Row="2" TextColor="White" HorizontalTextAlignment="Center"/>
                     <Label Text="kcal"  Grid.Column="1" Grid.Row="2" TextColor="White"/>
                     <Label Text="Protein:" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="1" TextColor="White"/>
-                    <Label Text="0/0" Grid.Column="2" Grid.Row="2" TextColor="White" HorizontalTextAlignment="Center" />
+                    <Label x:Name="lblProtein" Text="0/0" Grid.Column="2" Grid.Row="2" TextColor="White" HorizontalTextAlignment="Center" />
                     <Label Text="g" Grid.Column="3" Grid.Row="2" TextColor="White"/>
                     <Label Text="Carbs:" Grid.ColumnSpan="2" Grid.Row="3" TextColor="White"/>
-                    <Label Text="0/0" Grid.Row="4" TextColor="White"  HorizontalTextAlignment="Center"/>
+                    <Label x:Name="lblCarbs" Text="0/0" Grid.Row="4" TextColor="White"  HorizontalTextAlignment="Center"/>
                     <Label Text="g" Grid.Column="1" Grid.Row="4" TextColor="White"/>
                     <Label Text="Fat:" Grid.ColumnSpan="2" Grid.Row="3" Grid.Column="2" TextColor="White"/>
-                    <Label Text="0/0" Grid.Column="2" Grid.Row="4" TextColor="White"  HorizontalTextAlignment="Center"/>
+                    <Label x:Name="lblFat" Text="0/0" Grid.Column="2" Grid.Row="4" TextColor="White"  HorizontalTextAlignment="Center"/>
                     <Label Text="g" Grid.Column="3" Grid.Row="4" TextColor="White"/>
                     <Button Text="Edit Goals" Grid.Row="5" Grid.ColumnSpan="4" FontSize="Micro" Clicked="EditGoals_Clicked"/>
                 </Grid>
