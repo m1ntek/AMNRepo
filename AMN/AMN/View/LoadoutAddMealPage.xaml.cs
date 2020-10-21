@@ -27,6 +27,13 @@ namespace AMN.View
             {
                 btnDeleteMeal.IsVisible = false;
             }
+            else
+            {
+                btnSave.IsVisible = true;
+
+                btnSaveAndAdd.IsVisible = false;
+                btnJustAdd.IsVisible = false;
+            }
         }
 
         public LoadoutAddMealPage(int index)
@@ -36,6 +43,13 @@ namespace AMN.View
             if (MasterModel.tempMeal.index == -1)
             {
                 btnDeleteMeal.IsVisible = false;
+            }
+            else
+            {
+                btnSave.IsVisible = true;
+
+                btnSaveAndAdd.IsVisible = false;
+                btnJustAdd.IsVisible = false;
             }
             currentLoadoutIndex = index;
         }
@@ -488,19 +502,23 @@ namespace AMN.View
                     MasterModel.currentUser.TempLoadoutMeals.RemoveAt(MasterModel.tempMeal.index);
                     //MasterModel.currentUser.Meals.RemoveAt(MasterModel.tempMeal.index);
 
-                    //update the selected loadout's meals as well if the currently editing loadout is the same
-                    if (MasterModel.currentUser.Loadouts[currentLoadoutIndex].LoadoutId
-                        == MasterModel.currentUser.SelectedLoadout.LoadoutId)
+                    //Don't check this if it's a brand new loadout.
+                    if(currentLoadoutIndex != -1)
                     {
-                        MasterModel.currentUser.SelectedLoadout.Meals.RemoveAt(MasterModel.tempMeal.index);
+                        //update the selected loadout's meals as well if the currently editing loadout is the same
+                        if (MasterModel.currentUser.Loadouts[currentLoadoutIndex].LoadoutId
+                        == MasterModel.currentUser.SelectedLoadout.LoadoutId)
+                        {
+                            MasterModel.currentUser.SelectedLoadout.Meals.RemoveAt(MasterModel.tempMeal.index);
+                        }
                     }
 
                     await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
                     await Navigation.PopAsync();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    //do nothing for now
+                    await DisplayAlert("Error", ex.Message, "OK");
                 }
             }
         }
@@ -509,6 +527,13 @@ namespace AMN.View
         private async void AddMeal_Clicked(object sender, EventArgs e)
         {
             MasterModel.currentUser.TempLoadoutMeals.Add(MasterModel.tempMeal);
+            await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
+            await Navigation.PopAsync();
+        }
+
+        private async void Save_Clicked(object sender, EventArgs e)
+        {
+            MasterModel.currentUser.TempLoadoutMeals[MasterModel.tempMeal.index] = MasterModel.tempMeal;
             await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
             await Navigation.PopAsync();
         }

@@ -11,10 +11,10 @@
                 <StackLayout Margin="50,10" VerticalOptions="CenterAndExpand">
                     <Label FontSize="Large" TextColor="Black">E-mail Address:</Label>
                     <Entry x:Name="entryEmail" FontSize="Large" TextColor="Black"
-                           Placeholder="Your e-mail address..."></Entry>
+                           Placeholder="Your e-mail address..." Unfocused="entryEmail_Unfocused"></Entry>
                     <Label FontSize="Large" TextColor="Black">Enter new password:</Label>
                     <Entry x:Name="entryPassword1" IsPassword="True" FontSize="Large" TextColor="Black"
-                           Placeholder="Please enter a password..."></Entry>
+                           Placeholder="Please enter a password..." Unfocused="entryPassword1_Unfocused"></Entry>
                     <Entry x:Name="entryPassword2" IsPassword="True" FontSize="Large" TextColor="Black"
                            Placeholder="Please confirm password..."></Entry>
                     <Button Text="Sign Up" Margin="0,20,0,0" BackgroundColor="#2196F3" TextColor="White" FontSize="Medium"

@@ -40,11 +40,11 @@ namespace AMN.View
         {
             base.OnAppearing();
 
-            actInd.IsVisible = true;
+            //actInd.IsVisible = true;
             await GetMeals();
             //lvSavedMeals.ItemsSource = savedMeals;
             lvLoadoutMeals.ItemsSource = newLoadoutMeals;
-            actInd.IsVisible = false;
+            //actInd.IsVisible = false;
         }
 
         private async Task GetMeals()

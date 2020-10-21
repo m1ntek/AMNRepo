@@ -3,6 +3,7 @@ using AMN.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -57,7 +58,7 @@ namespace AMN.View
             await Navigation.PushAsync(new LoadoutsPage());
         }
 
-        
+
 
         private async Task DisplayLoadoutMeals()
         {
@@ -116,7 +117,7 @@ namespace AMN.View
                 CheckBox chkbxEaten = new CheckBox();
 
                 //check meal status from database and set accordingly.
-                if(loadoutMeals[meal.index].isEaten == true)
+                if (loadoutMeals[meal.index].isEaten == true)
                 {
                     chkbxEaten.IsChecked = true;
                 }
@@ -127,7 +128,7 @@ namespace AMN.View
 
                 chkbxEaten.CheckedChanged += async (sender, args) =>
                 {
-                    if(chkbxEaten.IsChecked == true)
+                    if (chkbxEaten.IsChecked == true)
                     {
                         goalProgress.energyKcal += loadoutMeals[meal.index].totalEnergy;
                         goalProgress.protein += loadoutMeals[meal.index].totalProtein;
@@ -147,8 +148,8 @@ namespace AMN.View
                     }
                     await DisplayGoalAndProgress(); //update
 
-                    //update db per tick
-                    MasterModel.currentUser.SelectedLoadout.Meals = loadoutMeals;
+                        //update db per tick
+                        MasterModel.currentUser.SelectedLoadout.Meals = loadoutMeals;
                     await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
                 };
 
@@ -168,6 +169,28 @@ namespace AMN.View
         private async void EditGoals_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new EditGoalsPage());
+        }
+
+        private async void ClearProgress_Clicked(object sender, EventArgs e)
+        {
+            foreach (var meal in loadoutMeals)
+            {
+                meal.isEaten = false;
+            }
+
+            MasterModel.currentUser.GoalProgress.energyKcal = 0;
+            MasterModel.currentUser.GoalProgress.protein = 0;
+            MasterModel.currentUser.GoalProgress.carbs = 0;
+            MasterModel.currentUser.GoalProgress.fat = 0;
+
+            MasterModel.currentUser.SelectedLoadout.Meals = loadoutMeals;
+            await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
+            await RefreshPageAsync();
+        }
+
+        private async Task RefreshPageAsync()
+        {
+            var refreshedPage = new NutritionPageV2(); Navigation.InsertPageBefore(refreshedPage, this); await Navigation.PopAsync();
         }
     }
 }

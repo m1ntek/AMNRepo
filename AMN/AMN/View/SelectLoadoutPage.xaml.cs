@@ -74,9 +74,13 @@ namespace AMN.View
                 "Yes", "No"
                 );
 
-            if(isConfirmed == true)
+            if (isConfirmed == true)
             {
                 MasterModel.currentUser.SelectedLoadout = userLoadouts[e.ItemIndex];
+                MasterModel.currentUser.GoalProgress.energyKcal = 0;
+                MasterModel.currentUser.GoalProgress.protein = 0;
+                MasterModel.currentUser.GoalProgress.carbs = 0;
+                MasterModel.currentUser.GoalProgress.fat = 0;
                 await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
                 await Navigation.PopAsync();
             }

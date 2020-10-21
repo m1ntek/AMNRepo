@@ -25,10 +25,10 @@ namespace AMN.View
         {
             base.OnAppearing();
 
-            actInd.IsVisible = true;
+            //actInd.IsVisible = true;
             await GetLoadouts();
             lvLoadouts.ItemsSource = userLoadouts;
-            actInd.IsVisible = false;
+            //actInd.IsVisible = false;
         }
 
         private async Task GetLoadouts()
@@ -47,6 +47,7 @@ namespace AMN.View
         private async void lvLoadouts_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             MasterModel.currentUser.TempLoadoutMeals = userLoadouts[e.ItemIndex].Meals;
+            await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
             await Navigation.PushAsync(new LoadoutMeals(userLoadouts[e.ItemIndex].LoadoutName, e.ItemIndex));
         }
 

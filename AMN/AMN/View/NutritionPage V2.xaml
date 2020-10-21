@@ -45,13 +45,14 @@
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Button Text="Saved Meals" Clicked="SavedMeals_Clicked"/>
-                    <Button Text="Loadouts" Clicked="Loadouts_Clicked" Grid.Column="1"/>
+                    <Button Text="Edit Meals" Clicked="SavedMeals_Clicked"/>
+                    <Button Text="Edit Loadouts" Clicked="Loadouts_Clicked" Grid.Column="1"/>
                 </Grid>
                 <!-- The day's meals -->
                 <StackLayout Margin="50,10">
                     <Label Text="Current Meal Loadout" HorizontalTextAlignment="Center"/>
                     <StackLayout x:Name="loadoutMealsStack"></StackLayout>
+                    <Button Text="Clear Progress" Clicked="ClearProgress_Clicked"/>
                     <Button Text="Select Loadout" Clicked="SelectLoadout_Clicked"></Button>
                 </StackLayout>
                 <!-- The day's meals end -->

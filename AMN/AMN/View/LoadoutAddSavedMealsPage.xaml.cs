@@ -88,6 +88,7 @@ namespace AMN.View
 
         private async void AddNewMeal_Clicked(object sender, EventArgs e)
         {
+            MasterModel.tempMeal = new Meal();
             await Navigation.PushAsync(new LoadoutAddMealPage());
         }
     }

@@ -98,8 +98,9 @@
                         <Label Text="Fat: 230/250 g" FontSize="Medium" TextColor="White"></Label>
                     </StackLayout>-->
                 </StackLayout>
-                <Button Text="Save and Add" Margin="50,0" BackgroundColor="#2196F3" TextColor="White" FontSize="Medium" Clicked="SaveMeal_Clicked"></Button>
-                <Button Text="Just Add" Margin="50,0" BackgroundColor="#2196F3" TextColor="White" FontSize="Medium" Clicked="AddMeal_Clicked"></Button>
+                <Button x:Name="btnSaveAndAdd" Text="Save and Add" Margin="50,0" BackgroundColor="#2196F3" TextColor="White" FontSize="Medium" Clicked="SaveMeal_Clicked"></Button>
+                <Button x:Name="btnJustAdd" Text="Just Add" Margin="50,0" BackgroundColor="#2196F3" TextColor="White" FontSize="Medium" Clicked="AddMeal_Clicked"></Button>
+                <Button x:Name="btnSave" Text="Save" Margin="50,0" BackgroundColor="#2196F3" TextColor="White" FontSize="Medium" Clicked="Save_Clicked" IsVisible="False"></Button>
                 <ActivityIndicator x:Name="actSave" IsRunning="False"></ActivityIndicator>
             </StackLayout>
         </ScrollView>

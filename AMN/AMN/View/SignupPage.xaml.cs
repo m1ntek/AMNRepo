@@ -58,5 +58,15 @@ namespace AMN
             entryPassword1.Text = "";
             entryPassword2.Text = "";
         }
+
+        private void entryEmail_Unfocused(object sender, FocusEventArgs e)
+        {
+            entryPassword1.Focus();
+        }
+
+        private void entryPassword1_Unfocused(object sender, FocusEventArgs e)
+        {
+            entryPassword2.Focus();
+        }
     }
 }
