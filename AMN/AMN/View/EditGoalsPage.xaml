@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AMN.View.EditGoalsPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+                <Label Text="Daily Goal" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+            </Frame>
+            <StackLayout Margin="50,10" HorizontalOptions="Start">
+                <!-- 1 row -->
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Energy:" VerticalTextAlignment="Center"/>
+                    <Entry x:Name="entryEnergy" Keyboard="Numeric" WidthRequest="100" Unfocused="entryEnergy_Unfocused"/>
+                    <Label Text="kcal" VerticalTextAlignment="Center"/>
+                </StackLayout>
+
+                <!-- 2 row -->
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                    <Label Text="Protein:" VerticalTextAlignment="Center"/>
+                    <Entry x:Name="entryProtein" Keyboard="Numeric" WidthRequest="100" Unfocused="entryProtein_Unfocused"/>
+                    <Label Text="g" VerticalTextAlignment="Center"/>
+                </StackLayout>
+
+                <!-- 3 row -->
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                    <Label Text="Carbs:" VerticalTextAlignment="Center"/>
+                    <Entry x:Name="entryCarbs" Keyboard="Numeric" WidthRequest="100" Unfocused="entryCarbs_Unfocused"/>
+                    <Label Text="g" VerticalTextAlignment="Center"/>
+                </StackLayout>
+
+                <!-- 4 row -->
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                    <Label Text="Fat:" VerticalTextAlignment="Center"/>
+                    <Entry x:Name="entryFat" Keyboard="Numeric" WidthRequest="100"/>
+                    <Label Text="g" VerticalTextAlignment="Center"/>
+                </StackLayout>
+            </StackLayout>
+            <Button Text="Save" Clicked="Save_Clicked" Margin="50,10"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

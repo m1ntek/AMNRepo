@@ -15,6 +15,7 @@ namespace AMN.View
     public partial class NutritionPageV2 : ContentPage
     {
         public List<Meal> loadoutMeals;
+        public MacroNutrients dailyGoal;
         public NutritionPageV2()
         {
             InitializeComponent();
@@ -24,14 +25,15 @@ namespace AMN.View
         {
             base.OnAppearing();
             loadoutMeals = new List<Meal>();
-            await GetSelectedLoadout();
+            await GetUserData();
             await DisplayLoadoutMeals();
         }
 
-        private async Task GetSelectedLoadout()
+        private async Task GetUserData()
         {
             MasterModel.currentUser = await MasterModel.DAL.GetUserDataAsync();
             loadoutMeals = MasterModel.currentUser.SelectedLoadout.Meals;
+            dailyGoal = MasterModel.currentUser.DailyGoal;
         }
 
         private async void SavedMeals_Clicked(object sender, EventArgs e)
@@ -125,6 +127,11 @@ namespace AMN.View
         private async void SelectLoadout_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new SelectLoadoutPage());
+        }
+
+        private async void EditGoals_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new EditGoalsPage());
         }
     }
 }
