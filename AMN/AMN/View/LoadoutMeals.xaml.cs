@@ -168,11 +168,17 @@ namespace AMN.View
             }
 
             //if this loadout is the current selected loadout, update that too.
-            if(MasterModel.currentUser.Loadouts[currentLoadoutIndex].LoadoutId == MasterModel.currentUser.SelectedLoadout.LoadoutId)
+            try
             {
-                MasterModel.currentUser.SelectedLoadout = MasterModel.currentUser.Loadouts[currentLoadoutIndex];
+                if (MasterModel.currentUser.Loadouts[currentLoadoutIndex].LoadoutId == MasterModel.currentUser.SelectedLoadout.LoadoutId)
+                {
+                    MasterModel.currentUser.SelectedLoadout = MasterModel.currentUser.Loadouts[currentLoadoutIndex];
+                }
             }
-
+            catch (Exception)
+            {
+                //do nothing
+            }
             
             await MasterModel.DAL.SaveIdsAsync();
 
