@@ -17,10 +17,11 @@
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
                         <RowDefinition></RowDefinition>
                         <RowDefinition Height="35"></RowDefinition>
                     </Grid.RowDefinitions>
@@ -37,7 +38,19 @@
                     <Label Text="Fat:" Grid.ColumnSpan="2" Grid.Row="3" Grid.Column="2" TextColor="White"/>
                     <Label x:Name="lblFat" Text="0/0" Grid.Column="2" Grid.Row="4" TextColor="White"  HorizontalTextAlignment="Center"/>
                     <Label Text="g" Grid.Column="3" Grid.Row="4" TextColor="White"/>
-                    <Button Text="Edit Goals" Grid.Row="5" Grid.ColumnSpan="4" FontSize="Micro" Clicked="EditGoals_Clicked"/>
+                    <!-- ratios -->
+                    <StackLayout Grid.Row="5" Grid.ColumnSpan="4">
+                        <Label Text="Ratios:" TextColor="White" HorizontalTextAlignment="Center"/>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                            <Label Text="P:" TextColor="White" HorizontalTextAlignment="Center"/>
+                            <Label x:Name="lblProteinRatio" TextColor="White" HorizontalTextAlignment="Center"/>
+                            <Label Text="C:" TextColor="White" HorizontalTextAlignment="Center"/>
+                            <Label x:Name="lblCarbRatio" TextColor="White" HorizontalTextAlignment="Center"/>
+                            <Label Text="F:" TextColor="White" HorizontalTextAlignment="Center"/>
+                            <Label x:Name="lblFatRatio" TextColor="White" HorizontalTextAlignment="Center"/>
+                        </StackLayout>
+                    </StackLayout>
+                    <Button Text="Edit Goals" Grid.Row="6" Grid.ColumnSpan="4" FontSize="Micro" Clicked="EditGoals_Clicked"/>
                 </Grid>
                 <!-- Daily goals end -->
                 <Grid Margin="50,0">
@@ -50,7 +63,7 @@
                 </Grid>
                 <!-- The day's meals -->
                 <StackLayout Margin="50,10">
-                    <Label Text="Current Meal Loadout" HorizontalTextAlignment="Center"/>
+                    <Label x:Name="lblLoadoutHeader"  Text="Current Meal Loadout" HorizontalTextAlignment="Center"/>
                     <StackLayout x:Name="loadoutMealsStack"></StackLayout>
                     <Button Text="Clear Progress" Clicked="ClearProgress_Clicked"/>
                     <Button Text="Select Loadout" Clicked="SelectLoadout_Clicked"></Button>

@@ -6,6 +6,6 @@ namespace AMN.Model
 {
     public class MacroNutrients
     {
-        public double energyKcal, carbs, fat, protein;
+        public double energyKcal, carbs, fat, protein, proteinRatio, carbRatio, fatRatio;
     }
 }

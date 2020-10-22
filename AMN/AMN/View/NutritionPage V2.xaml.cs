@@ -30,6 +30,27 @@ namespace AMN.View
             await GetUserData();
             await DisplayLoadoutMeals();
             await DisplayGoalAndProgress();
+            await SetGoalRatios();
+            await DisplayGoalRatios();
+            await SetLoadoutName();
+        }
+
+        private async Task SetLoadoutName()
+        {
+            lblLoadoutHeader.Text = MasterModel.currentUser.SelectedLoadout.LoadoutName;
+        }
+
+        private async Task DisplayGoalRatios()
+        {
+            lblProteinRatio.Text = $"{string.Format("{0:0}%", goalProgress.proteinRatio)}/{string.Format("{0:0}%", dailyGoal.proteinRatio)}";
+            lblCarbRatio.Text = $"{string.Format("{0:0}%", goalProgress.carbRatio)}/{string.Format("{0:0}%", dailyGoal.carbRatio)}";
+            lblFatRatio.Text = $"{string.Format("{0:0}%", goalProgress.fatRatio)}/{string.Format("{0:0}%", dailyGoal.fatRatio)}";
+        }
+
+        private async Task SetGoalRatios()
+        {
+            dailyGoal = await CalculatorV2.CalcRatiosAsync(dailyGoal);
+            goalProgress = await CalculatorV2.CalcRatiosAsync(goalProgress);
         }
 
         private async Task DisplayGoalAndProgress()
@@ -147,9 +168,13 @@ namespace AMN.View
                         loadoutMeals[meal.index].isEaten = false;
                     }
                     await DisplayGoalAndProgress(); //update
+                    await SetGoalRatios();
+                    await DisplayGoalRatios();
 
-                        //update db per tick
-                        MasterModel.currentUser.SelectedLoadout.Meals = loadoutMeals;
+                    //update db per tick
+                    MasterModel.currentUser.DailyGoal = dailyGoal;
+                    MasterModel.currentUser.GoalProgress = goalProgress;
+                    MasterModel.currentUser.SelectedLoadout.Meals = loadoutMeals;
                     await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
                 };
 

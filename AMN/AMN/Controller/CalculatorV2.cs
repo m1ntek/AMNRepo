@@ -67,5 +67,16 @@ namespace AMN.Controller
             thisLoadout.totalCarbs = 0;
             thisLoadout.totalFat = 0;
         }
+
+        public async static Task<MacroNutrients> CalcRatiosAsync(MacroNutrients macros)
+        {
+            double total = macros.protein + macros.carbs + macros.fat;
+
+            macros.proteinRatio = (macros.protein / total) * 100;
+            macros.carbRatio = (macros.carbs / total) * 100;
+            macros.fatRatio = (macros.fat / total) * 100;
+
+            return macros;
+        }
     }
 }
