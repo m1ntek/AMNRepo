@@ -30,12 +30,12 @@ namespace AMN
             await Navigation.PushAsync(new NutritionPageV2());
         }
 
-        private void Exercises_Clicked(object sender, EventArgs e)
+        private async void Exercises_Clicked(object sender, EventArgs e)
         {
-
+            await Navigation.PushAsync(new ExercisePage());
         }
 
-        private void Progress_Clicked(object sender, EventArgs e)
+        private async void Progress_Clicked(object sender, EventArgs e)
         {
 
         }

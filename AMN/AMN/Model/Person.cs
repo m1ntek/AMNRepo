@@ -15,6 +15,9 @@ namespace AMN.Model
         public Loadout SelectedLoadout;
         public List<Meal> TempLoadoutMeals;
         public List<Loadout> Loadouts;
+        public ExerciseLoadout SelectedExerciseLoadout;
+        public List<ExerciseLoadout> ExerciseLoadouts;
+        public List<Exercise> SavedExercises;
 
         public Person()
         {
@@ -26,6 +29,9 @@ namespace AMN.Model
             Loadouts = new List<Loadout>();
             TempLoadoutMeals = new List<Meal>();
             SelectedLoadout = new Loadout();
+            ExerciseLoadouts = new List<ExerciseLoadout>();
+            SavedExercises = new List<Exercise>();
+            SelectedExerciseLoadout = new ExerciseLoadout();
         }
     }
 }

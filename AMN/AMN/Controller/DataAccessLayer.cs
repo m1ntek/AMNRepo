@@ -12,6 +12,8 @@ using Xamarin.Forms.Xaml;
 using AMN.Controller;
 using Xamarin.Essentials;
 using System.Linq;
+using System.Collections.ObjectModel;
+using System.Reactive.Linq;
 
 public class DataAccessLayer
 {
@@ -36,7 +38,7 @@ public class DataAccessLayer
 
     public bool UserLoggedIn()
     {
-        if(auth != null)
+        if (auth != null)
         {
             return true;
         }
@@ -161,5 +163,36 @@ public class DataAccessLayer
             mealName = item.Object.mealName,
             userLocalId = item.Object.userLocalId
         }).ToList();
+    }
+
+    public async Task<List<Exercise>> GetSavedExercisesAsync()
+    {
+        return (await fb.Child("Users")
+            .Child(auth.User.LocalId)
+            .Child("Exercises")
+            .OnceAsync<Exercise>())
+            .Select(item => new Exercise()).ToList();
+    }
+
+    public async Task<List<ExerciseLoadout>> GetExerciseLoadoutsAsync()
+    {
+        return (await fb.Child("Users")
+            .Child(auth.User.LocalId)
+            .Child("ExerciseLoadouts")
+            .OnceAsync<ExerciseLoadout>())
+            .Select(item => new ExerciseLoadout()).ToList();
+    }
+
+    public Task<ExerciseLoadout> GetSelectedExerciseLoadoutAsync()
+    {
+        return (fb.Child("Users")
+            .Child(auth.User.LocalId)
+            .Child("SelectedExerciseLoadout")
+            .OnceSingleAsync<ExerciseLoadout>());
+    }
+
+    public async Task SaveSelectedExerciseLoadoutAsync(ExerciseLoadout eLoadout)
+    {
+        await fb.Child("Users").Child(auth.User.LocalId).Child("SelectedExerciseLoadout").PutAsync(eLoadout);
     }
 }
