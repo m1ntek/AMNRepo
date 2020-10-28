@@ -5,6 +5,8 @@ using System.Text;
 
 namespace AMN.Model
 {
+    //Was actually going to name this User but the name had a clash
+    //with maybe one of the library's names.
     public class Person
     {
         public string email;

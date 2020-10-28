@@ -2,18 +2,24 @@ C:\Users\Min\source\repos\AMNRepo\AMN\AMN\bin\Debug\netstandard2.0\AMN.deps.json
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\bin\Debug\netstandard2.0\AMN.dll
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\bin\Debug\netstandard2.0\ref\AMN.dll
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\bin\Debug\netstandard2.0\AMN.pdb
-C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\AMN.csprojAssemblyReference.cache
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\App.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\AddMealPage.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\AddMealPageV2.xaml.g.cs
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\EditExercisePage.xaml.g.cs
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\EditGoalsPage.xaml.g.cs
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\ExercisePage.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\LoadoutAddMealPage.xaml.g.cs
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\LoadoutAddSavedMealsPage.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\LoadoutMeals.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\LoadoutsPage.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\LoginPage.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\MainPage.xaml.g.cs
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\NewExercise.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\NutritionPage V2.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\NutritionPage.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\SavedMealsPage.xaml.g.cs
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\SelectedExercise.xaml.g.cs
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\SelectLoadoutPage.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\SignupPage.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\AMN.AssemblyInfoInputs.cache
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\AMN.AssemblyInfo.cs
@@ -22,7 +28,4 @@ C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\XamlC.stamp
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\AMN.dll
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\ref\AMN.dll
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\AMN.pdb
-C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\LoadoutAddSavedMealsPage.xaml.g.cs
-C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\SelectLoadoutPage.xaml.g.cs
-C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\EditGoalsPage.xaml.g.cs
-C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\ExercisePage.xaml.g.cs
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\AMN.csprojAssemblyReference.cache

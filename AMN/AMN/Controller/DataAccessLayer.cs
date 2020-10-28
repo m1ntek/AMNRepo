@@ -165,13 +165,37 @@ public class DataAccessLayer
         }).ToList();
     }
 
+    //This one works, other similar methods currently does not retrieve data successfully.
     public async Task<List<Exercise>> GetSavedExercisesAsync()
     {
         return (await fb.Child("Users")
             .Child(auth.User.LocalId)
             .Child("Exercises")
             .OnceAsync<Exercise>())
-            .Select(item => new Exercise()).ToList();
+            .Select(item => new Exercise()
+            {
+                Key = item.Key,
+                Name = item.Object.Name,
+                Types = item.Object.Types
+            }).ToList();
+    }
+
+    public async Task SaveExercisesAsync(List<Exercise> exercises)
+    {
+        foreach (var item in exercises)
+        {
+            await fb.Child("Users").Child(auth.User.LocalId).Child("Exercises").PostAsync(item);
+        }
+    }
+
+    public Task<Exercise> GetSelectedExerciseAsync(string key)
+    {
+        return fb.Child("Users").Child(auth.User.LocalId).Child("Exercises").Child(key).OnceSingleAsync<Exercise>();
+    }
+
+    public async Task SaveSelectedExerciseAsync(Exercise exercise)
+    {
+        await fb.Child("Users").Child(auth.User.LocalId).Child("Exercises").Child(exercise.Key).PutAsync(exercise);
     }
 
     public async Task<List<ExerciseLoadout>> GetExerciseLoadoutsAsync()
@@ -194,5 +218,10 @@ public class DataAccessLayer
     public async Task SaveSelectedExerciseLoadoutAsync(ExerciseLoadout eLoadout)
     {
         await fb.Child("Users").Child(auth.User.LocalId).Child("SelectedExerciseLoadout").PutAsync(eLoadout);
+    }
+
+    public async Task SaveNewExerciseAsync(Exercise exercise)
+    {
+        await fb.Child("Users").Child(auth.User.LocalId).Child("Exercises").PostAsync(exercise);
     }
 }

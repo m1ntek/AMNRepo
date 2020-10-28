@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,17 +17,53 @@ namespace AMN.View
     public partial class ExercisePage : ContentPage
     {
         public ExerciseLoadout CurrentLoadout { get; set; }
-        public ObservableCollection<Exercise> LoadoutExercises { get; set; }
         public ExercisePage()
         {
             InitializeComponent();
             CurrentLoadout = new ExerciseLoadout();
-            //BindingContext = this;
         }
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
+
+            //Temp data
+            //CurrentLoadout.Name = "PUSH I";
+            //CurrentLoadout.Sets = 4;
+
+            //Exercise ex = new Exercise();
+            //ex.Name = "Flat bench";
+            //ExerciseType type = new ExerciseType();
+            //type.Name = "HT:";
+            //type.Reps.Add("10+");
+            //ExerciseType type2 = new ExerciseType();
+            //type2.Name = "OT:";
+            //type2.Reps.Add("10");
+            //type2.Reps.Add(">");
+            //type2.Reps.Add("8");
+            //type2.Reps.Add(">");
+            //type2.Reps.Add("8");
+            //type2.Reps.Add(">");
+            //type2.Reps.Add("6");
+            //ex.Types.Add(type);
+            //ex.Types.Add(type2);
+            //CurrentLoadout.Exercises.Add(ex);
+
+            //ex = new Exercise();
+            //ex.Name = "Standing military press";
+            //type2 = new ExerciseType();
+            //type2.Reps.Add("12");
+            //type2.Reps.Add(">");
+            //type2.Reps.Add("10");
+            //type2.Reps.Add(">");
+            //type2.Reps.Add("8");
+            //type2.Reps.Add(">");
+            //type2.Reps.Add("8");
+            //ex.Types.Add(type2);
+            //CurrentLoadout.Exercises.Add(ex);
+
+            await MasterModel.DAL.SaveSelectedExerciseLoadoutAsync(CurrentLoadout);
+
             await GetSelectedExerciseLoadout();
             BindingContext = this;
         }
@@ -36,18 +73,25 @@ namespace AMN.View
             try
             {
                 CurrentLoadout = await MasterModel.DAL.GetSelectedExerciseLoadoutAsync();
-                LoadoutExercises = new ObservableCollection<Exercise>(CurrentLoadout.Exercises);
+                //LoadoutExercises = new ObservableCollection<Exercise>(CurrentLoadout.Exercises);
             }
             catch (Exception ex)
             {
-                //This violates a MVVM rule (ViewModel shouldn't talk to View),
-                //but due to time constraint, cannot implement the correct
-                //solution in time.
                 await DisplayAlert("Error", ex.Message, "OK");
             }
         }
 
-        private void Exercise_ItemTapped(object sender, ItemTappedEventArgs e)
+        private async void EditExercise_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new EditExercisePage());
+        }
+
+        private async void EditLoadouts_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void SelectLoadout_Clicked(object sender, EventArgs e)
         {
 
         }

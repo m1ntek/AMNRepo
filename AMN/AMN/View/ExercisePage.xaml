@@ -7,17 +7,45 @@
             <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
                 <Label Text="Exercise" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
             </Frame>
-            <ListView ItemsSource="{Binding LoadoutExercises}" ItemTapped="Exercise_ItemTapped">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout>
-                                <Label Text="{Binding Name}"></Label>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+            <StackLayout Margin="50,10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Button Text="Edit Exercises" Clicked="EditExercise_Clicked"/>
+                    <Button Text="Edit Loadouts" Clicked="EditLoadouts_Clicked" Grid.Column="1"/>
+                </Grid>
+                <Label Text="{Binding CurrentLoadout.Name}" HorizontalTextAlignment="Center"/>
+                <Label Text="{Binding CurrentLoadout.Sets, StringFormat='{0} Sets'}" HorizontalTextAlignment="Center"/>
+                <ListView ItemsSource="{Binding CurrentLoadout.Exercises}" IsEnabled="False" HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout VerticalOptions="CenterAndExpand" Padding="10,10" Margin="0,5" BackgroundColor="#2196F3">
+                                    <Label Text="{Binding Name}" TextColor="White"/>
+                                    <StackLayout BindableLayout.ItemsSource="{Binding Types}">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="{Binding Name}" TextColor="White"/>
+                                                    <StackLayout BindableLayout.ItemsSource="{Binding Reps}" Orientation="Horizontal">
+                                                        <Label Text="{Binding}" TextColor="White"/>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button Text="Select Loadout" Clicked="SelectLoadout_Clicked"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

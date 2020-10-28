@@ -324,7 +324,7 @@ namespace AMN.View
 
         private async void addFood_Clicked(object sender, EventArgs e)
         {
-            bool isValid = MasterModel.vd.FormEntries(new string[]
+            bool isValid = MasterModel.vd.FormEntriesValid(new string[]
             {
                 entryName.Text,
                 entryServing.Text,
@@ -391,7 +391,7 @@ namespace AMN.View
                     if(MasterModel.tempMeal.index == -1)
                     {
                         //MasterModel.tempMeal.mealName = await DisplayPromptAsync("Meal Name", "Name your meal.");
-                        bool isValid = MasterModel.vd.FormEntries(new string[]
+                        bool isValid = MasterModel.vd.FormEntriesValid(new string[]
                         {
                             entryMealName.Text
                         });

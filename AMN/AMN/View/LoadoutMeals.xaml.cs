@@ -132,7 +132,7 @@ namespace AMN.View
 
         private async void SaveLoadout_Clicked(object sender, EventArgs e)
         {
-            bool isValid = MasterModel.vd.FormEntries(new string[] { entryLoadoutName.Text });
+            bool isValid = MasterModel.vd.FormEntriesValid(new string[] { entryLoadoutName.Text });
             await MasterModel.DAL.GetIdsAsync();
             newLoadoutMeals = MasterModel.currentUser.TempLoadoutMeals;
 
