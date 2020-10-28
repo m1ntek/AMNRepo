@@ -9,8 +9,9 @@ using Xamarin.Forms;
 
 namespace AMN.Controller
 {
+    //obsolete, did not have enough time to experiment with MVVM.
     //Experimenting with MVVM design pattern
-    class ExercisePageController: INotifyPropertyChanged
+    public class ExercisePageController: INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

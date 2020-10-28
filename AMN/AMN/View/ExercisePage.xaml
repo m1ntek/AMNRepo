@@ -7,7 +7,7 @@
             <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
                 <Label Text="Exercise" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
             </Frame>
-            <ListView ItemsSource="{Binding SelectedExerciseLoadout}">
+            <ListView ItemsSource="{Binding LoadoutExercises}" ItemTapped="Exercise_ItemTapped">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
