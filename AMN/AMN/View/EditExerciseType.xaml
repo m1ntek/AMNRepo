@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AMN.View.EditExerciseType">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+                    <Label x:Name="lblHeader" Text="{Binding SelectedType.Name}" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+                </Frame>
+                <StackLayout Margin="50,10">
+                    <Grid x:Name="gridForm">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.33*"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Button x:Name="btnAddRep" Text="Add" Grid.Row="2" Grid.Column="2" Clicked="btnAddRep_Clicked"/>
+                        <Label Text="Type:" VerticalOptions="Center"/>
+                        <Entry x:Name="entryType" Text="{Binding SelectedType.Name}" Grid.Column="1" VerticalOptions="Center"/>
+
+                        <!--<Label Text="Reps:" VerticalOptions="Center" Grid.Row="2"/>
+                        <Entry x:Name="entryRep" Grid.Column="1" Grid.Row="2" VerticalOptions="Center"
+                           Keyboard="Telephone"/>-->
+                        
+                    </Grid>
+                    <StackLayout Margin="0,10">
+                        <!--<Button Text="New Type" Clicked="NewType_Clicked"/>-->
+                        <Button Text="Save" Clicked="Save_Clicked"/>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

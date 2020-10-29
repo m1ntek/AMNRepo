@@ -7,11 +7,11 @@ namespace AMN.Model
     public class ExerciseType
     {
         public string Name { get; set; }
-        public List<string> Reps { get; set; }
+        public List<Rep> Reps { get; set; }
 
         public ExerciseType()
         {
-            Reps = new List<string>();
+            Reps = new List<Rep>();
         }
     }
 }

@@ -20,7 +20,13 @@
                                                 <StackLayout Orientation="Horizontal">
                                                     <Label Text="{Binding Name}" TextColor="White"/>
                                                     <StackLayout BindableLayout.ItemsSource="{Binding Reps}" Orientation="Horizontal">
-                                                        <Label Text="{Binding}" TextColor="White"/>
+                                                        <BindableLayout.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <StackLayout>
+                                                                    <Label Text="{Binding Amount}" TextColor="White"/>
+                                                                </StackLayout>
+                                                            </DataTemplate>
+                                                        </BindableLayout.ItemTemplate>
                                                     </StackLayout>
                                                 </StackLayout>
                                             </DataTemplate>

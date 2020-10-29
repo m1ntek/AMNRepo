@@ -21,7 +21,7 @@
 
                         <Label Text="Type:" Grid.Row="1" VerticalOptions="Center"/>
                         <Entry x:Name="entryType" Grid.Column="1" Grid.Row="1" VerticalOptions="Center"
-                           Placeholder="(if applicable)"/>
+                           Placeholder="(if applicable)" Unfocused="entryType_Unfocused"/>
 
                         <Label Text="Reps:" VerticalOptions="Center" Grid.Row="2"/>
                         <Entry x:Name="entryRep" Grid.Column="1" Grid.Row="2" VerticalOptions="Center"

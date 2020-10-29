@@ -16,27 +16,27 @@ namespace AMN.View
     public partial class NewExercise : ContentPage
     {
         public int currentRow { get; set; }
-        public int currentCol { get; set; }
         public Exercise Exercise { get; set; }
-        private string repeatableLblText = "Reps:";
-        private int defaultMaxIndex = -1;
+        private string repeatableLblText;
+        private int defaultMaxIndex;
         public NewExercise()
         {
             InitializeComponent();
             Exercise = new Exercise();
             defaultMaxIndex = gridForm.Children.Count - 1;
+            repeatableLblText = "Reps:";
         }
 
         private void entryName_Unfocused(object sender, FocusEventArgs e)
         {
-
+            entryType.Focus();
         }
 
         private async void NewType_Clicked(object sender, EventArgs e)
         {
             if (MasterModel.vd.FormEntriesValid(new string[] { entryRep.Text }) == true)
             {
-                List<string> tempReps = SaveReps();
+                List<Rep> tempReps = RepController.SaveRepsFromEntries(gridForm, repeatableLblText);
                 Exercise.Types.Add(new ExerciseType
                 {
                     Name = entryType.Text,
@@ -53,6 +53,12 @@ namespace AMN.View
 
         //Reset all except name.
         private void ResetForm()
+        {
+            FormController.ResetEntries(new List<Entry> { entryType, entryRep });
+            Grid.SetRow(btnAddRep, Grid.GetRow(entryRep));
+            gridForm = FormController.DeleteGridElements(gridForm, gridForm.Children.Count - 1, defaultMaxIndex);
+        }
+        private void ResetFormOld()
         {
             entryType.Text = "";
             entryRep.Text = "";
@@ -72,7 +78,6 @@ namespace AMN.View
                 return;
 
             currentRow = Grid.GetRow(btnAddRep);
-            //currentCol = Grid.GetColumn(btnAddRep);
 
             ++currentRow;
 
@@ -86,67 +91,6 @@ namespace AMN.View
             gridForm.Children[gridForm.Children.Count - 1].Focus();
         }
 
-        private List<string> SaveReps()
-        {
-            List<string> reps = new List<string>();
-            for (int i = 0; i < gridForm.Children.Count; i++)
-            {
-                if (gridForm.Children[i].GetType() == typeof(Label))
-                {
-                    Label tempLbl = (Label)gridForm.Children[i];
-                    if (tempLbl.Text == repeatableLblText)
-                    {
-
-                        Entry tempEntry = (Entry)gridForm.Children[i + 1];
-                        if (MasterModel.vd.FormEntriesValid(new string[] { tempEntry.Text }) == false)
-                        {
-                            DisplayAlert("Error", MasterModel.vd.error, "OK");
-                            return null;
-                        }
-                        reps.Add(tempEntry.Text);
-                    }
-                }
-            }
-            return reps;
-        }
-
-        //Get all entries but type
-        private string[] GetAllEntries()
-        {
-            //Have to jerry rig this to be a list first and then back to array,
-            //if time permits, I'll change the string array into a string list
-            //for the validator, don't know why I did string array to begin with...
-            List<string> entries = new List<string>();
-            //foreach (var item in gridForm.Children)
-            //{
-            //    if(item.GetType() == typeof(Entry))
-            //    {
-            //        Entry tempEntry = (Entry)item;
-            //        entries.Add(tempEntry.Text);
-            //    }
-            //}
-            for (int i = 0; i < gridForm.Children.Count; i++)
-            {
-                if (gridForm.Children[i].GetType() == typeof(Label))
-                {
-                    Label tempLbl = (Label)gridForm.Children[i];
-                    if (tempLbl.Text == "Name:" || tempLbl.Text == "Reps:")
-                    {
-                        Entry tempEntry = (Entry)gridForm.Children[i + 1];
-                        entries.Add(tempEntry.Text);
-                    }
-                }
-            }
-
-
-            string[] entriesArray = new string[entries.Count];
-            for (int i = 0; i < entries.Count; i++)
-            {
-                entriesArray[i] = entries[i];
-            }
-            return entriesArray;
-        }
-
         private async Task SaveData()
         {
             Exercise.Name = entryName.Text;
@@ -155,8 +99,6 @@ namespace AMN.View
             {
                 await MasterModel.DAL.SaveNewExerciseAsync(Exercise);
                 await Navigation.PopAsync();
-                //entryName.Text = "";
-                //ResetForm();
             }
             catch (Exception ex)
             {
@@ -172,23 +114,33 @@ namespace AMN.View
             {
                 if (Exercise.Types.Count > 0)
                 {
-                    if(MasterModel.vd.FormEntriesValid(GetAllEntries())==true)
+                    if(MasterModel.vd.FormEntriesValid(FormController.GetAllEntries(gridForm))==true)
                     {
-                        Exercise.Types.Add(new ExerciseType { Name = entryType.Text, Reps = SaveReps() });
+                        Exercise.Types.Add(new ExerciseType { Name = entryType.Text, Reps = RepController.SaveRepsFromEntries(gridForm, repeatableLblText) });
                     }
                     await SaveData();
                     return;
                 }
             }
 
-            if (MasterModel.vd.FormEntriesValid(GetAllEntries()) == false)
+            if (MasterModel.vd.FormEntriesValid(FormController.GetAllEntries(gridForm)) == false)
             {
                 await DisplayAlert("Error", MasterModel.vd.error, "OK");
                 return;
             }
 
-            Exercise.Types.Add(new ExerciseType { Name = entryType.Text, Reps = SaveReps() });
+            Exercise.Types.Add(new ExerciseType { Name = entryType.Text, Reps = RepController.SaveRepsFromEntries(gridForm, repeatableLblText) });
             await SaveData();
+        }
+
+        private void entryType_Unfocused(object sender, FocusEventArgs e)
+        {
+            entryRep.Focus();
+        }
+
+        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+
         }
     }
 }
