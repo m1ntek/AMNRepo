@@ -39,21 +39,40 @@ namespace AMN.View
             Exercise = await MasterModel.DAL.GetSelectedExerciseAsync(Key);
             Exercise.Key = Key; //Save the key to exercise as well
             SelectedType = Exercise.Types[Index];
-            await LoadReps();
+            //await LoadReps();
+            await UpdateFormReps();
+
             await FillBlankName();
-            await ManageDeleteButton();
+            //await ManageDeleteButton();
+            gridForm = await FormController.ManageDeleteButton(gridForm);
             BindingContext = this;
         }
 
-        private async Task ManageDeleteButton()
+        private async Task UpdateFormReps()
         {
-            var lastChild = gridForm.Children[gridForm.Children.Count - 1];
-            if (Grid.GetRow(lastChild) == 1)
-            {
-                //Hide delete button
-                gridForm.Children[gridForm.Children.Count - 1].IsVisible = false;
-            }
+            MultipleAttributes ma = await FormController.LoadReps(new MultipleAttributes(
+                gridForm,
+                SelectedType,
+                currentRow,
+                btnAddRep,
+                repeatableLblText));
+
+            gridForm = ma.grid;
+            SelectedType = ma.type;
+            currentRow = ma.num;
+            btnAddRep = ma.btn;
+            repeatableLblText = ma.text;
         }
+
+        //private async Task ManageDeleteButton()
+        //{
+        //    var lastChild = gridForm.Children[gridForm.Children.Count - 1];
+        //    if (Grid.GetRow(lastChild) == 1)
+        //    {
+        //        //Hide delete button
+        //        gridForm.Children[gridForm.Children.Count - 1].IsVisible = false;
+        //    }
+        //}
 
         private async Task FillBlankName()
         {
@@ -64,94 +83,105 @@ namespace AMN.View
             }
         }
 
-        private async Task LoadReps()
-        {
-            currentRow = Grid.GetRow(entryType);
-            for (int i = 0; i < SelectedType.Reps.Count; i++)
-            {
-                SelectedType.Reps[i].Index = i;
-                ++currentRow;
+        //private async Task LoadReps()
+        //{
+        //    currentRow = Grid.GetRow(entryType);
+        //    for (int i = 0; i < SelectedType.Reps.Count; i++)
+        //    {
+        //        SelectedType.Reps[i].Index = i;
+        //        ++currentRow;
 
-                gridForm.Children.Add(FormController.NewGridLabel(0, currentRow, repeatableLblText));
+        //        gridForm.Children.Add(FormController.NewGridLabel(0, currentRow, repeatableLblText));
 
-                //Fill in each rep entry
-                Entry tempEntry = FormController.NewGridRepEntry(1, currentRow, null);
-                tempEntry.Text = SelectedType.Reps[i].Amount;
-                gridForm.Children.Add(tempEntry);
+        //        //Fill in each rep entry
+        //        Entry tempEntry = FormController.NewGridRepEntry(1, currentRow, null);
+        //        tempEntry.Text = SelectedType.Reps[i].Amount;
+        //        gridForm.Children.Add(tempEntry);
 
-                await AddDeleteButton();
+        //        await AddDeleteButton();
 
-                //Move add button down with the new row
-                Grid.SetRow(btnAddRep, currentRow);
-            }
-        }
+        //        //Move add button down with the new row
+        //        Grid.SetRow(btnAddRep, currentRow);
+        //    }
+        //}
 
         private async void btnAddRep_Clicked(object sender, EventArgs e)
         {
-            //Grab the last entry in grid and cast it as Entry type.
-            Entry tempEntry = (Entry)gridForm.Children[gridForm.Children.Count - 2];
+            gridForm = await FormController.AddRepClicked(
+                gridForm,
+                btnAddRep,
+                repeatableLblText,
+                SelectedType);
 
-            if (MasterModel.vd.FormEntriesValid(new string[] { tempEntry.Text }) == false)
+            //Validation, null is invalid.
+            if (gridForm == null)
                 return;
 
-            currentRow = Grid.GetRow(btnAddRep);
 
-            ++currentRow;
+            ////Grab the last entry in grid and cast it as Entry type.
+            //Entry tempEntry = (Entry)gridForm.Children[gridForm.Children.Count - 2];
 
-            gridForm.Children.Add(FormController.NewGridLabel(0, currentRow, repeatableLblText));
-            gridForm.Children.Add(FormController.NewGridRepEntry(1, currentRow, null));
+            //if (MasterModel.vd.FormEntriesValid(new string[] { tempEntry.Text }) == false)
+            //    return;
 
-            //Move button down with the new row
-            Grid.SetRow(btnAddRep, currentRow);
+            //currentRow = Grid.GetRow(btnAddRep);
 
-            //Focus on the new entry
-            gridForm.Children[gridForm.Children.Count - 1].Focus();
+            //++currentRow;
 
-            //Add another delete button
-            await AddDeleteButton();
+            //gridForm.Children.Add(FormController.NewGridLabel(0, currentRow, repeatableLblText));
+            //gridForm.Children.Add(FormController.NewGridRepEntry(1, currentRow, null));
+
+            ////Move button down with the new row
+            //Grid.SetRow(btnAddRep, currentRow);
+
+            ////Focus on the new entry
+            //gridForm.Children[gridForm.Children.Count - 1].Focus();
+
+            ////Add another delete button
+            //await AddDeleteButton();
         }
 
-        private async Task AddDeleteButton()
-        {
-            //Add a delete button
-            Button delete = FormController.NewGridButton(3, currentRow, "Del");
-            gridForm.Children.Add(delete); //Prevent messing with last indices
+        //private async Task AddDeleteButton()
+        //{
+        //    //Add a delete button
+        //    Button delete = FormController.NewGridButton(3, currentRow, "Del");
+        //    gridForm.Children.Add(delete); //Prevent messing with last indices
 
-            //Click event
-            delete.Clicked += async (sender, args) =>
-            {
+        //    //Click event
+        //    delete.Clicked += async (sender, args) =>
+        //    {
 
-                var lastChild = gridForm.Children[gridForm.Children.Count - 1];
+        //        var lastChild = gridForm.Children[gridForm.Children.Count - 1];
 
-                int deleteRow = Grid.GetRow((Button)sender); //Find grid row from clicked button
-                int deleteIndex = gridForm.Children.IndexOf((Button)sender); //Find index of button in the grid
-                int detectedRepIndex = deleteRow - 1; //Formula to find rep index based on delete button row.
+        //        int deleteRow = Grid.GetRow((Button)sender); //Find grid row from clicked button
+        //        int deleteIndex = gridForm.Children.IndexOf((Button)sender); //Find index of button in the grid
+        //        int detectedRepIndex = deleteRow - 1; //Formula to find rep index based on delete button row.
 
-                //Delete the grid elements
-                gridForm.Children.RemoveAt(deleteIndex); //Rep del button
-                gridForm.Children.RemoveAt(deleteIndex - 1); //Rep entry
-                gridForm.Children.RemoveAt(deleteIndex - 2); //Rep label
+        //        //Delete the grid elements
+        //        gridForm.Children.RemoveAt(deleteIndex); //Rep del button
+        //        gridForm.Children.RemoveAt(deleteIndex - 1); //Rep entry
+        //        gridForm.Children.RemoveAt(deleteIndex - 2); //Rep label
 
-                //Delete the rep itself
-                try
-                {
-                    SelectedType.Reps.RemoveAt(detectedRepIndex);
-                }
-                catch (Exception)
-                {
-                    //Do nothing
-                }
+        //        //Delete the rep itself
+        //        try
+        //        {
+        //            SelectedType.Reps.RemoveAt(detectedRepIndex);
+        //        }
+        //        catch (Exception)
+        //        {
+        //            //Do nothing
+        //        }
 
-                //Decrement currentRow
-                --currentRow;
+        //        //Decrement currentRow
+        //        --currentRow;
 
-                //Move add button
-                Grid.SetRow(btnAddRep, currentRow);
+        //        //Move add button
+        //        Grid.SetRow(btnAddRep, currentRow);
 
-                //Check delete button
-                await ManageDeleteButton();
-            };
-        }
+        //        //Check delete button
+        //        await ManageDeleteButton();
+        //    };
+        //}
 
         private void ResetForm()
         {
@@ -229,6 +259,12 @@ namespace AMN.View
                 await DisplayAlert("Error", MasterModel.vd.error, "OK");
             }
             
+        }
+
+        private async void Delete_Clicked(object sender, EventArgs e)
+        {
+            await MasterModel.DAL.DeleteSelectedExerciseTypeAsync(Exercise, Index);
+            await Navigation.PopAsync();
         }
     }
 }

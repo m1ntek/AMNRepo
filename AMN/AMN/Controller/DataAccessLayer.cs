@@ -198,6 +198,16 @@ public class DataAccessLayer
         await fb.Child("Users").Child(auth.User.LocalId).Child("Exercises").Child(exercise.Key).PutAsync(exercise);
     }
 
+    public async Task DeleteSelectedExerciseAsync(Exercise exercise)
+    {
+        await fb.Child("Users").Child(auth.User.LocalId).Child("Exercises").Child(exercise.Key).DeleteAsync();
+    }
+
+    public async Task DeleteSelectedExerciseTypeAsync(Exercise exercise, int index)
+    {
+        await fb.Child("Users").Child(auth.User.LocalId).Child("Exercises").Child(exercise.Key).Child("Types").Child(index.ToString()).DeleteAsync();
+    }
+
     public async Task<List<ExerciseLoadout>> GetExerciseLoadoutsAsync()
     {
         return (await fb.Child("Users")

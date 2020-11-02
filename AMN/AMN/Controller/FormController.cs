@@ -1,5 +1,7 @@
-﻿using System;
+﻿using AMN.Model;
+using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -91,5 +93,132 @@ namespace AMN.Controller
             return gridForm;
         }
 
+        public static async Task<MultipleAttributes> LoadReps(MultipleAttributes ma)
+        {
+            //Clarify the attributes
+            Grid gridForm = ma.grid;
+            int currentRow = Grid.GetRow(gridForm.Children[0]);
+            ExerciseType selectedType = ma.type;
+            string repeatableLblText = ma.text;
+            Button btnAddRep = ma.btn;
+            
+            for (int i = 0; i < selectedType.Reps.Count; i++)
+            {
+                selectedType.Reps[i].Index = i;
+                ++currentRow;
+
+                gridForm.Children.Add(NewGridLabel(0, currentRow, repeatableLblText));
+
+                //Fill in each rep entry
+                Entry tempEntry = NewGridRepEntry(1, currentRow, null);
+                tempEntry.Text = selectedType.Reps[i].Amount;
+                gridForm.Children.Add(tempEntry);
+
+                gridForm = await AddDeleteButton(currentRow, gridForm, selectedType, btnAddRep);
+
+                //Move add button down with the new row
+                Grid.SetRow(btnAddRep, currentRow);
+            }
+
+            //Save changes back to class and return it
+            ma.grid = gridForm;
+            ma.num = currentRow;
+            ma.type = selectedType;
+            ma.text = repeatableLblText;
+            ma.btn = btnAddRep;
+
+            return ma;
+        }
+
+        private static async Task<Grid> AddDeleteButton(
+            int currentRow,
+            Grid gridForm,
+            ExerciseType SelectedType,
+            Button btnAddRep)
+        {
+            //Add a delete button
+            Button delete = NewGridButton(3, currentRow, "Del");
+            gridForm.Children.Add(delete); //Prevent messing with last indices
+
+            //Click event
+            delete.Clicked += async (sender, args) =>
+            {
+                var lastChild = gridForm.Children[gridForm.Children.Count - 1];
+
+                int deleteRow = Grid.GetRow((Button)sender); //Find grid row from clicked button
+                int deleteIndex = gridForm.Children.IndexOf((Button)sender); //Find index of button in the grid
+                int detectedRepIndex = deleteRow - 1; //Formula to find rep index based on delete button row.
+
+                //Delete the grid elements
+                gridForm.Children.RemoveAt(deleteIndex); //Rep del button
+                gridForm.Children.RemoveAt(deleteIndex - 1); //Rep entry
+                gridForm.Children.RemoveAt(deleteIndex - 2); //Rep label
+
+                //Delete the rep itself
+                try
+                {
+                    SelectedType.Reps.RemoveAt(detectedRepIndex);
+                }
+                catch (Exception)
+                {
+                    //Do nothing
+                }
+
+                //Decrement currentRow
+                --currentRow;
+
+                //Move add button
+                Grid.SetRow(btnAddRep, currentRow);
+
+                //Check delete button
+                gridForm = await ManageDeleteButton(gridForm);
+            };
+
+            return gridForm;
+        }
+
+        public static async Task<Grid> ManageDeleteButton(Grid gridForm)
+        {
+            var lastChild = gridForm.Children[gridForm.Children.Count - 1];
+            if (Grid.GetRow(lastChild) == 1)
+            {
+                //Hide delete button
+                gridForm.Children[gridForm.Children.Count - 1].IsVisible = false;
+            }
+
+            return gridForm;
+        }
+
+        public static async Task<Grid> AddRepClicked(
+            Grid gridForm,
+            Button btnAddRep,
+            string repeatableLblText,
+            ExerciseType selectedType)
+        {
+            //Grab the last entry in grid and cast it as Entry type.
+            Entry tempEntry = (Entry)gridForm.Children[gridForm.Children.Count - 2];
+
+            if (MasterModel.vd.FormEntriesValid(new string[] { tempEntry.Text }) == false)
+                return null;
+
+            int currentRow = Grid.GetRow(btnAddRep);
+
+            ++currentRow;
+
+            gridForm.Children.Add(NewGridLabel(0, currentRow, repeatableLblText));
+            gridForm.Children.Add(NewGridRepEntry(1, currentRow, null));
+
+            //Move button down with the new row
+            Grid.SetRow(btnAddRep, currentRow);
+
+            //Focus on the new entry
+            gridForm.Children[gridForm.Children.Count - 1].Focus();
+
+            //Add another delete button
+            gridForm = await AddDeleteButton(currentRow, gridForm, selectedType, btnAddRep);
+
+            //Return updated grid
+            return gridForm;
+        }
     }
 }

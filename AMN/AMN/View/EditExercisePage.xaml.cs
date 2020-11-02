@@ -27,6 +27,7 @@ namespace AMN.View
             base.OnAppearing();
 
             SavedExercises = await GetExercisesAsync();
+            SavedExercises = await RepController.PrepareRepSummariesAsync(SavedExercises);
             RefreshList();
         }
 

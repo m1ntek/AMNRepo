@@ -32,7 +32,13 @@ namespace AMN.View
         {
             base.OnAppearing();
             Exercise = await GetExercise();
+            Exercise = await RepController.PrepareRepSummaryAsync(Exercise);
             Exercise.Key = Key;
+            await RefreshList();
+        }
+
+        private async Task RefreshList()
+        {
             BindingContext = null;
             BindingContext = this;
         }
@@ -54,7 +60,7 @@ namespace AMN.View
 
         private async void Type_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            await Navigation.PushAsync(new EditExerciseType(e.ItemIndex, Key));
+            await Navigation.PushAsync(new EditExerciseTypeV2(e.ItemIndex, Key));
         }
 
         private async void Save_Clicked(object sender, EventArgs e)
@@ -62,6 +68,17 @@ namespace AMN.View
             Exercise.Name = entryRename.Text;
             await MasterModel.DAL.SaveSelectedExerciseAsync(Exercise);
             await Navigation.PopAsync();
+        }
+
+        private async void Delete_Clicked(object sender, EventArgs e)
+        {
+            await MasterModel.DAL.DeleteSelectedExerciseAsync(Exercise);
+            await Navigation.PopAsync();
+        }
+
+        private async void NewType_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new NewExerciseType(Key));
         }
     }
 }

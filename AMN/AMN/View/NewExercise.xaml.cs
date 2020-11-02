@@ -108,16 +108,20 @@ namespace AMN.View
 
         private async void Save_Clicked(object sender, EventArgs e)
         {
-            //Ugly band-aid fix for if types already exist but user just
+            //Ugly band-aid fix for if types already exist but the user just
             //wants to save...
             if (MasterModel.vd.FormEntriesValid(new string[] { entryName.Text }) == true)
             {
+                //If there are more than one exercise types
                 if (Exercise.Types.Count > 0)
                 {
+                    //If there are entries on the current page then add those too.
                     if(MasterModel.vd.FormEntriesValid(FormController.GetAllEntries(gridForm))==true)
                     {
                         Exercise.Types.Add(new ExerciseType { Name = entryType.Text, Reps = RepController.SaveRepsFromEntries(gridForm, repeatableLblText) });
                     }
+                    //In the case the if statement isn't met
+                    //it ignores the current form and saves the data
                     await SaveData();
                     return;
                 }
@@ -129,6 +133,7 @@ namespace AMN.View
                 return;
             }
 
+            //At this point, the form is valid and is the very first exercise type.
             Exercise.Types.Add(new ExerciseType { Name = entryType.Text, Reps = RepController.SaveRepsFromEntries(gridForm, repeatableLblText) });
             await SaveData();
         }
