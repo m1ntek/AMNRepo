@@ -12,26 +12,32 @@ using Xamarin.Forms.Xaml;
 namespace AMN.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NewExerciseLoadout : ContentPage
+    public partial class EditExerciseLoadout : ContentPage
     {
         public ExerciseLoadout ELoadout { get; set; }
-        public NewExerciseLoadout()
+        public string Key { get; set; }
+        public EditExerciseLoadout(string key)
         {
             InitializeComponent();
-            ELoadout = new ExerciseLoadout();
+            Key = key;
         }
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            ELoadout = await MasterModel.DAL.GetTempExerciseLoadoutAsync();
+            ELoadout = await MasterModel.DAL.GetExerciseLoadoutExerciseAsync(Key);
+            Refresh();
+        }
+
+        private void Refresh()
+        {
             BindingContext = null;
             BindingContext = this;
         }
 
         private async void AddExercises_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AddExercisesToLoadout());
+            await Navigation.PushAsync(new AddExercisesToSelectedLoadout(Key));
         }
 
         private async void Save_Clicked(object sender, EventArgs e)
@@ -39,7 +45,7 @@ namespace AMN.View
             if (await Validation() == false)
                 return;
 
-            await MasterModel.DAL.SaveNewExerciseLoadoutAsync(ELoadout);
+            await MasterModel.DAL.SaveSelectedExerciseLoadoutAsync(ELoadout, Key);
             await Navigation.PopAsync();
         }
 
@@ -51,7 +57,7 @@ namespace AMN.View
                 return false;
             }
 
-            if(ELoadout.Exercises.Count== 0)
+            if (ELoadout.Exercises.Count == 0)
             {
                 await DisplayAlert("Error", "Please have at least one exercise in your loadout.", "OK");
                 return false;
@@ -60,9 +66,15 @@ namespace AMN.View
             return true;
         }
 
-        private async void Exercise_ItemTapped(object sender, ItemTappedEventArgs e)
+        private void Del_Clicked(object sender, EventArgs e)
         {
-            //Edit the exercise
+            //Find index of click event
+            var button = (Button)sender;
+            var exercise = (Exercise)button.CommandParameter;
+            var index = ELoadout.Exercises.IndexOf(exercise);
+
+            ELoadout.Exercises.RemoveAt(index);
+            Refresh();
         }
     }
 }

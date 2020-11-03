@@ -26,11 +26,19 @@ namespace AMN.View
             base.OnAppearing();
 
             ELoadouts = await MasterModel.DAL.GetExerciseLoadoutsAsync();
+            BindingContext = null;
+            BindingContext = this;
         }
 
         private async void NewLoadout_Clicked(object sender, EventArgs e)
         {
+            await MasterModel.DAL.ResetTempLoadoutExerciseAsync();
             await Navigation.PushAsync(new NewExerciseLoadout());
+        }
+
+        private async void Loadout_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            await Navigation.PushAsync(new EditExerciseLoadout(ELoadouts[e.ItemIndex].Key));
         }
     }
 }

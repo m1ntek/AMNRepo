@@ -12,20 +12,22 @@ using Xamarin.Forms.Xaml;
 namespace AMN.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AddExercisesToLoadout : ContentPage
+    public partial class AddExercisesToSelectedLoadout : ContentPage
     {
         public List<Exercise> SavedExercises { get; set; }
-        private ExerciseLoadout tempELoadout;
-        public AddExercisesToLoadout()
+        public string Key { get; set; }
+        private ExerciseLoadout selectedLoadout;
+
+        public AddExercisesToSelectedLoadout(string key)
         {
             InitializeComponent();
-            SavedExercises = new List<Exercise>();
-            tempELoadout = new ExerciseLoadout();
+            Key = key;
         }
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
+            selectedLoadout = await MasterModel.DAL.GetExerciseLoadoutAsync(Key);
             SavedExercises = await MasterModel.DAL.GetSavedExercisesAsync();
             SavedExercises = await RepController.PrepareRepSummariesAsync(SavedExercises);
             Refresh();
@@ -49,8 +51,8 @@ namespace AMN.View
 
             if (addConfirmed == true)
             {
-                tempELoadout.Exercises.Add(SavedExercises[e.ItemIndex]);
-                await MasterModel.DAL.SaveNewTempLoadoutExerciseAsync(tempELoadout);
+                selectedLoadout.Exercises.Add(SavedExercises[e.ItemIndex]);
+                await MasterModel.DAL.SaveSelectedExerciseLoadoutAsync(selectedLoadout, Key);
             }
         }
 
