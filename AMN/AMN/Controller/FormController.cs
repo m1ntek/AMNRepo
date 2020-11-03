@@ -93,6 +93,13 @@ namespace AMN.Controller
             return gridForm;
         }
 
+        public static int GetRepIndex(object sender, ExerciseType exType)
+        {
+            var button = (Button)sender;
+            var rep = (Rep)button.CommandParameter;
+            return exType.Reps.IndexOf(rep);
+        }
+
         public static async Task<MultipleAttributes> LoadReps(MultipleAttributes ma)
         {
             //Clarify the attributes

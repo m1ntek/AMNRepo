@@ -32,6 +32,7 @@
                                     <!-- Was going to use Numeric keyboard
                                     but it did not allow for the use of symbols.
                                     The client wanted the ability to use symbols. -->
+                                    <Label Text="Rep:" VerticalTextAlignment="Center"/>
                                     <Entry Text="{Binding Amount}" Keyboard="Telephone"
                                            Grid.Column="1"/>
                                     <Button Text="Del" Clicked="Del_Clicked" CommandParameter="{Binding .}"

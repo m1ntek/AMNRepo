@@ -20,7 +20,7 @@ namespace AMN.View
         public string Key { get; set; }
         public Exercise Exercise { get; set; }
         public ExerciseType SelectedType { get; set; }
-        private int currentMaxIndex;
+        //private int currentMaxIndex;
         private int currentRow;
         private string repeatableLblText;
         public EditExerciseType(int index, string key)
@@ -28,7 +28,7 @@ namespace AMN.View
             InitializeComponent();
             Index = index;
             Key = key;
-            currentMaxIndex = gridForm.Children.Count - 1;
+            //currentMaxIndex = gridForm.Children.Count - 1;
             repeatableLblText = "Rep:";
         }
 
@@ -79,7 +79,7 @@ namespace AMN.View
             if(string.IsNullOrEmpty(SelectedType.Name) == true)
             {
                 lblHeader.Text = "Exercise Type";
-                entryType.Placeholder = "Unnamed";
+                entryType.Placeholder = "if applicable";
             }
         }
 

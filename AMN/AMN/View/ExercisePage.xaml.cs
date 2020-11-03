@@ -88,7 +88,7 @@ namespace AMN.View
 
         private async void EditLoadouts_Clicked(object sender, EventArgs e)
         {
-
+            await Navigation.PushAsync(new ExerciseLoadouts());
         }
 
         private async void SelectLoadout_Clicked(object sender, EventArgs e)

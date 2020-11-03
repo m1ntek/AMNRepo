@@ -3,30 +3,50 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AMN.View.NewExerciseType">
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout>
-                <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-                    <Label Text="New Exercise Type" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-                </Frame>
-                <StackLayout Margin="50,10">
-                    <Grid x:Name="gridForm">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.33*"></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition Width="0.5*"></ColumnDefinition>
-                            <ColumnDefinition Width="0.5*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-
-                        <Button x:Name="btnAddRep" Text="Add" Grid.Row="2" Grid.Column="2" Clicked="btnAddRep_Clicked"/>
-                        <Label Text="Type:" VerticalOptions="Center"/>
-                        <Entry x:Name="entryType" Placeholder="if applicable" Grid.Column="1" VerticalOptions="Center"/>
-
-                    </Grid>
-                    <StackLayout Margin="0,10">
-                        <Button Text="Save" Clicked="Save_Clicked"/>
-                    </StackLayout>
+        <StackLayout>
+            <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+                <Label x:Name="lblHeader" Text="New Exercise Type" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+            </Frame>
+            <StackLayout Margin="50,10">
+                <!-- Type name -->
+                <Grid x:Name="gridForm">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.33*"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Type:" VerticalOptions="Center" HeightRequest="150" VerticalTextAlignment="Center"/>
+                    <Entry Text="{Binding _ExerciseType.Name}" Placeholder="if applicable" Grid.Column="1" VerticalOptions="Center"/>
+                </Grid>
+                <!-- Reps List -->
+                <ListView ItemsSource="{Binding _ExerciseType.Reps}" HasUnevenRows="True" SeparatorVisibility="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.33*"/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="0.33*"/>
+                                        <ColumnDefinition Width="0.33*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <!-- Was going to use Numeric keyboard
+                                    but it did not allow for the use of symbols.
+                                    The client wanted the ability to use symbols. -->
+                                    <Label Text="Rep:" VerticalTextAlignment="Center"/>
+                                    <Entry Text="{Binding Amount}" Keyboard="Telephone"
+                                           Grid.Column="1"/>
+                                    <Button Text="Del" Clicked="Del_Clicked" CommandParameter="{Binding .}"
+                                            Grid.Column="3"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <StackLayout Margin="0,10">
+                    <Button Text="Add Rep" Clicked="btnAddRep_Clicked"/>
+                    <Button Text="Save" Clicked="Save_Clicked" Grid.Column="1"/>
                 </StackLayout>
             </StackLayout>
-        </ScrollView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

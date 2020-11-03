@@ -214,7 +214,13 @@ public class DataAccessLayer
             .Child(auth.User.LocalId)
             .Child("ExerciseLoadouts")
             .OnceAsync<ExerciseLoadout>())
-            .Select(item => new ExerciseLoadout()).ToList();
+            .Select(item => new ExerciseLoadout()
+            {
+                Exercises = item.Object.Exercises,
+                Key = item.Key,
+                Name = item.Object.Name,
+                Sets = item.Object.Sets
+            }).ToList();
     }
 
     public Task<ExerciseLoadout> GetSelectedExerciseLoadoutAsync()
@@ -233,5 +239,23 @@ public class DataAccessLayer
     public async Task SaveNewExerciseAsync(Exercise exercise)
     {
         await fb.Child("Users").Child(auth.User.LocalId).Child("Exercises").PostAsync(exercise);
+    }
+
+    public Task<ExerciseLoadout> GetTempExerciseLoadoutAsync()
+    {
+        return (fb.Child("Users")
+            .Child(auth.User.LocalId)
+            .Child("TempExerciseLoadout")
+            .OnceSingleAsync<ExerciseLoadout>());
+    }
+
+    public async Task SaveNewTempLoadoutExerciseAsync(ExerciseLoadout exLoadout)
+    {
+        await fb.Child("Users").Child(auth.User.LocalId).Child("TempExerciseLoadout").PutAsync(exLoadout);
+    }
+
+    public async Task SaveNewExerciseLoadoutAsync(ExerciseLoadout exLoadout)
+    {
+        await fb.Child("Users").Child(auth.User.LocalId).Child("ExerciseLoadouts").PostAsync(exLoadout);
     }
 }

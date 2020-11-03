@@ -39,7 +39,7 @@ namespace AMN.View
             if (string.IsNullOrEmpty(SelectedType.Name) == true)
             {
                 HeaderTitle = "Exercise Type";
-                EntryTypePlaceholder = "Unnamed";
+                EntryTypePlaceholder = "if applicable";
             }
             else HeaderTitle = SelectedType.Name;
 
@@ -103,7 +103,7 @@ namespace AMN.View
 
         private async void Delete_Clicked(object sender, EventArgs e)
         {
-            await MasterModel.DAL.DeleteSelectedExerciseAsync(Exercise);
+            await MasterModel.DAL.DeleteSelectedExerciseTypeAsync(Exercise, Index);
             await Navigation.PopAsync();
         }
     }
