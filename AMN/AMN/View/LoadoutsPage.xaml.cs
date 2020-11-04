@@ -50,11 +50,13 @@ namespace AMN.View
             List<Meal> tempLoadoutMeals = userLoadouts[e.ItemIndex].Meals;
             //string userLoadoutKey = userLoadouts[e.ItemIndex].Key;
             await MasterModel.DAL.ResetTempLoadoutMealsAsync();
+            List<Task> tasks = new List<Task>();
             foreach (var meal in tempLoadoutMeals)
             {
-                await MasterModel.DAL.SaveNewTempLoadoutMealAsync(meal);
+                tasks.Add(MasterModel.DAL.SaveNewTempLoadoutMealAsync(meal));
             }
-            await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
+            await Task.WhenAll(tasks);
+            //await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
             await Navigation.PushAsync(new LoadoutMeals(userLoadouts[e.ItemIndex].LoadoutName, e.ItemIndex));
         }
 
