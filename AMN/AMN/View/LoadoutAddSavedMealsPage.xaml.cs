@@ -34,8 +34,9 @@ namespace AMN.View
         {
             try
             {
-                MasterModel.currentUser = await MasterModel.DAL.GetUserDataAsync();
-                SavedMeals = MasterModel.currentUser.Meals;
+                //MasterModel.currentUser = await MasterModel.DAL.GetUserDataAsync();
+                //SavedMeals = MasterModel.currentUser.Meals;
+                SavedMeals = await MasterModel.DAL.GetSavedMealsAsync();
             }
             catch (Exception ex)
             {
@@ -60,8 +61,10 @@ namespace AMN.View
 
             if (addMeal == true)
             {
-                MasterModel.currentUser.TempLoadoutMeals.Add(SavedMeals[e.ItemIndex]);
-                await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
+                await MasterModel.DAL.SaveNewTempLoadoutMealAsync(SavedMeals[e.ItemIndex]);
+                
+                //MasterModel.currentUser.TempLoadoutMeals.Add(SavedMeals[e.ItemIndex]);
+                //await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
                 //newLoadoutMeals.Add(MasterModel.tempMeal);
                 //lvLoadoutMeals.ItemsSource = newLoadoutMeals;
             }

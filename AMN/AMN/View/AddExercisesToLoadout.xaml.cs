@@ -16,11 +16,13 @@ namespace AMN.View
     {
         public List<Exercise> SavedExercises { get; set; }
         private ExerciseLoadout tempELoadout;
+        private List<Task> taskScheduler;
         public AddExercisesToLoadout()
         {
             InitializeComponent();
             SavedExercises = new List<Exercise>();
             tempELoadout = new ExerciseLoadout();
+            taskScheduler = new List<Task>();
         }
 
         protected override async void OnAppearing()
@@ -50,7 +52,7 @@ namespace AMN.View
             if (addConfirmed == true)
             {
                 tempELoadout.Exercises.Add(SavedExercises[e.ItemIndex]);
-                await MasterModel.DAL.SaveNewTempLoadoutExerciseAsync(tempELoadout);
+                taskScheduler.Add(MasterModel.DAL.SaveNewTempLoadoutExerciseAsync(tempELoadout));
             }
         }
 
@@ -69,6 +71,7 @@ namespace AMN.View
 
         private async void Done_Clicked(object sender, EventArgs e)
         {
+            await Task.WhenAll(taskScheduler);
             await Navigation.PopAsync();
         }
     }

@@ -18,21 +18,31 @@ namespace AMN.View
         public List<Meal> loadoutMeals { get; set; }
         public MacroNutrients dailyGoal { get; set; }
         public MacroNutrients goalProgress { get; set; }
+        public Loadout loadout { get; set; }
         public NutritionPageV2()
         {
             InitializeComponent();
+            //loadoutMeals = new List<Meal>();
+            dailyGoal = new MacroNutrients();
+            goalProgress = new MacroNutrients();
         }
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            loadoutMeals = new List<Meal>();
+            //loadoutMeals = new List<Meal>();
             await GetUserData();
-            await DisplayLoadoutMeals();
-            await DisplayGoalAndProgress();
-            await SetGoalRatios();
-            await DisplayGoalRatios();
-            await SetLoadoutName();
+
+            if(loadoutMeals != null &&
+                dailyGoal != null &&
+                goalProgress != null)
+            {
+                await DisplayLoadoutMeals();
+                await DisplayGoalAndProgress();
+                await SetGoalRatios();
+                await DisplayGoalRatios();
+                await SetLoadoutName();
+            }
         }
 
         private async Task SetLoadoutName()
@@ -68,9 +78,17 @@ namespace AMN.View
             //dailyGoal = MasterModel.currentUser.DailyGoal;
             //goalProgress = MasterModel.currentUser.GoalProgress;
 
-            loadoutMeals = await MasterModel.DAL.GetLoadoutMeals();
-            dailyGoal = await MasterModel.DAL.GetGoalAsync();
-            goalProgress = await MasterModel.DAL.GetGoalProgressAsync();
+            try
+            {
+                loadout = await MasterModel.DAL.GetSelectedLoadoutAsync();
+                loadoutMeals = loadout.Meals;
+                dailyGoal = await MasterModel.DAL.GetGoalAsync();
+                goalProgress = await MasterModel.DAL.GetGoalProgressAsync();
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "OK");
+            }
         }
 
         private async void SavedMeals_Clicked(object sender, EventArgs e)
@@ -178,7 +196,10 @@ namespace AMN.View
                     //update db per tick
                     await MasterModel.DAL.SaveGoalAsync(dailyGoal);
                     await MasterModel.DAL.SaveGoalProgressAsync(goalProgress);
-                    await MasterModel.DAL.SaveLoadoutMeals(loadoutMeals);
+                    //await MasterModel.DAL.SaveLoadoutMeals(loadoutMeals);
+                    loadout.Meals = loadoutMeals;
+                    await MasterModel.DAL.SaveSelectedLoadout(loadout);
+
                     //await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
 
 
@@ -220,7 +241,7 @@ namespace AMN.View
             goalProgress.fat = 0;
 
             //MasterModel.currentUser.SelectedLoadout.Meals = loadoutMeals;
-            await MasterModel.DAL.SaveLoadoutMeals(loadoutMeals);
+            await MasterModel.DAL.SaveSelectedLoadoutMealsAsync(loadoutMeals);
             //await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
             await RefreshPageAsync();
         }

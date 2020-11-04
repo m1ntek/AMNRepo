@@ -469,7 +469,7 @@ namespace AMN.View
                 try
                 {
                     MasterModel.currentUser.Meals.RemoveAt(MasterModel.tempMeal.index);
-                    MasterModel.DAL.DeleteSelectedMealAsync(MasterModel.tempMeal.key);
+                    await MasterModel.DAL.DeleteMealAsync(MasterModel.tempMeal.key);
                     //await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
                     await Navigation.PopAsync();
                 }

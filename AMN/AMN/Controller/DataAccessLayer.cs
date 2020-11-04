@@ -59,7 +59,7 @@ public class DataAccessLayer
         return reason[reason.Length - 1];
     }
 
-    public async Task<List<Meal>> GetLoadoutMeals()
+    public async Task<List<Meal>> GetSelectedLoadoutMeals()
     {
         return (await fb.Child("Users")
         .Child(auth.User.LocalId)
@@ -132,6 +132,15 @@ public class DataAccessLayer
         return await fb.Child("Users").Child(GetCurrentLocalId()).Child("GoalProgress").OnceSingleAsync<MacroNutrients>();
     }
 
+    public async Task<string> GetLoadoutNameAsync()
+    {
+        return (await fb.Child("Users")
+        .Child(auth.User.LocalId)
+        .Child("SelectedLoadout")
+        .Child("LoadoutName")
+        .OnceSingleAsync<string>());
+    }
+
     public async Task<List<Loadout>> GetLoadoutsAsync()
     {
         return (await fb.Child("Users")
@@ -146,7 +155,39 @@ public class DataAccessLayer
         }).ToList();
     }
 
-    public async Task SaveLoadoutMeals(List<Meal> loadoutMeals)
+    public async Task ResetTempLoadoutMealsAsync()
+    {
+        await fb.Child("Users").
+            Child(auth.User.LocalId).
+            Child("TempLoadoutMeals").
+            PutAsync(new List<Meal>());
+    }
+    //public async Task SaveTempLoadoutAsync(Loadout loadout)
+    //{
+    //    await fb.Child("Users").
+    //        Child(auth.User.LocalId).
+    //        Child("TempLoadout").
+    //        PutAsync(loadout);
+    //}
+
+    public async Task SaveNewTempLoadoutMealAsync(Meal loadoutMeal)
+    {
+        await fb.Child("Users").
+            Child(auth.User.LocalId).
+            Child("TempLoadoutMeals").
+            PostAsync(loadoutMeal);
+    }
+
+    public async Task SaveTempLoadoutMealAsync(Meal loadoutMeal, string key)
+    {
+        await fb.Child("Users").
+        Child(auth.User.LocalId).
+        Child("TempLoadoutMeals").
+        Child(key).
+        PutAsync(loadoutMeal);
+    }
+
+    public async Task SaveSelectedLoadoutMealsAsync(List<Meal> loadoutMeals)
     {
         await fb.Child("Users").
             Child(auth.User.LocalId).
@@ -265,16 +306,26 @@ public class DataAccessLayer
         }
     }
 
-    public async Task SaveLoadout(Loadout loadout)
+    public async Task SaveSelectedLoadout(Loadout loadout)
     {
         await fb.Child("Users").Child(auth.User.LocalId).Child("SelectedLoadout").PutAsync(loadout);
+    }
+
+    public async Task SaveNewLoadout(Loadout loadout)
+    {
+        await fb.Child("Users").Child(auth.User.LocalId).Child("Loadouts").PostAsync(loadout);
+    }
+
+    public async Task SaveLoadoutAsync(Loadout loadout, string key)
+    {
+        await fb.Child("Users").Child(auth.User.LocalId).Child("Loadouts").Child(key).PutAsync(loadout);
     }
 
     public Task<Loadout> GetSelectedLoadoutAsync()
     {
         return fb.Child("Users").
             Child(auth.User.LocalId).
-            Child("Loadouts").
+            Child("SelectedLoadout").
             OnceSingleAsync<Loadout>();
     }
 
@@ -288,9 +339,23 @@ public class DataAccessLayer
         await fb.Child("Users").Child(auth.User.LocalId).Child("Exercises").Child(exercise.Key).PutAsync(exercise);
     }
 
-    public async Task DeleteSelectedMealAsync(string key)
+    public async Task DeleteMealAsync(string key)
     {
         await fb.Child("Users").Child(auth.User.LocalId).Child("Meals").Child(key).DeleteAsync();
+    }
+    public async Task DeleteSelectedLoadoutMealAsync(string key)
+    {
+        await fb.Child("Users").Child(auth.User.LocalId).Child("SelectedLoadout").Child(key).DeleteAsync();
+    }
+
+    public async Task DeleteTempLoadoutMealAsync(string key)
+    {
+        await fb.Child("Users").Child(auth.User.LocalId).Child("TempLoadoutMeals").Child(key).DeleteAsync();
+    }
+
+    public async Task DeleteLoadoutAsync(string key)
+    {
+        await fb.Child("Users").Child(auth.User.LocalId).Child("Loadouts").Child(key).DeleteAsync();
     }
 
     public async Task DeleteSelectedExerciseAsync(Exercise exercise)
@@ -344,7 +409,7 @@ public class DataAccessLayer
     {
         await fb.Child("Users").Child(auth.User.LocalId).Child("Exercises").PostAsync(exercise);
     }
-    public async Task<List<Meal>> GetTempLoadoutAsync()
+    public async Task<List<Meal>> GetTempLoadoutMealsAsync()
     {
         return (await fb.Child("Users")
             .Child(auth.User.LocalId)

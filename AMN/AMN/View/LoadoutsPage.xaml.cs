@@ -47,14 +47,22 @@ namespace AMN.View
 
         private async void lvLoadouts_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            MasterModel.currentUser.TempLoadoutMeals = userLoadouts[e.ItemIndex].Meals;
-            //await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
+            List<Meal> tempLoadoutMeals = userLoadouts[e.ItemIndex].Meals;
+            //string userLoadoutKey = userLoadouts[e.ItemIndex].Key;
+            await MasterModel.DAL.ResetTempLoadoutMealsAsync();
+            foreach (var meal in tempLoadoutMeals)
+            {
+                await MasterModel.DAL.SaveNewTempLoadoutMealAsync(meal);
+            }
+            await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
             await Navigation.PushAsync(new LoadoutMeals(userLoadouts[e.ItemIndex].LoadoutName, e.ItemIndex));
         }
 
         private async void NewLoadout_Clicked(object sender, EventArgs e)
         {
-            MasterModel.currentUser.TempLoadoutMeals = new List<Meal>();
+            //MasterModel.currentUser.TempLoadoutMeals = new List<Meal>();
+            await MasterModel.DAL.ResetTempLoadoutMealsAsync();
+
             //await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
             await Navigation.PushAsync(new LoadoutMeals("New Loadout"));
         }

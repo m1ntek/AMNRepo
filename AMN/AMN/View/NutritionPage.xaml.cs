@@ -53,7 +53,7 @@ namespace AMN.View
 
             try
             {
-                MasterModel.dailyGoal = await MasterModel.DAL.GetGoalV2Async();
+                //MasterModel.dailyGoal = await MasterModel.DAL.GetGoalV2Async();
             }
             catch (Exception)
             {
@@ -164,7 +164,7 @@ namespace AMN.View
             MasterModel.dailyGoal.protein = Convert.ToDouble(entryProteinGoal.Text);
             UpdateGoalText();
 
-            MasterModel.DAL.SaveGoalAsync();
+            //MasterModel.DAL.SaveGoalAsync();
             DisplayAlert("Success", "Goal set!", "OK");
         }
 

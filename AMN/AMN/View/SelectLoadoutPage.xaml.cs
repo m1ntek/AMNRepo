@@ -84,7 +84,7 @@ namespace AMN.View
 
             if (isConfirmed == true)
             {
-                await MasterModel.DAL.SaveLoadout(userLoadouts[e.ItemIndex]);
+                await MasterModel.DAL.SaveSelectedLoadout(userLoadouts[e.ItemIndex]);
                 goalProgress.energyKcal = 0;
                 goalProgress.protein = 0;
                 goalProgress.carbs = 0;

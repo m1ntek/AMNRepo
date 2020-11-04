@@ -6,6 +6,7 @@ namespace AMN.Model
 {
     public class Loadout
     {
+        public string Key { get; set; }
         public int LoadoutId { get; set; }
         public List<Meal> Meals { get; set; }
         public string LoadoutName { get; set; }
