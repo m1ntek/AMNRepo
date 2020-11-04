@@ -38,18 +38,14 @@ namespace AMN.View
         {
             try
             {
-                MasterModel.currentUser = await MasterModel.DAL.GetUserDataAsync();
-                savedMeals = MasterModel.currentUser.Meals;
+                //MasterModel.currentUser = await MasterModel.DAL.GetUserDataAsync();
+                //savedMeals = MasterModel.currentUser.Meals;
+                savedMeals = await MasterModel.DAL.GetSavedMealsAsync();
             }
             catch (Exception ex)
             {
                 await DisplayAlert("Error", ex.Message, "OK");
             }
-        }
-
-        private async void AddMeal_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new AddMealPage());
         }
 
         private async void Meal_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -63,9 +59,12 @@ namespace AMN.View
         {
             var mealItem = (Meal)sender;
 
-            MasterModel.currentUser.Meals.RemoveAt(mealItem.index);
-            await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
-            savedMeals = MasterModel.currentUser.Meals;
+            //MasterModel.currentUser.Meals.RemoveAt(mealItem.index);
+            //await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
+            //savedMeals = MasterModel.currentUser.Meals;
+
+            savedMeals.RemoveAt(mealItem.index);
+            //await MasterModel.DAL.DeleteSelectedMealAsync(savedMeals[mealItem.index].Key);
 
             lvSavedMeals.ItemsSource = savedMeals;
         }

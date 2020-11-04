@@ -47,11 +47,6 @@ namespace AMN.View
             actName.IsRunning = false;
         }
 
-        private async Task QueryAPI()
-        {
-            MasterModel.apiC.Query(entryName.Text);
-        }
-
         //set to 1 gram on default
         private void SetDefaultServing()
         {
@@ -74,7 +69,7 @@ namespace AMN.View
         private async void entryName_Unfocused(object sender, FocusEventArgs e)
         {
             //actName.IsRunning = true;
-            ActNameOn();
+            await ActNameOn();
 
             //var queryTask = QueryAPI();
 
@@ -94,7 +89,7 @@ namespace AMN.View
                 }
             }
 
-            ActNameOff();
+            await ActNameOff();
                 
             
         }
@@ -388,6 +383,7 @@ namespace AMN.View
             {
                 try
                 {
+                    //If a new meal
                     if(MasterModel.tempMeal.index == -1)
                     {
                         //MasterModel.tempMeal.mealName = await DisplayPromptAsync("Meal Name", "Name your meal.");
@@ -409,18 +405,20 @@ namespace AMN.View
                             return;
                         }
 
-
-                        MasterModel.currentUser.Meals.Add(MasterModel.tempMeal);
+                        //MasterModel.currentUser.Meals.Add(MasterModel.tempMeal);
+                        await MasterModel.DAL.SaveNewMealAsync(MasterModel.tempMeal);
                     }
+                    //If an existing meal
                     else
                     {
                         MasterModel.currentUser.Meals[MasterModel.tempMeal.index] = MasterModel.tempMeal;
+                        await MasterModel.DAL.SaveMealV3Async(MasterModel.tempMeal, MasterModel.tempMeal.key);
                     }
 
                     actSave.IsRunning = true;
                     //await MasterModel.DAL.SaveMealV3(MasterModel.tempMeal);
                     //MasterModel.currentUser.Meals.Add(MasterModel.tempMeal);
-                    await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
+                    //await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
                     await Navigation.PopAsync();
                 }
                 catch (Exception ex)
@@ -471,7 +469,8 @@ namespace AMN.View
                 try
                 {
                     MasterModel.currentUser.Meals.RemoveAt(MasterModel.tempMeal.index);
-                    await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
+                    MasterModel.DAL.DeleteSelectedMealAsync(MasterModel.tempMeal.key);
+                    //await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
                     await Navigation.PopAsync();
                 }
                 catch (Exception)

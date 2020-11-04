@@ -3,11 +3,16 @@ C:\Users\Min\source\repos\AMNRepo\AMN\AMN\bin\Debug\netstandard2.0\AMN.dll
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\bin\Debug\netstandard2.0\ref\AMN.dll
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\bin\Debug\netstandard2.0\AMN.pdb
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\App.xaml.g.cs
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\AddExercisesToLoadout.xaml.g.cs
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\AddExercisesToSelectedLoadout.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\AddMealPage.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\AddMealPageV2.xaml.g.cs
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\EditExerciseLoadout.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\EditExercisePage.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\EditExerciseType.xaml.g.cs
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\EditExerciseTypeV2.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\EditGoalsPage.xaml.g.cs
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\ExerciseLoadouts.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\ExercisePage.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\LoadoutAddMealPage.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\LoadoutAddSavedMealsPage.xaml.g.cs
@@ -16,10 +21,13 @@ C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\Loadouts
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\LoginPage.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\MainPage.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\NewExercise.xaml.g.cs
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\NewExerciseLoadout.xaml.g.cs
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\NewExerciseType.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\NutritionPage V2.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\NutritionPage.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\SavedMealsPage.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\SelectedExercise.xaml.g.cs
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\SelectExerciseLoadout.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\SelectLoadoutPage.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\SignupPage.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\AMN.AssemblyInfoInputs.cache
@@ -30,10 +38,3 @@ C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\AMN.dll
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\ref\AMN.dll
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\AMN.pdb
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\AMN.csprojAssemblyReference.cache
-C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\NewExerciseType.xaml.g.cs
-C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\EditExerciseTypeV2.xaml.g.cs
-C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\AddExercisesToLoadout.xaml.g.cs
-C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\ExerciseLoadouts.xaml.g.cs
-C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\NewExerciseLoadout.xaml.g.cs
-C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\EditExerciseLoadout.xaml.g.cs
-C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\AddExercisesToSelectedLoadout.xaml.g.cs

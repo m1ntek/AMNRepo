@@ -21,7 +21,7 @@
                 </Grid>
                 <Label Text="{Binding CurrentLoadout.Name}" HorizontalTextAlignment="Center"/>
                 <Label Text="{Binding CurrentLoadout.Sets, StringFormat='{0} Sets'}" HorizontalTextAlignment="Center"/>
-                <ListView ItemsSource="{Binding CurrentLoadout.Exercises}" IsEnabled="False" HasUnevenRows="True">
+                <ListView ItemsSource="{Binding CurrentLoadout.Exercises}" IsEnabled="True" HasUnevenRows="True">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -30,11 +30,8 @@
                                     <StackLayout BindableLayout.ItemsSource="{Binding Types}">
                                         <BindableLayout.ItemTemplate>
                                             <DataTemplate>
-                                                <StackLayout Orientation="Horizontal">
-                                                    <Label Text="{Binding Name}" TextColor="White"/>
-                                                    <StackLayout BindableLayout.ItemsSource="{Binding Reps}" Orientation="Horizontal">
-                                                        <Label Text="{Binding}" TextColor="White"/>
-                                                    </StackLayout>
+                                                <StackLayout Orientation="Vertical">
+                                                    <Label Text="{Binding Summary}" TextColor="White"/>
                                                 </StackLayout>
                                             </DataTemplate>
                                         </BindableLayout.ItemTemplate>

@@ -52,7 +52,7 @@ namespace AMN.View
             if (addConfirmed == true)
             {
                 selectedLoadout.Exercises.Add(SavedExercises[e.ItemIndex]);
-                await MasterModel.DAL.SaveSelectedExerciseLoadoutAsync(selectedLoadout, Key);
+                await MasterModel.DAL.SaveExerciseLoadoutAsync(selectedLoadout, Key);
             }
         }
 

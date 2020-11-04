@@ -51,9 +51,11 @@ namespace AMN.View
         {
             try
             {
-                MasterModel.currentUser = await MasterModel.DAL.GetUserDataAsync();
+                //MasterModel.currentUser = await MasterModel.DAL.GetUserDataAsync();
                 //savedMeals = MasterModel.currentUser.Meals;
-                newLoadoutMeals = MasterModel.currentUser.TempLoadoutMeals;
+                //newLoadoutMeals = MasterModel.currentUser.TempLoadoutMeals;
+
+                newLoadoutMeals = await MasterModel.DAL.GetTempLoadoutAsync();
             }
             catch (Exception ex)
             {
@@ -116,7 +118,9 @@ namespace AMN.View
             var mealItem = (Meal)sender;
 
             MasterModel.currentUser.Meals.RemoveAt(mealItem.index);
-            await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
+
+
+            //await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
             //savedMeals = MasterModel.currentUser.Meals;
 
             //lvSavedMeals.ItemsSource = savedMeals;

@@ -27,44 +27,14 @@ namespace AMN.View
         {
             base.OnAppearing();
 
-            //Temp data
-            //CurrentLoadout.Name = "PUSH I";
-            //CurrentLoadout.Sets = 4;
-
-            //Exercise ex = new Exercise();
-            //ex.Name = "Flat bench";
-            //ExerciseType type = new ExerciseType();
-            //type.Name = "HT:";
-            //type.Reps.Add("10+");
-            //ExerciseType type2 = new ExerciseType();
-            //type2.Name = "OT:";
-            //type2.Reps.Add("10");
-            //type2.Reps.Add(">");
-            //type2.Reps.Add("8");
-            //type2.Reps.Add(">");
-            //type2.Reps.Add("8");
-            //type2.Reps.Add(">");
-            //type2.Reps.Add("6");
-            //ex.Types.Add(type);
-            //ex.Types.Add(type2);
-            //CurrentLoadout.Exercises.Add(ex);
-
-            //ex = new Exercise();
-            //ex.Name = "Standing military press";
-            //type2 = new ExerciseType();
-            //type2.Reps.Add("12");
-            //type2.Reps.Add(">");
-            //type2.Reps.Add("10");
-            //type2.Reps.Add(">");
-            //type2.Reps.Add("8");
-            //type2.Reps.Add(">");
-            //type2.Reps.Add("8");
-            //ex.Types.Add(type2);
-            //CurrentLoadout.Exercises.Add(ex);
-
-            await MasterModel.DAL.SaveSelectedExerciseLoadoutAsync(CurrentLoadout);
-
+            //await MasterModel.DAL.SaveSelectedExerciseLoadoutAsync(CurrentLoadout);
             await GetSelectedExerciseLoadout();
+            Refresh();
+        }
+
+        private void Refresh()
+        {
+            BindingContext = null;
             BindingContext = this;
         }
 
@@ -93,7 +63,7 @@ namespace AMN.View
 
         private async void SelectLoadout_Clicked(object sender, EventArgs e)
         {
-
+            await Navigation.PushAsync(new SelectExerciseLoadout());
         }
     }
 }

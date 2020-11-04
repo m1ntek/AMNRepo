@@ -16,14 +16,21 @@ namespace AMN
         public MainPage()
         {
             InitializeComponent();
-            GetUserData();
+            //GetUserData();
+            //UpdateFooter();
         }
 
-        private async Task GetUserData()
+        protected override async void OnAppearing()
         {
-            MasterModel.currentUser = await MasterModel.DAL.GetUserDataAsync();
-            UpdateFooter();
+            base.OnAppearing();
+            await UpdateFooter();
         }
+
+        //private async Task GetUserData()
+        //{
+        //    MasterModel.currentUser = await MasterModel.DAL.GetUserDataAsync();
+        //    UpdateFooter();
+        //}
 
         private async void Nutrition_Clicked(object sender, EventArgs e)
         {
@@ -50,16 +57,11 @@ namespace AMN
             await Navigation.PushAsync(new LoginPage());
         }
 
-        private void UpdateFooter()
+        private async Task UpdateFooter()
         {
             loggedIn.IsVisible = true;
-            lblLoggedIn.Text = MasterModel.loginC.UpdateFooter(MasterModel.currentUser.email);
-        }
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            UpdateFooter();
+            string userEmail = await MasterModel.DAL.GetEmail();
+            lblLoggedIn.Text = MasterModel.loginC.UpdateFooter(userEmail);
         }
     }
 }

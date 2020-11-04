@@ -15,6 +15,7 @@ namespace AMN.View
     public partial class EditExerciseLoadout : ContentPage
     {
         public ExerciseLoadout ELoadout { get; set; }
+        public ExerciseLoadout SelectedELoadout { get; set; }
         public string Key { get; set; }
         public EditExerciseLoadout(string key)
         {
@@ -26,6 +27,8 @@ namespace AMN.View
         {
             base.OnAppearing();
             ELoadout = await MasterModel.DAL.GetExerciseLoadoutExerciseAsync(Key);
+            SelectedELoadout = await MasterModel.DAL.GetSelectedExerciseLoadoutAsync();
+            ELoadout.Key = Key;
             Refresh();
         }
 
@@ -45,13 +48,19 @@ namespace AMN.View
             if (await Validation() == false)
                 return;
 
-            await MasterModel.DAL.SaveSelectedExerciseLoadoutAsync(ELoadout, Key);
+            //Update the selected loadout if it is the same as this one.
+            if(SelectedELoadout.Key == Key)
+            {
+                await MasterModel.DAL.SaveSelectedExerciseLoadoutAsync(ELoadout);
+            }
+
+            await MasterModel.DAL.SaveExerciseLoadoutAsync(ELoadout, Key);
             await Navigation.PopAsync();
         }
 
         private async Task<bool> Validation()
         {
-            if (MasterModel.vd.FormEntriesValid(new string[] { ELoadout.Name }) == false)
+            if (MasterModel.vd.FormEntriesValid(new string[] { ELoadout.Name, ELoadout.Sets.ToString() }) == false)
             {
                 await DisplayAlert("Error", MasterModel.vd.error, "OK");
                 return false;

@@ -15,10 +15,14 @@ namespace AMN.View
     public partial class SelectLoadoutPage : ContentPage
     {
         public List<Loadout> userLoadouts { get; set; }
+        private MacroNutrients goalProgress;
+        //public Loadout selectedLoadout { get; set; }
         public SelectLoadoutPage()
         {
             InitializeComponent();
             userLoadouts = new List<Loadout>();
+            goalProgress = new MacroNutrients();
+            //selectedLoadout = new Loadout();
         }
 
         protected async override void OnAppearing()
@@ -35,8 +39,12 @@ namespace AMN.View
         {
             try
             {
-                MasterModel.currentUser = await MasterModel.DAL.GetUserDataAsync();
-                userLoadouts = MasterModel.currentUser.Loadouts;
+                //MasterModel.currentUser = await MasterModel.DAL.GetUserDataAsync();
+                //userLoadouts = MasterModel.currentUser.Loadouts;
+
+                userLoadouts = await MasterModel.DAL.GetLoadoutsAsync();
+                //selectedLoadout = await MasterModel.DAL.GetSelectedLoadoutAsync();
+                goalProgress = await MasterModel.DAL.GetGoalProgressAsync();
             }
             catch (Exception ex)
             {
@@ -76,12 +84,12 @@ namespace AMN.View
 
             if (isConfirmed == true)
             {
-                MasterModel.currentUser.SelectedLoadout = userLoadouts[e.ItemIndex];
-                MasterModel.currentUser.GoalProgress.energyKcal = 0;
-                MasterModel.currentUser.GoalProgress.protein = 0;
-                MasterModel.currentUser.GoalProgress.carbs = 0;
-                MasterModel.currentUser.GoalProgress.fat = 0;
-                await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
+                await MasterModel.DAL.SaveLoadout(userLoadouts[e.ItemIndex]);
+                goalProgress.energyKcal = 0;
+                goalProgress.protein = 0;
+                goalProgress.carbs = 0;
+                goalProgress.fat = 0;
+                await MasterModel.DAL.SaveGoalProgressAsync(goalProgress);
                 await Navigation.PopAsync();
             }
         }

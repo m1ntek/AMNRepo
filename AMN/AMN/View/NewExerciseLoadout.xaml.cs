@@ -45,7 +45,7 @@ namespace AMN.View
 
         private async Task<bool> Validation()
         {
-            if (MasterModel.vd.FormEntriesValid(new string[] { ELoadout.Name }) == false)
+            if (MasterModel.vd.FormEntriesValid(new string[] { ELoadout.Name, ELoadout.Sets.ToString() }) == false)
             {
                 await DisplayAlert("Error", MasterModel.vd.error, "OK");
                 return false;

@@ -15,6 +15,8 @@
                     </Grid.ColumnDefinitions>
                     <Label Text="Name:" VerticalTextAlignment="Center"/>
                     <Entry Placeholder="name your loadout" Text="{Binding ELoadout.Name}" Grid.Column="1" HeightRequest="100"/>
+                    <Label Text="Sets:" VerticalTextAlignment="Center" Grid.Row="1"/>
+                    <Entry Text="{Binding ELoadout.Sets}" Grid.Column="1" HeightRequest="100" Grid.Row="1"/>
                 </Grid>
                 <ListView ItemsSource="{Binding ELoadout.Exercises}" IsEnabled="True" HasUnevenRows="True" ItemTapped="Exercise_ItemTapped">
                     <ListView.ItemTemplate>

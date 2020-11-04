@@ -10,6 +10,7 @@ namespace AMN.Model
     {
         public int index;
         public int mealId;
+        public string key;
         public string userLocalId;
         //public string mealName;
         public string mealName { get; set; }
