@@ -34,6 +34,7 @@ namespace AMN.View
         {
             base.OnAppearing();
             Exercise = await MasterModel.DAL.GetSelectedExerciseAsync(Key);
+            Exercise.Key = Key;
             SelectedType = Exercise.Types[Index];
 
             if (string.IsNullOrEmpty(SelectedType.Name) == true)

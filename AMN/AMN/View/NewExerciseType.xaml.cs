@@ -44,6 +44,7 @@ namespace AMN.View
             _Exercise = await MasterModel.DAL.GetSelectedExerciseAsync(Key);
             _Exercise.Key = Key; //Save the key to exercise as well
             _ExerciseType = new ExerciseType();
+            _ExerciseType.ExerciseKey = Key;
             AddRep();
             BindingContext = this;
         }

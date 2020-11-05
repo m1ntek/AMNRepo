@@ -75,7 +75,7 @@ namespace AMN.View
             return true;
         }
 
-        private void Del_Clicked(object sender, EventArgs e)
+        private async void Del_Clicked(object sender, EventArgs e)
         {
             //Find index of click event
             var button = (Button)sender;
@@ -83,6 +83,8 @@ namespace AMN.View
             var index = ELoadout.Exercises.IndexOf(exercise);
 
             ELoadout.Exercises.RemoveAt(index);
+
+            await MasterModel.DAL.SaveExerciseLoadoutAsync(ELoadout, Key);
             Refresh();
         }
     }

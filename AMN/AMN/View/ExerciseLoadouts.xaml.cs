@@ -26,8 +26,7 @@ namespace AMN.View
             base.OnAppearing();
 
             ELoadouts = await MasterModel.DAL.GetExerciseLoadoutsAsync();
-            BindingContext = null;
-            BindingContext = this;
+            Refresh();
         }
 
         private async void NewLoadout_Clicked(object sender, EventArgs e)
@@ -39,6 +38,26 @@ namespace AMN.View
         private async void Loadout_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             await Navigation.PushAsync(new EditExerciseLoadout(ELoadouts[e.ItemIndex].Key));
+        }
+
+        private void Refresh()
+        {
+            BindingContext = null;
+            BindingContext = this;
+        }
+
+        private async void Del_Clicked(object sender, EventArgs e)
+        {
+            //Find index of click event
+            var button = (Button)sender;
+            var exerciseLoadout = (ExerciseLoadout)button.CommandParameter;
+            var index = ELoadouts.IndexOf(exerciseLoadout);
+
+            await MasterModel.DAL.DeleteExerciseLoadoutAsync(ELoadouts[index].Key);
+            ELoadouts.RemoveAt(index);
+
+
+            Refresh();
         }
     }
 }

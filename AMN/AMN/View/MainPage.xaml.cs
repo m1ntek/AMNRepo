@@ -44,7 +44,7 @@ namespace AMN
 
         private async void Progress_Clicked(object sender, EventArgs e)
         {
-
+            await Navigation.PushAsync(new NewSession());
         }
 
         private async void Signup_Clicked(object sender, EventArgs e)

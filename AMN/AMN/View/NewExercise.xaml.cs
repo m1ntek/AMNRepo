@@ -104,6 +104,21 @@ namespace AMN.View
             {
                 await DisplayAlert("Error", ex.Message, "OK");
             }
+
+            await SaveTypeKeys();
+        }
+
+        private async Task SaveTypeKeys()
+        {
+            List<Exercise> tempExercises = await MasterModel.DAL.GetSavedExercisesAsync();
+            Exercise newestExercise = tempExercises[tempExercises.Count - 1];
+
+            foreach (ExerciseType type in newestExercise.Types)
+            {
+                type.ExerciseKey = newestExercise.Key;
+            }
+
+            await MasterModel.DAL.SaveSelectedExerciseAsync(newestExercise);
         }
 
         private async void Save_Clicked(object sender, EventArgs e)

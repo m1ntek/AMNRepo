@@ -38,3 +38,4 @@ C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\AMN.dll
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\ref\AMN.dll
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\AMN.pdb
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\AMN.csprojAssemblyReference.cache
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\NewSession.xaml.g.cs

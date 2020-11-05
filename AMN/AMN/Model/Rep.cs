@@ -8,5 +8,6 @@ namespace AMN.Model
     {
         public int Index { get; set; }
         public string Amount { get; set; }
+        public double Weight { get; set; }
     }
 }

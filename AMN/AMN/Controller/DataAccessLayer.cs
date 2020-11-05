@@ -467,4 +467,9 @@ public class DataAccessLayer
     {
         await fb.Child("Users").Child(auth.User.LocalId).Child("ExerciseLoadouts").Child(key).PutAsync(exLoadout);
     }
+
+    public async Task DeleteExerciseLoadoutAsync(string key)
+    {
+        await fb.Child("Users").Child(auth.User.LocalId).Child("ExerciseLoadouts").Child(key).DeleteAsync();
+    }
 }
