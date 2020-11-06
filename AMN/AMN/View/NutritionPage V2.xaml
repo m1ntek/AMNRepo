@@ -4,69 +4,96 @@
              x:Class="AMN.View.NutritionPageV2">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout>
-                <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+            <StackLayout BackgroundColor="Black">
+                <Frame BackgroundColor="DarkRed" Padding="24" CornerRadius="0">
                     <Label Text="Nutrition" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
                 </Frame>
                 <!-- Daily goals -->
-                <Grid Margin="50,10" HorizontalOptions="CenterAndExpand" BackgroundColor="DarkMagenta" Padding="10,10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="20"></RowDefinition>
-                        <RowDefinition Height="20"></RowDefinition>
-                        <RowDefinition Height="20"></RowDefinition>
-                        <RowDefinition Height="20"></RowDefinition>
-                        <RowDefinition Height="20"></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition Height="35"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Label Text="Today's Progress" Grid.ColumnSpan="4" HorizontalTextAlignment="Center" TextColor="White"/>
-                    <Label Text="Energy:" Grid.ColumnSpan="2" Grid.Row="1" TextColor="White"/>
-                    <Label x:Name="lblEnergy" Text="0/0" Grid.Row="2" TextColor="White" HorizontalTextAlignment="Center"/>
-                    <Label Text="kcal"  Grid.Column="1" Grid.Row="2" TextColor="White"/>
-                    <Label Text="Protein:" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="1" TextColor="White"/>
-                    <Label x:Name="lblProtein" Text="0/0" Grid.Column="2" Grid.Row="2" TextColor="White" HorizontalTextAlignment="Center" />
-                    <Label Text="g" Grid.Column="3" Grid.Row="2" TextColor="White"/>
-                    <Label Text="Carbs:" Grid.ColumnSpan="2" Grid.Row="3" TextColor="White"/>
-                    <Label x:Name="lblCarbs" Text="0/0" Grid.Row="4" TextColor="White"  HorizontalTextAlignment="Center"/>
-                    <Label Text="g" Grid.Column="1" Grid.Row="4" TextColor="White"/>
-                    <Label Text="Fat:" Grid.ColumnSpan="2" Grid.Row="3" Grid.Column="2" TextColor="White"/>
-                    <Label x:Name="lblFat" Text="0/0" Grid.Column="2" Grid.Row="4" TextColor="White"  HorizontalTextAlignment="Center"/>
-                    <Label Text="g" Grid.Column="3" Grid.Row="4" TextColor="White"/>
-                    <!-- ratios -->
-                    <StackLayout Grid.Row="5" Grid.ColumnSpan="4">
-                        <Label Text="Ratios:" TextColor="White" HorizontalTextAlignment="Center"/>
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                            <Label Text="P:" TextColor="White" HorizontalTextAlignment="Center"/>
-                            <Label x:Name="lblProteinRatio" TextColor="White" HorizontalTextAlignment="Center"/>
-                            <Label Text="C:" TextColor="White" HorizontalTextAlignment="Center"/>
-                            <Label x:Name="lblCarbRatio" TextColor="White" HorizontalTextAlignment="Center"/>
-                            <Label Text="F:" TextColor="White" HorizontalTextAlignment="Center"/>
-                            <Label x:Name="lblFatRatio" TextColor="White" HorizontalTextAlignment="Center"/>
+                <Frame Margin="50,10" HorizontalOptions="CenterAndExpand" BackgroundColor="DarkRed" Padding="10,10"
+                       CornerRadius="5" BorderColor="White">
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="20"></RowDefinition>
+                            <RowDefinition Height="20"></RowDefinition>
+                            <RowDefinition Height="20"></RowDefinition>
+                            <RowDefinition Height="20"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="35"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Text="Today's Progress" Grid.ColumnSpan="4" HorizontalTextAlignment="Center" TextColor="White"
+                           FontSize="Large"/>
+                        <Label Text="Energy:" Grid.ColumnSpan="2" Grid.Row="1" TextColor="White"/>
+                        <Label x:Name="lblEnergy" Text="0/0" Grid.Row="2" TextColor="White" HorizontalTextAlignment="Center"/>
+                        <Label Text="kcal"  Grid.Column="1" Grid.Row="2" TextColor="White"/>
+                        <Label Text="Protein:" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="1" TextColor="White"/>
+                        <Label x:Name="lblProtein" Text="0/0" Grid.Column="2" Grid.Row="2" TextColor="White" HorizontalTextAlignment="Center" />
+                        <Label Text="g" Grid.Column="3" Grid.Row="2" TextColor="White"/>
+                        <Label Text="Carbs:" Grid.ColumnSpan="2" Grid.Row="3" TextColor="White"/>
+                        <Label x:Name="lblCarbs" Text="0/0" Grid.Row="4" TextColor="White"  HorizontalTextAlignment="Center"/>
+                        <Label Text="g" Grid.Column="1" Grid.Row="4" TextColor="White"/>
+                        <Label Text="Fat:" Grid.ColumnSpan="2" Grid.Row="3" Grid.Column="2" TextColor="White"/>
+                        <Label x:Name="lblFat" Text="0/0" Grid.Column="2" Grid.Row="4" TextColor="White"  HorizontalTextAlignment="Center"/>
+                        <Label Text="g" Grid.Column="3" Grid.Row="4" TextColor="White"/>
+                        <!-- ratios -->
+                        <Frame Grid.Row="5" Grid.ColumnSpan="4" BackgroundColor="Transparent" BorderColor="White"
+                               Padding="0,10">
+                        <StackLayout >
+                                <Label Text="Ratios:" TextColor="White" HorizontalTextAlignment="Center"/>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                    <Label Text="P:" TextColor="White" HorizontalTextAlignment="Center"/>
+                                    <Label x:Name="lblProteinRatio" TextColor="White" HorizontalTextAlignment="Center"/>
+                                    <Label Text="C:" TextColor="White" HorizontalTextAlignment="Center"/>
+                                    <Label x:Name="lblCarbRatio" TextColor="White" HorizontalTextAlignment="Center"/>
+                                    <Label Text="F:" TextColor="White" HorizontalTextAlignment="Center"/>
+                                    <Label x:Name="lblFatRatio" TextColor="White" HorizontalTextAlignment="Center"/>
+                            </StackLayout>
                         </StackLayout>
-                    </StackLayout>
-                    <Button Text="Edit Goals" Grid.Row="6" Grid.ColumnSpan="4" FontSize="Micro" Clicked="EditGoals_Clicked"/>
-                </Grid>
+                        </Frame>
+                        <Button Text="Edit Goals" Grid.Row="6" Grid.ColumnSpan="4" FontSize="Micro" Clicked="EditGoals_Clicked"
+                                BackgroundColor="DarkRed"
+                                TextColor="White"
+                                BorderWidth="1"/>
+                    </Grid>
+                </Frame>
                 <!-- Daily goals end -->
                 <Grid Margin="50,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Button Text="Edit Meals" Clicked="SavedMeals_Clicked"/>
-                    <Button Text="Edit Loadouts" Clicked="Loadouts_Clicked" Grid.Column="1"/>
+                    <Button Text="Edit Meals" Clicked="SavedMeals_Clicked"
+                            BackgroundColor="DarkRed"
+                            BorderColor="White"
+                            BorderWidth="1"
+                            TextColor="White"/>
+                    <Button Text="Edit Loadouts" Clicked="Loadouts_Clicked" Grid.Column="1"
+                            BackgroundColor="DarkRed"
+                            BorderColor="White"
+                            BorderWidth="1"
+                            TextColor="White"/>
                 </Grid>
                 <!-- The day's meals -->
                 <StackLayout Margin="50,10">
-                    <Label x:Name="lblLoadoutHeader"  Text="Current Meal Loadout" HorizontalTextAlignment="Center"/>
+                    <Label x:Name="lblLoadoutHeader" Text="Current Meal Loadout" HorizontalTextAlignment="Center"
+                           TextColor="White"/>
                     <StackLayout x:Name="loadoutMealsStack"></StackLayout>
-                    <Button Text="Clear Progress" Clicked="ClearProgress_Clicked"/>
-                    <Button Text="Select Loadout" Clicked="SelectLoadout_Clicked"></Button>
+                    <Button Text="Clear Progress" Clicked="ClearProgress_Clicked"
+                            BackgroundColor="DarkRed"
+                            BorderColor="White"
+                            BorderWidth="1"
+                            TextColor="White"/>
+                    <Button Text="Select Loadout" Clicked="SelectLoadout_Clicked"
+                            BackgroundColor="DarkRed"
+                            BorderColor="White"
+                            BorderWidth="1"
+                            TextColor="White"></Button>
                 </StackLayout>
                 <!-- The day's meals end -->
             </StackLayout>

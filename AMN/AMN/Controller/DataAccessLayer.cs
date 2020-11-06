@@ -389,6 +389,7 @@ public class DataAccessLayer
             .Child(auth.User.LocalId)
             .Child("ExerciseSessions")
             .OnceAsync<ExerciseLoadout>())
+            .Reverse()
             .Select(item => new ExerciseLoadout()
             {
                 Exercises = item.Object.Exercises,

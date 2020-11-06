@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AMN.View.ExercisePage">
     <ContentPage.Content>
-        <StackLayout>
-            <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+        <StackLayout BackgroundColor="Black">
+            <Frame BackgroundColor="DarkRed" Padding="24" CornerRadius="0">
                 <Label Text="Exercise" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
             </Frame>
             <StackLayout Margin="50,10">
@@ -16,16 +16,27 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Button Text="Edit Exercises" Clicked="EditExercise_Clicked"/>
-                    <Button Text="Edit Loadouts" Clicked="EditLoadouts_Clicked" Grid.Column="1"/>
+                    <Button Text="Edit Exercises" Clicked="EditExercise_Clicked"
+                            BackgroundColor="DarkRed"
+                            BorderColor="White"
+                            BorderWidth="1"
+                            TextColor="White"/>
+                    <Button Text="Edit Loadouts" Clicked="EditLoadouts_Clicked" Grid.Column="1"
+                            BackgroundColor="DarkRed"
+                            BorderColor="White"
+                            BorderWidth="1"
+                            TextColor="White"/>
                 </Grid>
-                <Label Text="{Binding CurrentLoadout.Name}" HorizontalTextAlignment="Center"/>
-                <Label Text="{Binding CurrentLoadout.Sets, StringFormat='{0} Sets'}" HorizontalTextAlignment="Center"/>
+                <Label Text="{Binding CurrentLoadout.Name}" HorizontalTextAlignment="Center" TextColor="White"
+                       FontSize="Large"/>
+                <Label Text="{Binding CurrentLoadout.Sets, StringFormat='{0} Sets'}" HorizontalTextAlignment="Center"
+                       TextColor="White"/>
                 <ListView ItemsSource="{Binding CurrentLoadout.Exercises}" IsEnabled="True" HasUnevenRows="True">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout VerticalOptions="CenterAndExpand" Padding="10,10" Margin="0,5" BackgroundColor="#2196F3">
+                                <Frame BackgroundColor="DarkRed" Padding="10,10" Margin="0,5,0,5" CornerRadius="5">
+                                <StackLayout VerticalOptions="CenterAndExpand">
                                     <Label Text="{Binding Name}" TextColor="White"/>
                                     <StackLayout BindableLayout.ItemsSource="{Binding Types}">
                                         <BindableLayout.ItemTemplate>
@@ -37,11 +48,16 @@
                                         </BindableLayout.ItemTemplate>
                                     </StackLayout>
                                 </StackLayout>
+                                </Frame>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <Button Text="Select Loadout" Clicked="SelectLoadout_Clicked"/>
+                <Button Text="Select Loadout" Clicked="SelectLoadout_Clicked"
+                        BackgroundColor="DarkRed"
+                            BorderColor="White"
+                            BorderWidth="1"
+                            TextColor="White"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

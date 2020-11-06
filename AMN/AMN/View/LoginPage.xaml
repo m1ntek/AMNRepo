@@ -4,32 +4,34 @@
              x:Class="AMN.LoginPage">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout>
-                <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+            <StackLayout BackgroundColor="Black">
+                <Frame BackgroundColor="DarkRed" Padding="24" CornerRadius="0">
                     <Label Text="Advanced Macro Nutrients" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
                 </Frame>
-                <StackLayout Margin="50,10" VerticalOptions="CenterAndExpand">
-                    <Label FontSize="Large" Text="Login" FontAttributes="Bold" TextColor="Black"></Label>
-                    <!--<Label FontSize="Large" TextColor="Black">E-mail Address:</Label>-->
-                    <Entry x:Name="entryEmail" FontSize="Large" TextColor="Black"
-                           Placeholder="Your e-mail address..." Keyboard="Email" Unfocused="entryEmail_Unfocused"></Entry>
-                    <!--<Label FontSize="Large" TextColor="Black">Password:</Label>-->
-                    <Entry x:Name="entryPassword" IsPassword="True" FontSize="Large" TextColor="Black"
-                           Placeholder="Your password..." Unfocused="entryPassword_Unfocused"></Entry>
+                <Frame BackgroundColor="#10FFFFFF" Margin="30,50,30,5" CornerRadius="5">
+                <StackLayout VerticalOptions="CenterAndExpand">
+                        <Label FontSize="Large" Text="Login" FontAttributes="Bold" TextColor="White"></Label>
+                        <Entry x:Name="entryEmail" FontSize="Default" TextColor="White"
+                           Placeholder="Your e-mail address..." Keyboard="Email" Unfocused="entryEmail_Unfocused"
+                           PlaceholderColor="LightGray" Margin="20,0"></Entry>
+                        <Entry x:Name="entryPassword" IsPassword="True" FontSize="Default" TextColor="White"
+                           Placeholder="Your password..." Unfocused="entryPassword_Unfocused"
+                           PlaceholderColor="LightGray" Margin="20,0"></Entry>
                     <Grid Margin="0,20,0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Button Text="Sign Up" BackgroundColor="#2196F3" TextColor="White" FontSize="Medium"
-                                Clicked="Signup_Clicked"></Button>
-                        <Button Text="Login" BackgroundColor="#2196F3" TextColor="White" FontSize="Medium"
-                            Clicked="Login_Clicked" Grid.Column="1"></Button>
+                        <Button Text="Sign Up" BackgroundColor="DarkRed" TextColor="White" FontSize="Medium"
+                                Clicked="Signup_Clicked" BorderColor="White" BorderWidth="1"></Button>
+                        <Button Text="Login" BackgroundColor="DarkRed" TextColor="White" FontSize="Medium"
+                            Clicked="Login_Clicked" Grid.Column="1" BorderColor="White" BorderWidth="1"></Button>
                     </Grid>
                     <!-- tester button -->
-                    <Button Text="Test Login" Clicked="Button_Clicked"></Button>
-                    <ActivityIndicator x:Name="actInd" IsRunning="False" VerticalOptions="Center" Margin="0,20,0,0"></ActivityIndicator>
+                    <Button Text="Test Login" Clicked="Button_Clicked" IsVisible="true"></Button>
                 </StackLayout>
+                </Frame>
+                <ActivityIndicator x:Name="actInd" IsRunning="False" VerticalOptions="Center" Margin="0,20,0,0"></ActivityIndicator>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

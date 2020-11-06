@@ -47,7 +47,9 @@ namespace AMN.View
             //actInd.IsVisible = true;
             await GetMeals();
             //lvSavedMeals.ItemsSource = savedMeals;
-            lvLoadoutMeals.ItemsSource = newLoadoutMeals;
+            //lvLoadoutMeals.ItemsSource = newLoadoutMeals;
+            BindingContext = null;
+            BindingContext = this;
             //actInd.IsVisible = false;
         }
 

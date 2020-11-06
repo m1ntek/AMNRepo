@@ -4,25 +4,34 @@
              x:Class="AMN.View.SavedMealsPage">
     <ContentPage.Content>
         <!--<ScrollView>-->
-        <StackLayout>
-            <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+        <StackLayout BackgroundColor="Black">
+            <Frame BackgroundColor="DarkRed" Padding="24" CornerRadius="0">
                 <Label Text="Saved Meals" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
             </Frame>
             <ActivityIndicator x:Name="actInd"></ActivityIndicator>
             <!-- Saved meals -->
-            <ListView x:Name="lvSavedMeals" ItemsSource="{Binding savedMeals}" ItemTapped="Meal_ItemTapped">
+            <ListView x:Name="lvSavedMeals" ItemsSource="{Binding savedMeals}" ItemTapped="Meal_ItemTapped" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Margin="50,0" x:Name="stackMeal">
-                                <Label Text="{Binding mealName}" FontSize="24" VerticalOptions="Center"/>
+
+                            <StackLayout  x:Name="stackMeal" Margin="50,5,50,5">
+                                <Frame BackgroundColor="DarkRed" CornerRadius="5">
+                                    <Label Text="{Binding mealName}" FontSize="Default" VerticalOptions="Center"
+                                       TextColor="White"/>
+                                </Frame>
                             </StackLayout>
+
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
             <!-- Saved meals end -->
-            <Button Text="New Meal" Clicked="NewMeal_Clicked" Margin="50,10"/>
+            <Button Text="New Meal" Clicked="NewMeal_Clicked" Margin="50,10"
+                    BackgroundColor="DarkRed"
+                    BorderColor="White"
+                    BorderWidth="1"
+                    TextColor="White"/>
         </StackLayout>
         <!--</ScrollView>-->
     </ContentPage.Content>

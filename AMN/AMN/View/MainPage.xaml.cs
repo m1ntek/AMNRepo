@@ -19,9 +19,8 @@ namespace AMN
             //GetUserData();
             //UpdateFooter();
 
-            //Set top bar colour
-            ((NavigationPage)Application.Current.MainPage).BarBackgroundColor = Color.DarkRed;
-            ((NavigationPage)Application.Current.MainPage).BarTextColor = Color.White;
+
+
         }
 
         protected override async void OnAppearing()

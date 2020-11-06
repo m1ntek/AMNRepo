@@ -122,8 +122,11 @@ namespace AMN.View
                 itemGrid.RowDefinitions[1].Height = new GridLength(0.5, GridUnitType.Star);
                 itemGrid.RowDefinitions[2].Height = new GridLength(0.5, GridUnitType.Star);
 
-                itemGrid.BackgroundColor = Color.FromHex("2196F3");
-                itemGrid.Padding = new Thickness(10, 10);
+                Frame frame = new Frame();
+                frame.Content = itemGrid;
+                frame.BackgroundColor = Color.DarkRed;
+                frame.Padding = new Thickness(10, 10);
+                frame.CornerRadius = 5;
 
                 //save index number per foodItem... To fix a bug
                 loadoutMeals[i].index = i;
@@ -158,6 +161,7 @@ namespace AMN.View
                 stack.HorizontalOptions = LayoutOptions.End;
 
                 CheckBox chkbxEaten = new CheckBox();
+                chkbxEaten.Color = Color.White;
 
                 //check meal status from database and set accordingly.
                 if (loadoutMeals[meal.index].isEaten == true)
@@ -209,7 +213,7 @@ namespace AMN.View
 
                 itemGrid.Children.Add(stack);
 
-                loadoutMealsStack.Children.Add(itemGrid);
+                loadoutMealsStack.Children.Add(frame);
             }
         }
 

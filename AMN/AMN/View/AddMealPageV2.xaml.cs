@@ -206,8 +206,11 @@ namespace AMN.View
                 itemGrid.RowDefinitions[1].Height = new GridLength(0.5, GridUnitType.Star);
                 itemGrid.RowDefinitions[2].Height = new GridLength(0.5, GridUnitType.Star);
 
-                itemGrid.BackgroundColor = Color.FromHex("2196F3");
-                itemGrid.Padding = new Thickness(10, 10);
+                Frame frame = new Frame();
+                frame.Content = itemGrid;
+                frame.BackgroundColor = Color.DarkRed;
+                frame.Padding = new Thickness(10, 10);
+                frame.CornerRadius = 5;
 
                 //save index number per foodItem... To fix a bug
                 MasterModel.tempMeal.items[i].index = i;
@@ -249,7 +252,9 @@ namespace AMN.View
                 {
                     Text = "Edit",
                     FontSize = Device.GetNamedSize(NamedSize.Micro, typeof(Button)),
-                    BackgroundColor = Color.DarkGoldenrod,
+                    BackgroundColor = Color.Black,
+                    BorderColor = Color.White,
+                    BorderWidth = 1,
                     TextColor = Color.White,
                     HeightRequest = 35,
                     WidthRequest = 50,
@@ -260,7 +265,9 @@ namespace AMN.View
                 {
                     Text = "Del",
                     FontSize = Device.GetNamedSize(NamedSize.Micro, typeof(Button)),
-                    BackgroundColor = Color.DarkRed,
+                    BackgroundColor = Color.Black,
+                    BorderColor = Color.White,
+                    BorderWidth = 1,
                     TextColor = Color.White,
                     HeightRequest = 35,
                     WidthRequest = 50,
@@ -299,7 +306,7 @@ namespace AMN.View
 
                 itemGrid.Children.Add(stack);
 
-                stackFoodItems.Children.Add(itemGrid);
+                stackFoodItems.Children.Add(frame);
             }
         }
 

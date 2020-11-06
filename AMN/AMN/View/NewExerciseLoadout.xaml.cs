@@ -60,9 +60,14 @@ namespace AMN.View
             return true;
         }
 
-        private async void Exercise_ItemTapped(object sender, ItemTappedEventArgs e)
+        private async void Name_Unfocused(object sender, FocusEventArgs e)
         {
-            //Edit the exercise
+            await MasterModel.DAL.SaveNewTempLoadoutExerciseAsync(ELoadout);
+        }
+
+        private async void Sets_Unfocused(object sender, FocusEventArgs e)
+        {
+            await MasterModel.DAL.SaveNewTempLoadoutExerciseAsync(ELoadout);
         }
     }
 }

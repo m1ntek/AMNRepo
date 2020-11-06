@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AMN.View.AddExercisesToLoadout">
     <ContentPage.Content>
-        <StackLayout>
-            <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+        <StackLayout BackgroundColor="Black">
+            <Frame BackgroundColor="DarkRed" Padding="24" CornerRadius="0">
                 <Label Text="Saved Exercises" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
             </Frame>
             <StackLayout Margin="50,10">
@@ -12,7 +12,8 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout VerticalOptions="CenterAndExpand" Padding="10,10" Margin="0,5" BackgroundColor="#2196F3">
+                                <Frame Padding="10,10" Margin="0,5" BackgroundColor="DarkRed" CornerRadius="5">
+                                <StackLayout VerticalOptions="CenterAndExpand" >
                                     <Label Text="{Binding Name}" TextColor="White"/>
                                     <StackLayout BindableLayout.ItemsSource="{Binding Types}">
                                         <BindableLayout.ItemTemplate>
@@ -24,11 +25,16 @@
                                         </BindableLayout.ItemTemplate>
                                     </StackLayout>
                                 </StackLayout>
+                                </Frame>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <Button Text="Done" Clicked="Done_Clicked"/>
+                <Button Text="Done" Clicked="Done_Clicked"
+                        TextColor="White"
+                        BackgroundColor="DarkRed"
+                        BorderColor="White"
+                        BorderWidth="1"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

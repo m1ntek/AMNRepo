@@ -17,6 +17,7 @@ namespace AMN.Controller
             Grid.SetRow(lbl, row);
             lbl.Text = lblText;
             lbl.VerticalOptions = LayoutOptions.Center;
+            lbl.TextColor = Color.White;
 
             return lbl;
         }
@@ -27,7 +28,7 @@ namespace AMN.Controller
             Grid.SetColumn(entry, col);
             Grid.SetRow(entry, row);
             entry.Placeholder = placeholder;
-            entry.Keyboard = Keyboard.Telephone;
+            entry.TextColor = Color.White;
 
             return entry;
         }

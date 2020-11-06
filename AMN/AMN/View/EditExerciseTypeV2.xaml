@@ -3,57 +3,84 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AMN.View.EditExerciseTypeV2">
     <ContentPage.Content>
-        <StackLayout>
-            <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+        <StackLayout BackgroundColor="Black">
+            <Frame BackgroundColor="DarkRed" Padding="24" CornerRadius="0">
                 <Label x:Name="lblHeader" Text="{Binding HeaderTitle}" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
             </Frame>
-            <StackLayout Margin="50,10">
+            <Frame BackgroundColor="#11FFFFFF" CornerRadius="5" Margin="50,10">
+            <StackLayout >
                 <!-- Type name -->
                 <Grid x:Name="gridForm">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.33*"></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label Text="Type:" VerticalOptions="Center" HeightRequest="150" VerticalTextAlignment="Center"/>
-                    <Entry Text="{Binding SelectedType.Name}" Placeholder="{Binding EntryTypePlaceholder}" Grid.Column="1" VerticalOptions="Center"/>
+                    <Label Text="Type:" VerticalOptions="Center" HeightRequest="150" VerticalTextAlignment="Center"
+                           TextColor="White"/>
+                    <Entry Text="{Binding SelectedType.Name}" Placeholder="{Binding EntryTypePlaceholder}" Grid.Column="1" VerticalOptions="Center"
+                           TextColor="White"
+                           PlaceholderColor="Gray"/>
                 </Grid>
                 <!-- Reps List -->
                 <ListView ItemsSource="{Binding SelectedType.Reps}" HasUnevenRows="True" SeparatorVisibility="None">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid>
+                                <Grid Padding="0,5">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="0.33*"/>
                                         <ColumnDefinition/>
                                         <ColumnDefinition Width="0.33*"/>
-                                        <ColumnDefinition Width="0.33*"/>
+                                        <ColumnDefinition Width="0.4*"/>
                                     </Grid.ColumnDefinitions>
                                     <!-- Was going to use Numeric keyboard
                                     but it did not allow for the use of symbols.
                                     The client wanted the ability to use symbols. -->
-                                    <Label Text="Rep:" VerticalTextAlignment="Center"/>
+                                    <Label Text="Rep:" VerticalTextAlignment="Center"
+                                           TextColor="White"/>
                                     <Entry Text="{Binding Amount}" Keyboard="Telephone"
-                                           Grid.Column="1"/>
+                                           Grid.Column="1"
+                                           TextColor="White"/>
                                     <Button Text="Del" Clicked="Del_Clicked" CommandParameter="{Binding .}"
-                                            Grid.Column="3"/>
+                                            Grid.Column="3"
+                                            TextColor="White"
+                                            BackgroundColor="DarkRed"
+                                            BorderColor="White"
+                                            BorderWidth="1"
+                                            FontSize="Micro"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <StackLayout Margin="0,10">
-                    <Button Text="Add Rep" Clicked="AddRep_Clicked"/>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Button Text="Delete" Clicked="Delete_Clicked" HeightRequest="100"/>
-                        <Button Text="Save" Clicked="Save_Clicked" Grid.Column="1"/>
-                    </Grid>
-                    
-                </StackLayout>
+            </StackLayout>
+            </Frame>
+            <StackLayout Margin="50,10">
+                <Button Text="Add Rep" Clicked="AddRep_Clicked"
+                        TextColor="White"
+                            BackgroundColor="DarkRed"
+                            BorderColor="White"
+                            BorderWidth="1"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Button Text="Delete" Clicked="Delete_Clicked" 
+                            TextColor="White"
+                            BackgroundColor="DarkRed"
+                            BorderColor="White"
+                            BorderWidth="1"/>
+                    <Button Text="Save" Clicked="Save_Clicked" Grid.Column="1"
+                            TextColor="White"
+                            BackgroundColor="DarkRed"
+                            BorderColor="White"
+                            BorderWidth="1"/>
+                </Grid>
+
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

@@ -3,26 +3,41 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AMN.View.NewExerciseLoadout">
     <ContentPage.Content>
-        <StackLayout>
-            <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+        <StackLayout BackgroundColor="Black">
+            <Frame BackgroundColor="DarkRed" Padding="24" CornerRadius="0">
                 <Label x:Name="lblHeader" Text="New Exercise Loadout" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
             </Frame>
             <StackLayout Margin="50,10">
+                <Frame BackgroundColor="#11FFFFFF" CornerRadius="5" Padding="10,10">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.33*"></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label Text="Name:" VerticalTextAlignment="Center"/>
-                    <Entry Placeholder="name your loadout" Text="{Binding ELoadout.Name}" Grid.Column="1" HeightRequest="100"/>
-                    <Label Text="Sets:" VerticalTextAlignment="Center" Grid.Row="1"/>
-                    <Entry Text="{Binding ELoadout.Sets}" Grid.Column="1" HeightRequest="100" Grid.Row="1"/>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition Height="50"></RowDefinition>
+                        </Grid.RowDefinitions>
+                    <Label Text="Name:" VerticalTextAlignment="Center"
+                           TextColor="White"/>
+                    <Entry Placeholder="Name your loadout" Text="{Binding ELoadout.Name}" Grid.Column="1" HeightRequest="100"
+                           TextColor="White"
+                           PlaceholderColor="Gray"
+                           Unfocused="Name_Unfocused"/>
+                    <Label Text="Sets:" VerticalTextAlignment="Center" Grid.Row="1"
+                           TextColor="White"/>
+                    <Entry Text="{Binding ELoadout.Sets}" Grid.Column="1" HeightRequest="100" Grid.Row="1"
+                           TextColor="White"
+                           Unfocused="Sets_Unfocused"
+                           Keyboard="Numeric"/>
                 </Grid>
-                <ListView ItemsSource="{Binding ELoadout.Exercises}" IsEnabled="True" HasUnevenRows="True" ItemTapped="Exercise_ItemTapped">
+                </Frame>
+                <ListView ItemsSource="{Binding ELoadout.Exercises}" IsEnabled="True" HasUnevenRows="True">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout VerticalOptions="CenterAndExpand" Padding="10,10" Margin="0,5" BackgroundColor="#2196F3">
+                                <Frame Padding="10,10" Margin="0,5" BackgroundColor="DarkRed">
+                                <StackLayout VerticalOptions="CenterAndExpand" >
                                     <Label Text="{Binding Name}" TextColor="White"/>
                                     <StackLayout BindableLayout.ItemsSource="{Binding Types}">
                                         <BindableLayout.ItemTemplate>
@@ -34,12 +49,21 @@
                                         </BindableLayout.ItemTemplate>
                                     </StackLayout>
                                 </StackLayout>
+                                </Frame>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <Button Text="Add Exercises" Clicked="AddExercises_Clicked"/>
-                <Button Text="Save" Clicked="Save_Clicked"/>
+                <Button Text="Add Exercises" Clicked="AddExercises_Clicked"
+                        TextColor="White"
+                        BackgroundColor="DarkRed"
+                        BorderColor="White"
+                        BorderWidth="1"/>
+                <Button Text="Save" Clicked="Save_Clicked"
+                        TextColor="White"
+                        BackgroundColor="DarkRed"
+                        BorderColor="White"
+                        BorderWidth="1"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

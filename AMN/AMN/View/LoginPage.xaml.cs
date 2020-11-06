@@ -16,6 +16,16 @@ namespace AMN
         public LoginPage()
         {
             InitializeComponent();
+
+
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            //Set top bar colour
+            ((NavigationPage)Application.Current.MainPage).BarBackgroundColor = Color.DarkRed;
+            ((NavigationPage)Application.Current.MainPage).BarTextColor = Color.White;
         }
 
         //private void RememberMeRow_Tapped(object sender, EventArgs e)

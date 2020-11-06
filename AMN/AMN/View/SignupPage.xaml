@@ -4,22 +4,28 @@
              x:Class="AMN.SignupPage">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout>
-                <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+            <StackLayout BackgroundColor="Black">
+                <Frame BackgroundColor="DarkRed" Padding="24" CornerRadius="0">
                     <Label Text="Sign Up" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
                 </Frame>
-                <StackLayout Margin="50,10" VerticalOptions="CenterAndExpand">
-                    <Label FontSize="Large" TextColor="Black">E-mail Address:</Label>
-                    <Entry x:Name="entryEmail" FontSize="Large" TextColor="Black"
-                           Placeholder="Your e-mail address..." Unfocused="entryEmail_Unfocused"></Entry>
-                    <Label FontSize="Large" TextColor="Black">Enter new password:</Label>
-                    <Entry x:Name="entryPassword1" IsPassword="True" FontSize="Large" TextColor="Black"
-                           Placeholder="Please enter a password..." Unfocused="entryPassword1_Unfocused"></Entry>
-                    <Entry x:Name="entryPassword2" IsPassword="True" FontSize="Large" TextColor="Black"
-                           Placeholder="Please confirm password..."></Entry>
-                    <Button Text="Sign Up" Margin="0,20,0,0" BackgroundColor="#2196F3" TextColor="White" FontSize="Medium"
+                <Frame Margin="30,10" VerticalOptions="CenterAndExpand" CornerRadius="5" Padding="10,10"
+                       BackgroundColor="#10FFFFFF">
+                    <StackLayout>
+                        <Label FontSize="Large" TextColor="White">E-mail Address:</Label>
+                        <Entry x:Name="entryEmail" FontSize="Default" TextColor="White"
+                           Placeholder="Your e-mail address..." Unfocused="entryEmail_Unfocused"
+                               PlaceholderColor="LightGray" Margin="20,0"></Entry>
+                        <Label Margin="0,30,0,0" FontSize="Large" TextColor="White">New password:</Label>
+                        <Entry x:Name="entryPassword1" IsPassword="True" FontSize="Default" TextColor="White"
+                           Placeholder="Enter a password..." Unfocused="entryPassword1_Unfocused"
+                               PlaceholderColor="LightGray" Margin="20,0"></Entry>
+                        <Entry x:Name="entryPassword2" IsPassword="True" FontSize="Default" TextColor="White"
+                           Placeholder="Confirm password..."
+                               PlaceholderColor="LightGray" Margin="20,0"></Entry>
+                        <Button Text="Sign Up" Margin="0,20,0,0" BackgroundColor="DarkRed" TextColor="White" FontSize="Medium"
                             Clicked="Signup_Clicked"></Button>
-                </StackLayout>
+                    </StackLayout>
+                </Frame>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

@@ -3,73 +3,107 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AMN.View.NewSession">
     <ContentPage.Content>
-        <StackLayout>
-            <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+        <StackLayout BackgroundColor="Black">
+            <Frame BackgroundColor="DarkRed" Padding="24" CornerRadius="0">
                 <Label Text="New Session" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
             </Frame>
 
-            <StackLayout Margin="50,10">
+            <StackLayout Margin="40,10">
                 <ListView HasUnevenRows="True" ItemsSource="{Binding SelectedLoadout.Exercises}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout Padding="10,10"
-                                         BackgroundColor="AliceBlue">
-                                    <!-- exercise name -->
-                                    <Label Text="{Binding Name}"/>
+                                <Frame BackgroundColor="DarkRed" Padding="10,10" CornerRadius="5"
+                                       Margin="0,0,0,10">
+                                    <StackLayout>
+                                        <!-- exercise name -->
+                                        <Label Text="{Binding Name}" TextColor="White" FontSize="Large"/>
 
-                                    <StackLayout BindableLayout.ItemsSource="{Binding Types}">
-                                        <BindableLayout.ItemTemplate>
-                                            <DataTemplate>
-                                                <StackLayout
-                                                Margin="0,20">
-                                                    <!-- type label and picker-->
-                                                    <StackLayout Orientation="Horizontal">
-                                                        <Label Text="Type:" VerticalTextAlignment="Center"/>
-                                                        <Label Text="{Binding Name}" VerticalTextAlignment="Center"/>
-                                                        <Button Text="Del" HorizontalOptions="EndAndExpand"
+                                        <StackLayout BindableLayout.ItemsSource="{Binding Types}">
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackLayout
+                                                        Margin="0,20">
+                                                        <Frame BackgroundColor="Transparent" BorderColor="White"
+                                                               Padding="10,10">
+                                                            <StackLayout>
+                                                                <!-- type label and picker-->
+                                                                <StackLayout Orientation="Horizontal">
+                                                                    <Label Text="Type:" VerticalTextAlignment="Center"
+                                                               TextColor="White"/>
+                                                                    <Label Text="{Binding Name}" VerticalTextAlignment="Center"
+                                                               TextColor="White"/>
+                                                                    <Button Text="Del" HorizontalOptions="EndAndExpand"
                                                             WidthRequest="50" CommandParameter="{Binding}"
-                                                            Clicked="DelType_Clicked"/>
-                                                    </StackLayout>
+                                                            Clicked="DelType_Clicked"
+                                                                BackgroundColor="Black"
+                                                                BorderColor="White"
+                                                                BorderWidth="1"
+                                                                TextColor="White"
+                                                                Padding="0,0"
+                                                                HeightRequest="30"
+                                                                VerticalOptions="Center"/>
+                                                                </StackLayout>
 
-                                                    <!-- reps -->
-                                                    <StackLayout BindableLayout.ItemsSource="{Binding Reps}">
-                                                        <BindableLayout.ItemTemplate>
-                                                            <DataTemplate>
-                                                                <StackLayout>
-                                                                    <StackLayout Orientation="Horizontal">
-                                                                        <Label Text="Rep:" VerticalTextAlignment="Center"/>
-                                                                        <Entry Text="{Binding Amount}"
-                                                                           WidthRequest="40"/>
-                                                                        <Label Text="Weight:" VerticalTextAlignment="Center"/>
-                                                                        <Entry Placeholder="weight in kg"
+                                                                <!-- reps -->
+                                                                <StackLayout BindableLayout.ItemsSource="{Binding Reps}">
+                                                                    <BindableLayout.ItemTemplate>
+                                                                        <DataTemplate>
+                                                                            <StackLayout>
+                                                                                <StackLayout Orientation="Horizontal">
+                                                                                    <Label Text="Rep:" VerticalTextAlignment="Center"
+                                                                               TextColor="White"/>
+                                                                                    <Entry Text="{Binding Amount}"
+                                                                           WidthRequest="40"
+                                                                               TextColor="White"/>
+                                                                                    <Label Text="Weight:" VerticalTextAlignment="Center"
+                                                                               TextColor="White"/>
+                                                                                    <Entry Placeholder="weight in kg"
                                                                            Text="{Binding Weight}" VerticalTextAlignment="Center"
-                                                                               Keyboard="Numeric"/>
-                                                                        <Button Text="Del" HorizontalOptions="EndAndExpand"
-                                                                            HeightRequest="50"
+                                                                               Keyboard="Numeric"
+                                                                               TextColor="White"/>
+                                                                                    <Button Text="Del" HorizontalOptions="EndAndExpand"
                                                                             WidthRequest="50"
                                                                             CommandParameter="{Binding}"
-                                                                            Clicked="DelRep_Clicked"/>
-                                                                    </StackLayout>
+                                                                            Clicked="DelRep_Clicked"
+                                                                                BackgroundColor="Black"
+                                                                                BorderColor="White"
+                                                                                BorderWidth="1"
+                                                                                TextColor="White"
+                                                                                Padding="0,0"
+                                                                                HeightRequest="30"
+                                                                                    VerticalOptions="Center"/>
+                                                                                </StackLayout>
+                                                                            </StackLayout>
+                                                                        </DataTemplate>
+                                                                    </BindableLayout.ItemTemplate>
                                                                 </StackLayout>
-                                                            </DataTemplate>
-                                                        </BindableLayout.ItemTemplate>
+                                                                <Button Text="Add" Clicked="Add_Clicked" CommandParameter="{Binding}"
+                                                                HorizontalOptions="End"
+                                                                BackgroundColor="Black"
+                                                                BorderColor="White"
+                                                                BorderWidth="1"
+                                                                TextColor="White"
+                                                                Padding="0,0"
+                                                                HeightRequest="40"
+                                                                VerticalOptions="Center"/>
+                                                            </StackLayout>
+                                                        </Frame>
                                                     </StackLayout>
-                                                    <Button Text="Add" Clicked="Add_Clicked" CommandParameter="{Binding}"
-                                                            HorizontalOptions="End"/>
-                                                </StackLayout>
-                                            </DataTemplate>
-                                        </BindableLayout.ItemTemplate>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </StackLayout>
                                     </StackLayout>
-
-
-
-                                </StackLayout>
+                                </Frame>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <Button Text="Log Session" Clicked="LogSession_Clicked"/>
+                <Button Text="Log Session" Clicked="LogSession_Clicked"
+                        BackgroundColor="DarkRed"
+                        TextColor="White"
+                        BorderColor="White"
+                        BorderWidth="1"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
