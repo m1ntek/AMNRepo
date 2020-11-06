@@ -18,6 +18,7 @@ namespace AMN.View
         public List<Meal> newLoadoutMeals { get; set; }
         List<Loadout> loadouts;
         Loadout selectedLoadout;
+        private List<Task> tasks;
         //public string headerTitle { get; set; }
         public int currentLoadoutIndex { get; set; } = -1;
 
@@ -40,6 +41,17 @@ namespace AMN.View
             currentLoadoutIndex = index;
         }
 
+        public LoadoutMeals(string headerTitle, int index, List<Task> _tasks)
+        {
+            InitializeComponent();
+            //savedMeals = new List<Meal>();
+            newLoadoutMeals = new List<Meal>();
+            lblHeader.Text = headerTitle;
+            entryLoadoutName.Text = headerTitle;
+            currentLoadoutIndex = index;
+            tasks = _tasks;
+        }
+
         protected async override void OnAppearing()
         {
             base.OnAppearing();
@@ -48,8 +60,19 @@ namespace AMN.View
             await GetMeals();
             //lvSavedMeals.ItemsSource = savedMeals;
             //lvLoadoutMeals.ItemsSource = newLoadoutMeals;
-            BindingContext = null;
-            BindingContext = this;
+            
+
+            while (tasks.Count>0)
+            {
+                Task finished = await Task.WhenAny(tasks);
+
+                BindingContext = null;
+                BindingContext = this;
+
+                tasks.Remove(finished);
+            }
+
+
             //actInd.IsVisible = false;
         }
 

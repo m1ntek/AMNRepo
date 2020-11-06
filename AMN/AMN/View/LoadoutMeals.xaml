@@ -29,11 +29,9 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout>
-                                <Frame BackgroundColor="DarkRed" Margin="0,5,0,5">
-                                    <Label Text="{Binding mealName}" FontSize="Default" VerticalOptions="Center" TextColor="White"/>
-                                </Frame>
-                            </StackLayout>
+                            <Frame BackgroundColor="DarkRed" Margin="0,5,0,5">
+                                <Label Text="{Binding mealName}" FontSize="Default" VerticalOptions="Center" TextColor="White"/>
+                            </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

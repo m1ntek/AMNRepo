@@ -8,18 +8,14 @@
                 <Label Text="Meal Loadouts" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
             </Frame>
             <!-- Saved meals -->
-            <ListView x:Name="lvLoadouts" ItemsSource="{Binding loadouts}" ItemTapped="lvLoadouts_ItemTapped" HasUnevenRows="True">
+            <ListView ItemsSource="{Binding userLoadouts}" ItemTapped="lvLoadouts_ItemTapped" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-
-                            <StackLayout x:Name="stackMeal">
-                                <Frame BackgroundColor="DarkRed" Margin="50,5,50,5" CornerRadius="5">
-                                    <Label Text="{Binding LoadoutName}" FontSize="Default" VerticalOptions="Center"
+                            <Frame BackgroundColor="DarkRed" Margin="50,5,50,5" CornerRadius="5">
+                                <Label Text="{Binding LoadoutName}" FontSize="Default" VerticalOptions="Center"
                                            TextColor="White"/>
-                                </Frame>
-                            </StackLayout>
-
+                            </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

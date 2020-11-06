@@ -27,7 +27,10 @@ namespace AMN.View
 
             //actInd.IsVisible = true;
             await GetLoadouts();
-            lvLoadouts.ItemsSource = userLoadouts;
+            //lvLoadouts.ItemsSource = userLoadouts;
+            BindingContext = null;
+            BindingContext = this;
+            
             //actInd.IsVisible = false;
         }
 
@@ -55,9 +58,9 @@ namespace AMN.View
             {
                 tasks.Add(MasterModel.DAL.SaveNewTempLoadoutMealAsync(meal));
             }
-            await Task.WhenAll(tasks);
+            //await Task.WhenAll(tasks);
             //await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
-            await Navigation.PushAsync(new LoadoutMeals(userLoadouts[e.ItemIndex].LoadoutName, e.ItemIndex));
+            await Navigation.PushAsync(new LoadoutMeals(userLoadouts[e.ItemIndex].LoadoutName, e.ItemIndex, tasks));
         }
 
         private async void NewLoadout_Clicked(object sender, EventArgs e)

@@ -14,54 +14,56 @@
                     <StackLayout BindableLayout.ItemsSource="{Binding ExSessions}" BindableLayout.EmptyView="No recorded sessions.">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
-                                <StackLayout BackgroundColor="DarkRed" Padding="10,10" Margin="0,10,0,0">
-                                    <Label Text="{Binding DateString}" HorizontalOptions="Center" TextColor="White"/>
-                                    <Label Text="{Binding StartToEnd}" HorizontalOptions="Center" TextColor="White"/>
-                                    <StackLayout BindableLayout.ItemsSource="{Binding Exercises}" >
-                                        <BindableLayout.ItemTemplate>
-                                            <DataTemplate>
-                                                <!-- Exercise -->
-                                                <StackLayout Margin="0,10">
-                                                    <Label Text="{Binding Name}" TextColor="White"/>
-                                                    <StackLayout BindableLayout.ItemsSource="{Binding Types}" >
-                                                        <BindableLayout.ItemTemplate>
-                                                            <DataTemplate>
-                                                                <!-- Type -->
-                                                                <!-- background -->
-                                                                <Frame Margin="0,10,0,0" Padding="10,10" BorderColor="White"
-                                                                       BackgroundColor="Transparent">
-                                                                    <StackLayout>
-                                                                        <Label Text="{Binding Name, StringFormat='Type: {0}'}" TextColor="White"/>
+                                <Frame BackgroundColor="DarkRed" Padding="10,10" Margin="0,10,0,0" CornerRadius="5">
+                                    <StackLayout >
+                                        <Label Text="{Binding DateString}" HorizontalOptions="Center" TextColor="White"/>
+                                        <Label Text="{Binding StartToEnd}" HorizontalOptions="Center" TextColor="White"/>
+                                        <StackLayout BindableLayout.ItemsSource="{Binding Exercises}" >
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <!-- Exercise -->
+                                                    <StackLayout Margin="0,10">
+                                                        <Label Text="{Binding Name}" TextColor="White"/>
+                                                        <StackLayout BindableLayout.ItemsSource="{Binding Types}" >
+                                                            <BindableLayout.ItemTemplate>
+                                                                <DataTemplate>
+                                                                    <!-- Type -->
+                                                                    <!-- background -->
+                                                                    <Frame Margin="0,10,0,0" Padding="10,10" BorderColor="White"
+                                                                       BackgroundColor="Transparent" CornerRadius="5">
                                                                         <StackLayout>
-                                                                            <StackLayout Orientation="Horizontal">
-                                                                                <StackLayout>
-                                                                                    <Label Text="Reps:" TextColor="White"/>
-                                                                                    <Label Text="Weight:" TextColor="White"/>
-                                                                                </StackLayout>
-                                                                                <StackLayout BindableLayout.ItemsSource="{Binding Reps}" Orientation="Horizontal">
-                                                                                    <BindableLayout.ItemTemplate>
-                                                                                        <DataTemplate>
-                                                                                            <StackLayout>
+                                                                            <Label Text="{Binding Name, StringFormat='Type: {0}'}" TextColor="White"/>
+                                                                            <StackLayout>
+                                                                                <StackLayout Orientation="Horizontal">
+                                                                                    <StackLayout>
+                                                                                        <Label Text="Reps:" TextColor="White"/>
+                                                                                        <Label Text="Weight:" TextColor="White"/>
+                                                                                    </StackLayout>
+                                                                                    <StackLayout BindableLayout.ItemsSource="{Binding Reps}" Orientation="Horizontal">
+                                                                                        <BindableLayout.ItemTemplate>
+                                                                                            <DataTemplate>
+                                                                                                <StackLayout>
 
-                                                                                                <Label Text="{Binding Amount}" TextColor="White"/>
-                                                                                                <Label Text="{Binding Weight, StringFormat='{0}kg'}" TextColor="White"/>
+                                                                                                    <Label Text="{Binding Amount}" TextColor="White"/>
+                                                                                                    <Label Text="{Binding Weight, StringFormat='{0}kg'}" TextColor="White"/>
 
-                                                                                            </StackLayout>
-                                                                                        </DataTemplate>
-                                                                                    </BindableLayout.ItemTemplate>
+                                                                                                </StackLayout>
+                                                                                            </DataTemplate>
+                                                                                        </BindableLayout.ItemTemplate>
+                                                                                    </StackLayout>
                                                                                 </StackLayout>
                                                                             </StackLayout>
                                                                         </StackLayout>
-                                                                    </StackLayout>
-                                                                </Frame>
-                                                            </DataTemplate>
-                                                        </BindableLayout.ItemTemplate>
+                                                                    </Frame>
+                                                                </DataTemplate>
+                                                            </BindableLayout.ItemTemplate>
+                                                        </StackLayout>
                                                     </StackLayout>
-                                                </StackLayout>
-                                            </DataTemplate>
-                                        </BindableLayout.ItemTemplate>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </StackLayout>
                                     </StackLayout>
-                                </StackLayout>
+                                </Frame>
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>
                     </StackLayout>
