@@ -8,66 +8,69 @@
                 <Label Text="New Session" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
             </Frame>
 
-            <ListView HasUnevenRows="True" ItemsSource="{Binding SelectedLoadout.Exercises}"
-                      Margin="50,0">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Padding="10,10"
+            <StackLayout Margin="50,10">
+                <ListView HasUnevenRows="True" ItemsSource="{Binding SelectedLoadout.Exercises}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Padding="10,10"
                                          BackgroundColor="AliceBlue">
-                                <!-- exercise name -->
-                                <Label Text="{Binding Name}"/>
+                                    <!-- exercise name -->
+                                    <Label Text="{Binding Name}"/>
 
-                                <StackLayout BindableLayout.ItemsSource="{Binding Types}">
-                                    <BindableLayout.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackLayout
+                                    <StackLayout BindableLayout.ItemsSource="{Binding Types}">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackLayout
                                                 Margin="0,20">
-                                                <!-- type label and picker-->
-                                                <StackLayout Orientation="Horizontal">
-                                                    <Label Text="Type:" VerticalTextAlignment="Center"/>
-                                                    <Label Text="{Binding Name}" VerticalTextAlignment="Center"/>
-                                                    <Button Text="Del" HorizontalOptions="EndAndExpand"
+                                                    <!-- type label and picker-->
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Text="Type:" VerticalTextAlignment="Center"/>
+                                                        <Label Text="{Binding Name}" VerticalTextAlignment="Center"/>
+                                                        <Button Text="Del" HorizontalOptions="EndAndExpand"
                                                             WidthRequest="50" CommandParameter="{Binding}"
                                                             Clicked="DelType_Clicked"/>
-                                                </StackLayout>
+                                                    </StackLayout>
 
-                                                <!-- reps -->
-                                                <StackLayout BindableLayout.ItemsSource="{Binding Reps}">
-                                                    <BindableLayout.ItemTemplate>
-                                                        <DataTemplate>
-                                                            <StackLayout>
-                                                                <StackLayout Orientation="Horizontal">
-                                                                    <Label Text="Rep:" VerticalTextAlignment="Center"/>
-                                                                    <Entry Text="{Binding Amount}"
-                                                                           MinimumWidthRequest="50"/>
-                                                                    <Label Text="Weight:"/>
-                                                                    <Entry Placeholder="weight in kg"
-                                                                           Text="{Binding Weight}" VerticalTextAlignment="Center"/>
-                                                                    <Button Text="Del" HorizontalOptions="EndAndExpand"
+                                                    <!-- reps -->
+                                                    <StackLayout BindableLayout.ItemsSource="{Binding Reps}">
+                                                        <BindableLayout.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <StackLayout>
+                                                                    <StackLayout Orientation="Horizontal">
+                                                                        <Label Text="Rep:" VerticalTextAlignment="Center"/>
+                                                                        <Entry Text="{Binding Amount}"
+                                                                           WidthRequest="40"/>
+                                                                        <Label Text="Weight:" VerticalTextAlignment="Center"/>
+                                                                        <Entry Placeholder="weight in kg"
+                                                                           Text="{Binding Weight}" VerticalTextAlignment="Center"
+                                                                               Keyboard="Numeric"/>
+                                                                        <Button Text="Del" HorizontalOptions="EndAndExpand"
                                                                             HeightRequest="50"
                                                                             WidthRequest="50"
                                                                             CommandParameter="{Binding}"
                                                                             Clicked="DelRep_Clicked"/>
+                                                                    </StackLayout>
                                                                 </StackLayout>
-                                                            </StackLayout>
-                                                        </DataTemplate>
-                                                    </BindableLayout.ItemTemplate>
-                                                </StackLayout>
-                                                <Button Text="Add" Clicked="Add_Clicked" CommandParameter="{Binding}"
+                                                            </DataTemplate>
+                                                        </BindableLayout.ItemTemplate>
+                                                    </StackLayout>
+                                                    <Button Text="Add" Clicked="Add_Clicked" CommandParameter="{Binding}"
                                                             HorizontalOptions="End"/>
-                                            </StackLayout>
-                                        </DataTemplate>
-                                    </BindableLayout.ItemTemplate>
+                                                </StackLayout>
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </StackLayout>
+
+
+
                                 </StackLayout>
-
-
-
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button Text="Log Session" Clicked="LogSession_Clicked"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -18,6 +18,10 @@ namespace AMN
             InitializeComponent();
             //GetUserData();
             //UpdateFooter();
+
+            //Set top bar colour
+            ((NavigationPage)Application.Current.MainPage).BarBackgroundColor = Color.DarkRed;
+            ((NavigationPage)Application.Current.MainPage).BarTextColor = Color.White;
         }
 
         protected override async void OnAppearing()
@@ -44,7 +48,7 @@ namespace AMN
 
         private async void Progress_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NewSession());
+            await Navigation.PushAsync(new Progress());
         }
 
         private async void Signup_Clicked(object sender, EventArgs e)

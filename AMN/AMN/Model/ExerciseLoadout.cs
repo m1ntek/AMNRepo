@@ -10,6 +10,10 @@ namespace AMN.Model
         public string Name { get; set; }
         public int Sets { get; set; }
         public List<Exercise> Exercises { get; set; }
+        public DateTime StartTime { get; set; }
+        public string DateString { get; set; }
+        public DateTime EndTime { get; set; }
+        public string StartToEnd { get; set; }
 
         public ExerciseLoadout()
         {

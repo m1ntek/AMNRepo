@@ -6,6 +6,7 @@ namespace AMN.Model
 {
     public class ExerciseType
     {
+        public int Index { get; set; }
         public string Name { get; set; }
         public string Summary { get; set; }
         public List<Rep> Reps { get; set; }

@@ -383,6 +383,25 @@ public class DataAccessLayer
             }).ToList();
     }
 
+    public async Task<List<ExerciseLoadout>> GetExerciseSessionsAsync()
+    {
+        return (await fb.Child("Users")
+            .Child(auth.User.LocalId)
+            .Child("ExerciseSessions")
+            .OnceAsync<ExerciseLoadout>())
+            .Select(item => new ExerciseLoadout()
+            {
+                Exercises = item.Object.Exercises,
+                Key = item.Key,
+                Name = item.Object.Name,
+                Sets = item.Object.Sets,
+                EndTime = item.Object.EndTime,
+                StartTime = item.Object.StartTime,
+                DateString = item.Object.DateString,
+                StartToEnd = item.Object.StartToEnd
+            }).ToList();
+    }
+
     public async Task<ExerciseLoadout> GetExerciseLoadoutAsync(string key)
     {
         return await fb.Child("Users")
@@ -471,5 +490,10 @@ public class DataAccessLayer
     public async Task DeleteExerciseLoadoutAsync(string key)
     {
         await fb.Child("Users").Child(auth.User.LocalId).Child("ExerciseLoadouts").Child(key).DeleteAsync();
+    }
+
+    public async Task SaveNewExerciseSessionLogAsync(ExerciseLoadout loadout)
+    {
+        await fb.Child("Users").Child(auth.User.LocalId).Child("ExerciseSessions").PostAsync(loadout);
     }
 }
