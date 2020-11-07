@@ -43,15 +43,35 @@
                                                                                         <BindableLayout.ItemTemplate>
                                                                                             <DataTemplate>
                                                                                                 <StackLayout>
-
                                                                                                     <Label Text="{Binding Amount}" TextColor="White"/>
                                                                                                     <Label Text="{Binding Weight, StringFormat='{0}kg'}" TextColor="White"/>
-
                                                                                                 </StackLayout>
                                                                                             </DataTemplate>
                                                                                         </BindableLayout.ItemTemplate>
                                                                                     </StackLayout>
                                                                                 </StackLayout>
+                                                                                <!-- Compared to last week -->
+                                                                                <Frame BackgroundColor="#33000000" CornerRadius="5" Padding="10,10" BorderColor="White">
+                                                                                    <StackLayout>
+                                                                                        <Label Text="Compared to last week:" TextColor="White"/>
+                                                                                        <StackLayout Orientation="Horizontal">
+                                                                                            <StackLayout>
+                                                                                                <Label Text="Reps:" TextColor="White"/>
+                                                                                                <Label Text="Weight:" TextColor="White"/>
+                                                                                            </StackLayout>
+                                                                                            <StackLayout BindableLayout.ItemsSource="{Binding Reps}" Orientation="Horizontal">
+                                                                                                <BindableLayout.ItemTemplate>
+                                                                                                    <DataTemplate>
+                                                                                                        <StackLayout>
+                                                                                                            <Label Text="{Binding AmountDifference}" TextColor="{Binding amountColor}"/>
+                                                                                                            <Label Text="{Binding WeightDifference, StringFormat='{0}kg'}" TextColor="{Binding weightColor}"/>
+                                                                                                        </StackLayout>
+                                                                                                    </DataTemplate>
+                                                                                                </BindableLayout.ItemTemplate>
+                                                                                            </StackLayout>
+                                                                                        </StackLayout>
+                                                                                    </StackLayout>
+                                                                                </Frame>
                                                                             </StackLayout>
                                                                         </StackLayout>
                                                                     </Frame>
