@@ -104,6 +104,11 @@
                         TextColor="White"
                         BorderColor="White"
                         BorderWidth="1"/>
+                <Button Text="Log 7 Days Ago" Clicked="Button_Clicked"
+                        BackgroundColor="DarkGoldenrod"
+                        TextColor="White"
+                        BorderColor="White"
+                        BorderWidth="1"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

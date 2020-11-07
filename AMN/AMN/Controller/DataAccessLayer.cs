@@ -388,8 +388,11 @@ public class DataAccessLayer
         return (await fb.Child("Users")
             .Child(auth.User.LocalId)
             .Child("ExerciseSessions")
+            .OrderByKey()
+            .LimitToLast(7)
             .OnceAsync<ExerciseLoadout>())
             .Reverse()
+
             .Select(item => new ExerciseLoadout()
             {
                 Exercises = item.Object.Exercises,
@@ -417,6 +420,17 @@ public class DataAccessLayer
         return (fb.Child("Users")
             .Child(auth.User.LocalId)
             .Child("SelectedExerciseLoadout")
+            .OnceSingleAsync<ExerciseLoadout>());
+    }
+
+    public Task<ExerciseLoadout> GetLastWeeksExerciseLoadoutAsync(string previousWeekDate)
+    {
+        return (fb.Child("Users")
+            .Child(auth.User.LocalId)
+            .Child("SelectedExerciseLoadout")
+            .OrderByKey()
+            .StartAt(previousWeekDate)
+            .LimitToFirst(1)
             .OnceSingleAsync<ExerciseLoadout>());
     }
 

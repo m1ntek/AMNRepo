@@ -31,20 +31,21 @@ namespace AMN.View
             {
                 SelectedLoadout = await MasterModel.DAL.GetSelectedExerciseLoadoutAsync();
                 SelectedLoadout.StartTime = DateTime.Now;
-                SelectedLoadout.DateString = SelectedLoadout.StartTime.ToShortDateString();
+                SelectedLoadout.DateString = SelectedLoadout.StartTime.ToString("dd/MM/yyyy");
                 loadoutReceived = true;
             }
 
-            //Set correct indices once.
-            //Ended up having to do it here as it isn't
-            //set up correctly in the whole app/code structure.
-            UpdateIndices();
+            //Set correct indices.
+            //Ended up having to do "band-aid" solution due to
+            //time constraint.
+            //It isn't set up correctly in the whole app/code structure.
+            await UpdateIndices();
 
 
             Refresh();
         }
 
-        private void UpdateIndices()
+        private async Task UpdateIndices()
         {
             //Update indices
             for (int i = 0; i < SelectedLoadout.Exercises.Count; i++)
@@ -74,7 +75,7 @@ namespace AMN.View
             BindingContext = this;
         }
 
-        private void Add_Clicked(object sender, EventArgs e)
+        private async void Add_Clicked(object sender, EventArgs e)
         {
             //Add a new rep for the exercise type.
             //Find the exercise type in relation to the button clicked.
@@ -92,13 +93,13 @@ namespace AMN.View
                     exercise.Types[exerciseType.Index] = exerciseType;
             }
 
-            UpdateIndices();
+            await UpdateIndices();
 
             //Refresh binding
             Refresh();
         }
 
-        private void DelType_Clicked(object sender, EventArgs e)
+        private async void DelType_Clicked(object sender, EventArgs e)
         {
             var button = (Button)sender;
             var exerciseType = (ExerciseType)button.CommandParameter;
@@ -115,13 +116,13 @@ namespace AMN.View
                 }
             }
 
-            UpdateIndices();
+            await UpdateIndices();
 
             //Refresh binding
             Refresh();
         }
 
-        private void DelRep_Clicked(object sender, EventArgs e)
+        private async void DelRep_Clicked(object sender, EventArgs e)
         {
             //Delete a rep for the exercise type.
             //Find the rep in relation to the button clicked.
@@ -148,7 +149,7 @@ namespace AMN.View
 
             }
 
-            UpdateIndices();
+            await UpdateIndices();
 
             //Refresh binding
             Refresh();
@@ -156,8 +157,36 @@ namespace AMN.View
 
         private async void LogSession_Clicked(object sender, EventArgs e)
         {
+            //Log end time
             SelectedLoadout.EndTime = DateTime.Now;
+            //Set summary string of exercise time range.
             SelectedLoadout.StartToEnd = $"{SelectedLoadout.StartTime.ToShortTimeString()} - {SelectedLoadout.EndTime.ToShortTimeString()}";
+
+            WeeklyComparisons wComparison = new WeeklyComparisons(SelectedLoadout);
+            var comparedLoadout = await wComparison.CompareLastWeeksSession();
+            /*if (comparedLoadout != null) */SelectedLoadout = comparedLoadout;
+            await MasterModel.DAL.SaveNewExerciseSessionLogAsync(SelectedLoadout);
+            await Navigation.PopAsync();
+        }
+
+        private async void Button_Clicked(object sender, EventArgs e) //test button
+        {
+            var starttime = DateTime.Now;
+            starttime = starttime.Subtract(TimeSpan.FromDays(7));
+            var endtime = DateTime.Now;
+            endtime = endtime.Subtract(TimeSpan.FromDays(7));
+
+            //Log end time
+            SelectedLoadout.StartTime = starttime;
+            SelectedLoadout.EndTime = endtime;
+            SelectedLoadout.DateString = $"{starttime.ToString("dd/MM/yyyy")}";
+
+            //Set summary string of exercise time range.
+            SelectedLoadout.StartToEnd = $"{SelectedLoadout.StartTime.ToShortTimeString()} - {SelectedLoadout.EndTime.ToShortTimeString()}";
+
+            WeeklyComparisons wComparison = new WeeklyComparisons(SelectedLoadout);
+            var comparedLoadout = await wComparison.CompareLastWeeksSession();
+            if (comparedLoadout != null) SelectedLoadout = comparedLoadout;
             await MasterModel.DAL.SaveNewExerciseSessionLogAsync(SelectedLoadout);
             await Navigation.PopAsync();
         }

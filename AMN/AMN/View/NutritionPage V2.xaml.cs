@@ -73,21 +73,20 @@ namespace AMN.View
 
         private async Task GetUserData()
         {
-            //MasterModel.currentUser = await MasterModel.DAL.GetUserDataAsync();
-            //loadoutMeals = MasterModel.currentUser.SelectedLoadout.Meals;
-            //dailyGoal = MasterModel.currentUser.DailyGoal;
-            //goalProgress = MasterModel.currentUser.GoalProgress;
-
             try
             {
-                loadout = await MasterModel.DAL.GetSelectedLoadoutAsync();
+                Task loadoutTask = Task.Run(async () => { loadout = await MasterModel.DAL.GetSelectedLoadoutAsync(); });
+                Task dailyGoalTask = Task.Run(async () => { dailyGoal = await MasterModel.DAL.GetGoalAsync(); });
+                Task goalProgressTask = Task.Run(async () => { goalProgress = await MasterModel.DAL.GetGoalProgressAsync(); });
+
+                //Load the page faster by running these tasks at the same time in parallel.
+                await Task.WhenAll(loadoutTask, dailyGoalTask, goalProgressTask);
+
                 loadoutMeals = loadout.Meals;
-                dailyGoal = await MasterModel.DAL.GetGoalAsync();
-                goalProgress = await MasterModel.DAL.GetGoalProgressAsync();
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Error", ex.Message, "OK");
+                await DisplayAlert("Error", MasterModel.DAL.SimplifyException(ex.Message), "OK");
             }
         }
 
