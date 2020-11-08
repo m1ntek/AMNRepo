@@ -55,15 +55,25 @@ namespace AMN.View
 
             //An attempt to improve loading times.
             //Load all meals asynchronously.
-            while (tasks.Count>0)
+            if(tasks != null)
             {
-                Task finished = await Task.WhenAny(tasks);
+                while (tasks.Count > 0)
+                {
+                    Task finished = await Task.WhenAny(tasks);
 
-                BindingContext = null;
-                BindingContext = this;
+                    Refresh();
 
-                tasks.Remove(finished);
+                    tasks.Remove(finished);
+                }
             }
+
+            Refresh();
+        }
+
+        private void Refresh()
+        {
+            BindingContext = null;
+            BindingContext = this;
         }
 
         private async Task GetMeals()

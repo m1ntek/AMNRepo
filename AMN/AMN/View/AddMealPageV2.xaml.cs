@@ -375,6 +375,7 @@ namespace AMN.View
 
         private async void SaveMeal_Clicked(object sender, EventArgs e)
         {
+            actSave.IsRunning = true;
             if(MasterModel.DAL.UserLoggedIn() == true)
             {
                 try
@@ -389,13 +390,14 @@ namespace AMN.View
 
                         if(isValid == false)
                         {
-                            
+                            actSave.IsRunning = false;
                             await DisplayAlert("Meal Name", MasterModel.vd.error, "OK");
                             return;
                         }
 
                         if (MasterModel.tempMeal.items.Count == 0)
                         {
+                            actSave.IsRunning = false;
                             await DisplayAlert("Error", "The meal must contain at least 1 food item.", "OK");
                             return;
                         }
@@ -410,16 +412,18 @@ namespace AMN.View
                         await MasterModel.DAL.SaveMealV3Async(MasterModel.tempMeal, MasterModel.tempMeal.key);
                     }
 
-                    actSave.IsRunning = true;
+                    actSave.IsRunning = false;
                     await Navigation.PopAsync();
                 }
                 catch (Exception ex)
                 {
+                    actSave.IsRunning = false;
                     await DisplayAlert("Error", $"Something went wrong:\n{ex.Message}", "OK");
                 }
             }
             else
             {
+                actSave.IsRunning = false;
                 await DisplayAlert("Not Logged In", "Please login from the main page to save meals", "OK");
             }
         }
@@ -460,13 +464,12 @@ namespace AMN.View
             {
                 try
                 {
-                    MasterModel.currentUser.Meals.RemoveAt(MasterModel.tempMeal.index);
                     await MasterModel.DAL.DeleteMealAsync(MasterModel.tempMeal.key);
                     await Navigation.PopAsync();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    //do nothing for now
+                    await DisplayAlert("Error", ex.Message,"OK");
                 }
             }
         }

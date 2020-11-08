@@ -48,14 +48,16 @@
                                Padding="0,10" CornerRadius="5">
                             <StackLayout >
                                 <Label Text="Ratios:" TextColor="White" HorizontalTextAlignment="Center"/>
-                                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                                    <Label Text="P:" TextColor="White" HorizontalTextAlignment="Center"/>
-                                    <Label x:Name="lblProteinRatio" TextColor="White" HorizontalTextAlignment="Center"/>
-                                    <Label Text="C:" TextColor="White" HorizontalTextAlignment="Center"/>
-                                    <Label x:Name="lblCarbRatio" TextColor="White" HorizontalTextAlignment="Center"/>
-                                    <Label Text="F:" TextColor="White" HorizontalTextAlignment="Center"/>
-                                    <Label x:Name="lblFatRatio" TextColor="White" HorizontalTextAlignment="Center"/>
-                                </StackLayout>
+                                <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="10,0,10,0">
+                                        <Label Text="P:" TextColor="White" HorizontalTextAlignment="Center"/>
+                                        <Label x:Name="lblProteinRatio" TextColor="White" HorizontalTextAlignment="Center"/>
+                                        <Label Text="C:" TextColor="White" HorizontalTextAlignment="Center"/>
+                                        <Label x:Name="lblCarbRatio" TextColor="White" HorizontalTextAlignment="Center"/>
+                                        <Label Text="F:" TextColor="White" HorizontalTextAlignment="Center"/>
+                                        <Label x:Name="lblFatRatio" TextColor="White" HorizontalTextAlignment="Center"/>
+                                    </StackLayout>
+                                </ScrollView>
                             </StackLayout>
                         </Frame>
                         <Button Text="Edit Goals" Grid.Row="6" Grid.ColumnSpan="4" FontSize="Micro" Clicked="EditGoals_Clicked"
