@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AMN.View.SelectExerciseLoadout">
     <ContentPage.Content>
-        <StackLayout>
-            <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+        <StackLayout BackgroundColor="Black">
+            <Frame BackgroundColor="DarkRed" Padding="24" CornerRadius="0">
                 <Label Text="Exercise Loadouts" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
             </Frame>
             <StackLayout Margin="50,10">
@@ -14,28 +14,32 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout Padding="10,10"
-                                             BackgroundColor="#2196F3"
-                                             Margin="0,10">
-                                    <Label Text="{Binding Name}" VerticalTextAlignment="Center"
+                                <Frame BackgroundColor="DarkRed" CornerRadius="5" Padding="10,10" Margin="0,10">
+                                    <StackLayout >
+                                        <Label Text="{Binding Name}" VerticalTextAlignment="Center"
                                            TextColor="White"/>
-                                    <StackLayout BindableLayout.ItemsSource="{Binding Exercises}">
-                                        <BindableLayout.ItemTemplate>
-                                            <DataTemplate>
-                                                <StackLayout>
-                                                    <Label Text="{Binding Name, StringFormat='- {0}'}"
+                                        <StackLayout BindableLayout.ItemsSource="{Binding Exercises}">
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackLayout>
+                                                        <Label Text="{Binding Name, StringFormat='- {0}'}"
                                                            TextColor="White"/>
-                                                </StackLayout>
-                                            </DataTemplate>
-                                        </BindableLayout.ItemTemplate>
+                                                    </StackLayout>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </StackLayout>
                                     </StackLayout>
-                                </StackLayout>
+                                </Frame>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
                 <StackLayout Margin="0,10">
-                    <Button Text="Done" Clicked="Done_Clicked"/>
+                    <Button Text="Done" Clicked="Done_Clicked"
+                            BackgroundColor="DarkRed"
+                            TextColor="White"
+                            BorderColor="White"
+                            BorderWidth="1"/>
                 </StackLayout>
             </StackLayout>
         </StackLayout>

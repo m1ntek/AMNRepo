@@ -427,7 +427,7 @@ public class DataAccessLayer
     {
         return (fb.Child("Users")
             .Child(auth.User.LocalId)
-            .Child("SelectedExerciseLoadout")
+            .Child("ExerciseSessions")
             .OrderByKey()
             .StartAt(previousWeekDate)
             .LimitToFirst(1)

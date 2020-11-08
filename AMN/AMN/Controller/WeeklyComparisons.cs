@@ -66,6 +66,9 @@ namespace AMN.Controller
                                         //Show new rep
                                         exSessionType.Reps[k].AmountDifference = $"+{exSessionType.Reps[k].Amount}";
                                         exSessionType.Reps[k].amountColor = System.Drawing.Color.Green;
+
+                                        exSessionType.Reps[k].WeightDifference = $"+{exSessionType.Reps[k].Weight}kg";
+                                        exSessionType.Reps[k].weightColor = System.Drawing.Color.Green;
                                     }
                                     else
                                     {
@@ -82,11 +85,15 @@ namespace AMN.Controller
                                     if (k >= exSessionType.Reps.Count)
                                     {
                                         //Show new rep
-                                        //exSessionType.Reps[k].AmountDifference = $"+ {exSessionType.Reps[k].Amount}";
-                                        exSessionType.Reps.Add(new Rep { AmountDifference = $"-{lastWeekSessionType.Reps[k].Amount}" });
+                                        exSessionType.Reps.Add(new Rep 
+                                        {
+                                            AmountDifference = $"-{lastWeekSessionType.Reps[k].Amount}",
+                                            WeightDifference = $"-{lastWeekSessionType.Reps[k].Weight}kg"
+                                        });
                                         
                                         //set colour
                                         exSessionType.Reps[k].amountColor = System.Drawing.Color.Red;
+                                        exSessionType.Reps[k].weightColor = System.Drawing.Color.Red;
                                     }
                                     else
                                     {
@@ -114,8 +121,8 @@ namespace AMN.Controller
         {
             string[] repDigits = new string[2], lastWeekRepDigits = new string[2];
             int repValue = 0, lastWeekRepValue = 0;
-            string thisRepAmount = exSessionType.Reps[k].Amount;
-            string lastWeekRepAmount = lastWeekSessionType.Reps[k].Amount;
+            double thisWeightValue = exSessionType.Reps[k].Weight, lastWeekWeightValue = lastWeekSessionType.Reps[k].Weight;
+            string thisRepAmount = exSessionType.Reps[k].Amount, lastWeekRepAmount = lastWeekSessionType.Reps[k].Amount;
             bool thisRepHasSymbols = false, lastWeeksRepHasSymbols = false;
 
             //Just grab the digits, incase there are symbols.
@@ -143,25 +150,40 @@ namespace AMN.Controller
             if (lastWeeksRepHasSymbols == true) repValue = Convert.ToInt32(repDigits[0]);
             else lastWeekRepValue = Convert.ToInt32(lastWeekRepAmount);
 
-            //amount difference
-            int value = repValue - lastWeekRepValue;
+            //differences
+            int amount = repValue - lastWeekRepValue;
+            double weight = thisWeightValue - lastWeekWeightValue;
 
             //set colours based on value
-            SetRepColor(exSessionType, k, value);
+            exSessionType = SetRepColor(exSessionType, k, amount);
+            exSessionType = SetWeightColor(exSessionType, k, weight);
 
-            if (value > 0) exSessionType.Reps[k].AmountDifference = $"+{value}";
-            else exSessionType.Reps[k].AmountDifference = $"{value}";
+            if (amount > 0) exSessionType.Reps[k].AmountDifference = $"+{amount}";
+            else exSessionType.Reps[k].AmountDifference = $"{amount}";
+            if (weight > 0) exSessionType.Reps[k].WeightDifference = string.Format("+{0:0.00}kg", weight);
+            else exSessionType.Reps[k].WeightDifference = string.Format("{0:0.00}kg", weight);
 
 
             //save back
             exSession.Exercises[i].Types[j] = exSessionType;
         }
 
-        private static void SetRepColor(ExerciseType exSessionType, int k, int value)
+        private ExerciseType SetRepColor(ExerciseType exSessionType, int k, int value)
         {
             if (value > 0) exSessionType.Reps[k].amountColor = System.Drawing.Color.Green;
             if (value < 0) exSessionType.Reps[k].amountColor = System.Drawing.Color.Red;
             if (value == 0) exSessionType.Reps[k].amountColor = System.Drawing.Color.Yellow;
+
+            return exSessionType;
+        }
+
+        private ExerciseType SetWeightColor(ExerciseType exSessionType, int k, double value)
+        {
+            if (value > 0) exSessionType.Reps[k].weightColor = System.Drawing.Color.Green;
+            if (value < 0) exSessionType.Reps[k].weightColor = System.Drawing.Color.Red;
+            if (value == 0) exSessionType.Reps[k].weightColor = System.Drawing.Color.Yellow;
+
+            return exSessionType;
         }
     }
 }
