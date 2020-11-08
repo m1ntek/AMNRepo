@@ -292,7 +292,9 @@ namespace AMN.View
                     TextColor = Color.White,
                     HeightRequest = 35,
                     WidthRequest = 50,
-                    CornerRadius = 5
+                    CornerRadius = 5,
+                    Padding = new Thickness(0, 0),
+                    VerticalOptions = LayoutOptions.Center
                 };
 
                 Button btnDelete = new Button()
@@ -305,7 +307,9 @@ namespace AMN.View
                     TextColor = Color.White,
                     HeightRequest = 35,
                     WidthRequest = 50,
-                    CornerRadius = 5
+                    CornerRadius = 5,
+                    Padding = new Thickness(0, 0),
+                    VerticalOptions = LayoutOptions.Center
                 };
 
                 btnEdit.Clicked += (sender, args) =>
@@ -353,7 +357,7 @@ namespace AMN.View
             Grid.SetColumn(lbl, gridColumn);
             Grid.SetColumnSpan(lbl, columnSpan);
             lbl.Text = name;
-            lbl.FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label));
+            lbl.FontSize = Device.GetNamedSize(NamedSize.Default, typeof(Label));
 
             return lbl;
         }

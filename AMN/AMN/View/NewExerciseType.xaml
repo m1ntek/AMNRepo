@@ -46,7 +46,10 @@
                                             TextColor="White"
                                             BorderColor="White"
                                             BorderWidth="1"
-                                            FontSize="Micro"/>
+                                            FontSize="Micro"
+                                            HeightRequest="35"
+                                            VerticalOptions="Center"
+                                            Padding="0,0"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>

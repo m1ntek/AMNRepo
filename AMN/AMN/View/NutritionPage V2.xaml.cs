@@ -47,7 +47,7 @@ namespace AMN.View
 
         private async Task SetLoadoutName()
         {
-            lblLoadoutHeader.Text = MasterModel.currentUser.SelectedLoadout.LoadoutName;
+            lblLoadoutHeader.Text = loadout.LoadoutName;
         }
 
         private async Task DisplayGoalRatios()

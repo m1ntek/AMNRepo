@@ -16,55 +16,32 @@ namespace AMN
         public LoginPage()
         {
             InitializeComponent();
-
-
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
+
             //Set top bar colour
             ((NavigationPage)Application.Current.MainPage).BarBackgroundColor = Color.DarkRed;
             ((NavigationPage)Application.Current.MainPage).BarTextColor = Color.White;
         }
 
-        //private void RememberMeRow_Tapped(object sender, EventArgs e)
-        //{
-        //    //toggle remember me
-        //    if (chkboxRememberMe.IsChecked == false)
-        //    {
-        //        chkboxRememberMe.IsChecked = true;
-        //    }
-        //    else
-        //    {
-        //        chkboxRememberMe.IsChecked = false;
-        //    }
-        //}
-
         private async void Login_Clicked(object sender, EventArgs e)
         {
-            //if (chkboxRememberMe.IsChecked == true)
-            //{
-                
-            //}
             try
             {
                 actInd.IsRunning = true;
                 await MasterModel.DAL.SignInUserAsync(entryEmail.Text, entryPassword.Text);
-                //MasterModel.currentUser.email = entryEmail.Text;
-                //MasterModel.currentUser = await MasterModel.DAL.GetUserData();
                 ClearForm();
                 Navigation.InsertPageBefore(new MainPage(), this);
                 await Navigation.PopAsync();
                 actInd.IsRunning = false;
-                //MasterController.currentUser.rememberMe = chkboxRememberMe.IsChecked;
-                //await MasterModel.DAL.UpdateUser();
             }
             catch (Exception exception)
             {
                 actInd.IsRunning = false;
-                //string reason = MasterModel.DAL.SimplifyException(exception.Message);
-                await DisplayAlert("Error", exception.Message, "OK");
+                await DisplayAlert("Error", MasterModel.DAL.SimplifyException(exception.Message), "OK");
             }
         }
 
@@ -91,34 +68,5 @@ namespace AMN
                 Login_Clicked(sender, e);
             }
         }
-
-        //tester login
-        private async void Button_Clicked(object sender, EventArgs e)
-        {
-            try
-            {
-                actInd.IsRunning = true;
-                await MasterModel.DAL.SignInUserAsync("tester@123.com", "123123qwe");
-                //MasterModel.currentUser.email = entryEmail.Text;
-                //MasterModel.currentUser = await MasterModel.DAL.GetUserData();
-                ClearForm();
-                Navigation.InsertPageBefore(new MainPage(), this);
-                await Navigation.PopAsync();
-                actInd.IsRunning = false;
-                //MasterController.currentUser.rememberMe = chkboxRememberMe.IsChecked;
-                //await MasterModel.DAL.UpdateUser();
-            }
-            catch (Exception exception)
-            {
-                actInd.IsRunning = false;
-                //string reason = MasterModel.DAL.SimplifyException(exception.Message);
-                await DisplayAlert("Error", exception.Message, "OK");
-            }
-        }
-
-        //private void chkboxRememberMe_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        //{
-        //    RememberMeRow_Tapped(sender, e);
-        //}
     }
 }

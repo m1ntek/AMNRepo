@@ -23,13 +23,13 @@
                 </Frame>
             </StackLayout>
             <!-- Loadout meals -->
-            <Label Text="Meals" HorizontalTextAlignment="Center" TextColor="White" FontSize="Default"/>
+            <Label Text="Meals" HorizontalTextAlignment="Center" TextColor="White" FontSize="Large"/>
             <ListView x:Name="lvLoadoutMeals" ItemsSource="{Binding newLoadoutMeals}" ItemTapped="lvLoadoutMeals_ItemTapped" Header="Loadout Meals" Margin="50,0"
                       HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Frame BackgroundColor="DarkRed" Margin="0,5,0,5">
+                            <Frame BackgroundColor="DarkRed" Margin="0,0,0,10">
                                 <Label Text="{Binding mealName}" FontSize="Default" VerticalOptions="Center" TextColor="White"/>
                             </Frame>
                         </ViewCell>
@@ -41,11 +41,14 @@
                     BorderColor="White"
                     BorderWidth="1"
                     TextColor="White"/>
-            <Grid Margin="50,0,50,10" HeightRequest="100">
+            <Grid Margin="50,0,50,10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
                 <Button Text="Delete Loadout" Clicked="DeleteLoadout_Clicked"
                         BackgroundColor="DarkRed"
                         BorderColor="White"

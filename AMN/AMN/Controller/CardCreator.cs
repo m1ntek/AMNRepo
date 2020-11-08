@@ -94,7 +94,7 @@ namespace AMN.Controller
             Grid.SetColumn(lbl, gridColumn);
             Grid.SetColumnSpan(lbl, columnSpan);
             lbl.Text = name;
-            lbl.FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label));
+            lbl.FontSize = Device.GetNamedSize(NamedSize.Default, typeof(Label));
 
             return lbl;
         }

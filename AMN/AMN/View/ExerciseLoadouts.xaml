@@ -25,7 +25,7 @@
                                             <Button Text="Del" Clicked="Del_Clicked"
                                                 CommandParameter="{Binding}"
                                                 HorizontalOptions="EndAndExpand"
-                                                    FontSize="Default"
+                                                    FontSize="Micro"
                                                     BackgroundColor="Black"
                                                     BorderColor="White"
                                                     BorderWidth="1"

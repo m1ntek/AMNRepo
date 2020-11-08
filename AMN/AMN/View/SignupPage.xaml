@@ -22,8 +22,10 @@
                         <Entry x:Name="entryPassword2" IsPassword="True" FontSize="Default" TextColor="White"
                            Placeholder="Confirm password..."
                                PlaceholderColor="LightGray" Margin="20,0"></Entry>
-                        <Button Text="Sign Up" Margin="0,20,0,0" BackgroundColor="DarkRed" TextColor="White" FontSize="Medium"
-                            Clicked="Signup_Clicked"></Button>
+                        <Button Text="Sign Up" Margin="0,20,0,0" BackgroundColor="DarkRed" TextColor="White" FontSize="Default"
+                            Clicked="Signup_Clicked"
+                                BorderColor="White"
+                                BorderWidth="1"></Button>
                     </StackLayout>
                 </Frame>
             </StackLayout>

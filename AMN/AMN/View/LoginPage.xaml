@@ -17,19 +17,17 @@
                         <Entry x:Name="entryPassword" IsPassword="True" FontSize="Default" TextColor="White"
                            Placeholder="Your password..." Unfocused="entryPassword_Unfocused"
                            PlaceholderColor="LightGray" Margin="20,0"></Entry>
-                    <Grid Margin="0,20,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Button Text="Sign Up" BackgroundColor="DarkRed" TextColor="White" FontSize="Medium"
+                        <Grid Margin="0,20,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Button Text="Sign Up" BackgroundColor="DarkRed" TextColor="White" FontSize="Default"
                                 Clicked="Signup_Clicked" BorderColor="White" BorderWidth="1"></Button>
-                        <Button Text="Login" BackgroundColor="DarkRed" TextColor="White" FontSize="Medium"
+                            <Button Text="Login" BackgroundColor="DarkRed" TextColor="White" FontSize="Default"
                             Clicked="Login_Clicked" Grid.Column="1" BorderColor="White" BorderWidth="1"></Button>
-                    </Grid>
-                    <!-- tester button -->
-                    <Button Text="Test Login" Clicked="Button_Clicked" IsVisible="true"></Button>
-                </StackLayout>
+                        </Grid>
+                    </StackLayout>
                 </Frame>
                 <ActivityIndicator x:Name="actInd" IsRunning="False" VerticalOptions="Center" Margin="0,20,0,0"></ActivityIndicator>
             </StackLayout>

@@ -34,7 +34,13 @@
                                 TextColor="White"
                                 BackgroundColor="DarkRed"
                                 BorderColor="White"
-                                BorderWidth="1"/>
+                                BorderWidth="1"
+                                FontSize="Micro"
+                                Padding="0,0"
+                                HeightRequest="35"
+                                WidthRequest="50"
+                                HorizontalOptions="End"
+                                VerticalOptions="Center"/>
                     </Grid>
                     </Frame>
                     <StackLayout Margin="0,10">

@@ -37,7 +37,7 @@
                             <ViewCell>
                                 <Frame BackgroundColor="DarkRed" Padding="10,10" Margin="0,5,0,5" CornerRadius="5">
                                 <StackLayout VerticalOptions="CenterAndExpand">
-                                    <Label Text="{Binding Name}" TextColor="White"/>
+                                    <Label Text="{Binding Name}" TextColor="White" FontSize="Default"/>
                                     <StackLayout BindableLayout.ItemsSource="{Binding Types}">
                                         <BindableLayout.ItemTemplate>
                                             <DataTemplate>

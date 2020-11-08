@@ -57,8 +57,10 @@
                         </StackLayout>
                         </Frame>
                         <Button Text="Edit Goals" Grid.Row="6" Grid.ColumnSpan="4" FontSize="Micro" Clicked="EditGoals_Clicked"
-                                BackgroundColor="DarkRed"
                                 TextColor="White"
+                                Padding="0,0"
+                                BackgroundColor="Black"
+                                BorderColor="White"
                                 BorderWidth="1"/>
                     </Grid>
                 </Frame>
@@ -80,10 +82,13 @@
                             TextColor="White"/>
                 </Grid>
                 <!-- The day's meals -->
-                <StackLayout Margin="50,10">
+                <StackLayout Margin="50,10,50,10">
                     <Label x:Name="lblLoadoutHeader" Text="Current Meal Loadout" HorizontalTextAlignment="Center"
-                           TextColor="White"/>
-                    <StackLayout x:Name="loadoutMealsStack"></StackLayout>
+                           TextColor="White"
+                           Margin="0,5,0,5"
+                           FontSize="Large"/>
+                    <StackLayout x:Name="loadoutMealsStack"
+                                 Margin="0,5,0,10"></StackLayout>
                     <Button Text="Clear Progress" Clicked="ClearProgress_Clicked"
                             BackgroundColor="DarkRed"
                             BorderColor="White"

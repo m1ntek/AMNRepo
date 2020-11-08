@@ -30,19 +30,22 @@
                                                                 <!-- type label and picker-->
                                                                 <StackLayout Orientation="Horizontal">
                                                                     <Label Text="Type:" VerticalTextAlignment="Center"
-                                                               TextColor="White"/>
+                                                                           TextColor="White"
+                                                                           FontSize="Default"/>
                                                                     <Label Text="{Binding Name}" VerticalTextAlignment="Center"
-                                                               TextColor="White"/>
+                                                                           TextColor="White"
+                                                                           FontSize="Default"/>
                                                                     <Button Text="Del" HorizontalOptions="EndAndExpand"
-                                                            WidthRequest="50" CommandParameter="{Binding}"
-                                                            Clicked="DelType_Clicked"
-                                                                BackgroundColor="Black"
-                                                                BorderColor="White"
-                                                                BorderWidth="1"
-                                                                TextColor="White"
-                                                                Padding="0,0"
-                                                                HeightRequest="30"
-                                                                VerticalOptions="Center"/>
+                                                                            WidthRequest="50" CommandParameter="{Binding}"
+                                                                            Clicked="DelType_Clicked"
+                                                                            BackgroundColor="Black"
+                                                                            BorderColor="White"
+                                                                            BorderWidth="1"
+                                                                            TextColor="White"
+                                                                            Padding="0,0"
+                                                                            HeightRequest="35"
+                                                                            VerticalOptions="Center"
+                                                                            FontSize="Default"/>
                                                                 </StackLayout>
 
                                                                 <!-- reps -->
@@ -71,21 +74,20 @@
                                                                                             BorderWidth="1"
                                                                                             TextColor="White"
                                                                                             Padding="0,0"
-                                                                                            HeightRequest="30"
-                                                                                            VerticalOptions="Center"/>
+                                                                                            HeightRequest="35"
+                                                                                            VerticalOptions="Center"
+                                                                                            FontSize="Micro"/>
                                                                                 </StackLayout>
                                                                             </StackLayout>
                                                                         </DataTemplate>
                                                                     </BindableLayout.ItemTemplate>
                                                                 </StackLayout>
                                                                 <Button Text="Add" Clicked="Add_Clicked" CommandParameter="{Binding}"
-                                                                HorizontalOptions="End"
                                                                 BackgroundColor="Black"
                                                                 BorderColor="White"
                                                                 BorderWidth="1"
                                                                 TextColor="White"
                                                                 Padding="0,0"
-                                                                HeightRequest="40"
                                                                 VerticalOptions="Center"/>
                                                             </StackLayout>
                                                         </Frame>
@@ -104,12 +106,13 @@
                         TextColor="White"
                         BorderColor="White"
                         BorderWidth="1"/>
+                <!-- This button is solely for testing -->
                 <Button Text="Log 7 Days Ago" Clicked="Button_Clicked"
                         BackgroundColor="DarkGoldenrod"
                         TextColor="White"
                         BorderColor="White"
                         BorderWidth="1"
-                        IsVisible="True"/>
+                        IsVisible="false"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

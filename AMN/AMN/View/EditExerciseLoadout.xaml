@@ -49,7 +49,8 @@
                                                     BorderColor="White"
                                                     BorderWidth="1"
                                                     Padding="0,0"
-                                                    HeightRequest="30"/>
+                                                    HeightRequest="30"
+                                                    FontSize="Micro"/>
                                         </Grid>
                                         <StackLayout BindableLayout.ItemsSource="{Binding Types}">
                                             <BindableLayout.ItemTemplate>

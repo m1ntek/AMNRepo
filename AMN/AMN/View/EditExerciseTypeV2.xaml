@@ -47,7 +47,10 @@
                                             BackgroundColor="DarkRed"
                                             BorderColor="White"
                                             BorderWidth="1"
-                                            FontSize="Micro"/>
+                                            FontSize="Micro"
+                                            Padding="0,0"
+                                            HeightRequest="35"
+                                            VerticalOptions="Center"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>

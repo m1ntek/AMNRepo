@@ -21,12 +21,12 @@
                                         <ColumnDefinition></ColumnDefinition>
                                         <ColumnDefinition Width="0.33*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
-                                    <Label Text="Name:" VerticalOptions="Center" FontSize="Medium" TextColor="White"/>
+                                    <Label Text="Name:" VerticalOptions="Center" FontSize="Default" TextColor="White"/>
                                     <Entry x:Name="entryMealName" Grid.Column="1" VerticalOptions="Center" Unfocused="entryMealName_Unfocused"
                                            TextColor="White"/>
                                 </Grid>
                             </StackLayout>
-                            <Button x:Name="btnDeleteMeal" Text="Delete Meal" BackgroundColor="DarkRed" TextColor="White" FontSize="Medium" Clicked="btnDeleteMeal_Clicked"
+                            <Button x:Name="btnDeleteMeal" Text="Delete Meal" BackgroundColor="DarkRed" TextColor="White" FontSize="Default" Clicked="btnDeleteMeal_Clicked"
                                 BorderColor="White"
                                 BorderWidth="1"></Button>
 
@@ -54,8 +54,8 @@
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
                                 <!-- name -->
-                                <Label Text="Name:" FontSize="Medium" TextColor="White" VerticalOptions="Center"></Label>
-                                <Entry x:Name="entryName" Grid.Column="1" Unfocused="entryName_Unfocused"></Entry>
+                                <Label Text="Name:" FontSize="Default" TextColor="White" VerticalOptions="Center"></Label>
+                                <Entry x:Name="entryName" Grid.Column="1" Unfocused="entryName_Unfocused" TextColor="White"></Entry>
                                 <ActivityIndicator x:Name="actName" IsRunning="False" Grid.Column="2"></ActivityIndicator>
 
                                 <!-- grouped form -->
@@ -73,11 +73,11 @@
                                         <RowDefinition Height="50"></RowDefinition>
                                     </Grid.RowDefinitions>
                                     <!-- left column -->
-                                    <Label Text="Energy:" FontSize="Medium" TextColor="White" Grid.Row="4" VerticalOptions="Center"></Label>
-                                    <Label Text="Carbs:" FontSize="Medium" TextColor="White" Grid.Row="2" VerticalOptions="Center"></Label>
-                                    <Label Text="Fat:" FontSize="Medium" TextColor="White" Grid.Row="3" VerticalOptions="Center"></Label>
-                                    <Label Text="Protein:" FontSize="Medium" TextColor="White" Grid.Row="1" VerticalOptions="Center"></Label>
-                                    <Label Text="Serving:" FontSize="Medium" TextColor="White" Grid.Row="0" VerticalOptions="Center"></Label>
+                                    <Label Text="Energy:" FontSize="Default" TextColor="White" Grid.Row="4" VerticalOptions="Center"></Label>
+                                    <Label Text="Carbs:" FontSize="Default" TextColor="White" Grid.Row="2" VerticalOptions="Center"></Label>
+                                    <Label Text="Fat:" FontSize="Default" TextColor="White" Grid.Row="3" VerticalOptions="Center"></Label>
+                                    <Label Text="Protein:" FontSize="Default" TextColor="White" Grid.Row="1" VerticalOptions="Center"></Label>
+                                    <Label Text="Serving:" FontSize="Default" TextColor="White" Grid.Row="0" VerticalOptions="Center"></Label>
 
                                     <!-- mid column -->
                                     <Entry x:Name="entryEnergy" Grid.Column="1" Grid.Row="4" Focused="entryEnergy_Focused" Unfocused="entryEnergy_Unfocused" Keyboard="Numeric" TextColor="White"></Entry>
@@ -87,19 +87,19 @@
                                     <Entry x:Name="entryServing" Grid.Column="1" Grid.Row="0" Focused="entryServing_Focused" Unfocused="entryServing_Unfocused" Keyboard="Numeric" TextColor="White"></Entry>
 
                                     <!-- right column -->
-                                    <Label Text="kcal" FontSize="Medium" TextColor="White" Grid.Row="4" Grid.Column="2" VerticalOptions="Center"></Label>
-                                    <Label Text="g" FontSize="Medium" TextColor="White" Grid.Row="1" Grid.Column="2" VerticalOptions="Center"></Label>
-                                    <Label Text="g" FontSize="Medium" TextColor="White" Grid.Row="2" Grid.Column="2" VerticalOptions="Center"></Label>
-                                    <Label Text="g" FontSize="Medium" TextColor="White" Grid.Row="3" Grid.Column="2" VerticalOptions="Center"></Label>
-                                    <Label Text="g" FontSize="Medium" TextColor="White" Grid.Row="0" Grid.Column="2" VerticalOptions="Center"></Label>
+                                    <Label Text="kcal" FontSize="Default" TextColor="White" Grid.Row="4" Grid.Column="2" VerticalOptions="Center"></Label>
+                                    <Label Text="g" FontSize="Default" TextColor="White" Grid.Row="1" Grid.Column="2" VerticalOptions="Center"></Label>
+                                    <Label Text="g" FontSize="Default" TextColor="White" Grid.Row="2" Grid.Column="2" VerticalOptions="Center"></Label>
+                                    <Label Text="g" FontSize="Default" TextColor="White" Grid.Row="3" Grid.Column="2" VerticalOptions="Center"></Label>
+                                    <Label Text="g" FontSize="Default" TextColor="White" Grid.Row="0" Grid.Column="2" VerticalOptions="Center"></Label>
                                 </Grid>
                             </Grid>
                             <!-- stack buttons on top of each other and switch between them -->
                             <Grid>
-                                <Button x:Name="btnAddFood" Text="Add food item" BackgroundColor="DarkRed" TextColor="White" FontSize="Medium" Clicked="addFood_Clicked"
+                                <Button x:Name="btnAddFood" Text="Add food item" BackgroundColor="DarkRed" TextColor="White" FontSize="Default" Clicked="addFood_Clicked"
                                 BorderColor="White"
                                 BorderWidth="1"></Button>
-                                <Button x:Name="btnEditFood" Text="Edit food item" BackgroundColor="DarkRed" TextColor="White" FontSize="Medium" Clicked="editFood_Clicked" IsVisible="False"
+                                <Button x:Name="btnEditFood" Text="Edit food item" BackgroundColor="DarkRed" TextColor="White" FontSize="Default" Clicked="editFood_Clicked" IsVisible="False"
                                 BorderColor="White"
                                 BorderWidth="1"></Button>
                             </Grid>
@@ -115,13 +115,13 @@
                         <Label Text="Fat: 230/250 g" FontSize="Medium" TextColor="White"></Label>
                     </StackLayout>-->
                 </StackLayout>
-                <Button x:Name="btnSaveAndAdd" Text="Save and Add" Margin="50,0" BackgroundColor="DarkRed" TextColor="White" FontSize="Medium" Clicked="SaveMeal_Clicked"
+                <Button x:Name="btnSaveAndAdd" Text="Save and Add" Margin="50,0" BackgroundColor="DarkRed" TextColor="White" FontSize="Default" Clicked="SaveMeal_Clicked"
                         BorderColor="White"
                         BorderWidth="1"></Button>
-                <Button x:Name="btnJustAdd" Text="Just Add" Margin="50,0" BackgroundColor="DarkRed" TextColor="White" FontSize="Medium" Clicked="AddMeal_Clicked"
+                <Button x:Name="btnJustAdd" Text="Just Add" Margin="50,0" BackgroundColor="DarkRed" TextColor="White" FontSize="Default" Clicked="AddMeal_Clicked"
                         BorderColor="White"
                         BorderWidth="1"></Button>
-                <Button x:Name="btnSave" Text="Save" Margin="50,0" BackgroundColor="DarkRed" TextColor="White" FontSize="Medium" Clicked="Save_Clicked" IsVisible="False"
+                <Button x:Name="btnSave" Text="Save" Margin="50,0" BackgroundColor="DarkRed" TextColor="White" FontSize="Default" Clicked="Save_Clicked" IsVisible="False"
                         BorderColor="White"
                         BorderWidth="1"></Button>
                 <ActivityIndicator x:Name="actSave" IsRunning="False"></ActivityIndicator>

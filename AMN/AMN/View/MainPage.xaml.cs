@@ -16,11 +16,6 @@ namespace AMN
         public MainPage()
         {
             InitializeComponent();
-            //GetUserData();
-            //UpdateFooter();
-
-
-
         }
 
         protected override async void OnAppearing()
@@ -28,12 +23,6 @@ namespace AMN
             base.OnAppearing();
             await UpdateFooter();
         }
-
-        //private async Task GetUserData()
-        //{
-        //    MasterModel.currentUser = await MasterModel.DAL.GetUserDataAsync();
-        //    UpdateFooter();
-        //}
 
         private async void Nutrition_Clicked(object sender, EventArgs e)
         {
