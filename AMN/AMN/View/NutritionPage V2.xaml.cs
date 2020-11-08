@@ -199,13 +199,8 @@ namespace AMN.View
                     //update db per tick
                     await MasterModel.DAL.SaveGoalAsync(dailyGoal);
                     await MasterModel.DAL.SaveGoalProgressAsync(goalProgress);
-                    //await MasterModel.DAL.SaveLoadoutMeals(loadoutMeals);
                     loadout.Meals = loadoutMeals;
                     await MasterModel.DAL.SaveSelectedLoadout(loadout);
-
-                    //await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
-
-
                 };
 
                 stack.Children.Add(chkbxEaten);
@@ -233,19 +228,13 @@ namespace AMN.View
                 meal.isEaten = false;
             }
 
-            //MasterModel.currentUser.GoalProgress.energyKcal = 0;
-            //MasterModel.currentUser.GoalProgress.protein = 0;
-            //MasterModel.currentUser.GoalProgress.carbs = 0;
-            //MasterModel.currentUser.GoalProgress.fat = 0;
-
             goalProgress.energyKcal = 0;
             goalProgress.protein = 0;
             goalProgress.carbs = 0;
             goalProgress.fat = 0;
 
-            //MasterModel.currentUser.SelectedLoadout.Meals = loadoutMeals;
+            await MasterModel.DAL.SaveGoalProgressAsync(goalProgress);
             await MasterModel.DAL.SaveSelectedLoadoutMealsAsync(loadoutMeals);
-            //await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
             await RefreshPageAsync();
         }
 
