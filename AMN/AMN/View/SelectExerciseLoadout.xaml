@@ -8,6 +8,7 @@
                 <Label Text="Exercise Loadouts" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
             </Frame>
             <StackLayout Margin="50,10">
+                
                 <!-- Loadout List -->
                 <ListView ItemsSource="{Binding ELoadouts}" HasUnevenRows="True" SeparatorVisibility="None"
                           ItemTapped="Loadout_ItemTapped">

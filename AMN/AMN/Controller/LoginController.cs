@@ -8,6 +8,8 @@ using Xamarin.Essentials;
 
 namespace AMN.Controller
 {
+    //This class was initially planned to do more things...
+    //Now it just handles the footer.
     public class LoginController
     {
         public string UpdateFooter(string user)

@@ -32,21 +32,6 @@ namespace AMN.View
             entryProtein.Text = MasterModel.currentFoodResult.resultProtein.ToString("0.00");
         }
 
-        private async Task ActNameOn()
-        {
-            actName.IsRunning = true;
-        }
-
-        private async Task ActNameOff()
-        {
-            actName.IsRunning = false;
-        }
-
-        private async Task QueryAPI()
-        {
-            MasterModel.apiC.Query(entryName.Text);
-        }
-
         private void SetDefaultServing()
         {
             double serving, kcal, carb, fat, protein;
@@ -67,17 +52,12 @@ namespace AMN.View
 
         private async void entryName_Unfocused(object sender, FocusEventArgs e)
         {
-            //actName.IsRunning = true;
-
-            ActNameOn();
-
-            //var queryTask = QueryAPI();
+            actName.IsRunning = true;
 
             if (string.IsNullOrEmpty(entryName.Text) == false)
             {
                 try
                 {
-                    //await queryTask;
                     await MasterModel.apiC.Query(entryName.Text);
                     MasterModel.currentFoodResult = new Model.FoodResult();
                     SetDefaultServing();
@@ -88,10 +68,7 @@ namespace AMN.View
                     //do nothing
                 }
             }
-
-            ActNameOff();
-                
-            
+            actName.IsRunning = false;
         }
 
         private void entryEnergy_Focused(object sender, FocusEventArgs e)
@@ -278,6 +255,7 @@ namespace AMN.View
                     MasterModel.currentFoodResult.resultServing = item.serving;
 
                     UpdateText();
+
                     //updatetext method doesn't do name
                     entryName.Text = item.name;
 
@@ -377,12 +355,12 @@ namespace AMN.View
                 }
                 catch (Exception ex)
                 {
-                    DisplayAlert("Error", $"Something went wrong:\n{ex.Message}", "OK");
+                    await DisplayAlert("Error", $"Something went wrong:\n{ex.Message}", "OK");
                 }
             }
             else
             {
-                DisplayAlert("Not Logged In", "Please login from the main page to save meals", "OK");
+                await DisplayAlert("Not Logged In", "Please login from the main page to save meals", "OK");
             }
         }
 

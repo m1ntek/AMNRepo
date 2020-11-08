@@ -3,12 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AMN.View.SavedMealsPage">
     <ContentPage.Content>
-        <!--<ScrollView>-->
         <StackLayout BackgroundColor="Black">
             <Frame BackgroundColor="DarkRed" Padding="24" CornerRadius="0">
                 <Label Text="Saved Meals" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
             </Frame>
             <ActivityIndicator x:Name="actInd"></ActivityIndicator>
+            
             <!-- Saved meals -->
             <ListView x:Name="lvSavedMeals" ItemsSource="{Binding savedMeals}" ItemTapped="Meal_ItemTapped" HasUnevenRows="True">
                 <ListView.ItemTemplate>
@@ -27,12 +27,12 @@
                 </ListView.ItemTemplate>
             </ListView>
             <!-- Saved meals end -->
+            
             <Button Text="New Meal" Clicked="NewMeal_Clicked" Margin="50,10"
                     BackgroundColor="DarkRed"
                     BorderColor="White"
                     BorderWidth="1"
                     TextColor="White"/>
         </StackLayout>
-        <!--</ScrollView>-->
     </ContentPage.Content>
 </ContentPage>

@@ -16,13 +16,11 @@ namespace AMN.View
     {
         public List<Loadout> userLoadouts { get; set; }
         private MacroNutrients goalProgress;
-        //public Loadout selectedLoadout { get; set; }
         public SelectLoadoutPage()
         {
             InitializeComponent();
             userLoadouts = new List<Loadout>();
             goalProgress = new MacroNutrients();
-            //selectedLoadout = new Loadout();
         }
 
         protected async override void OnAppearing()
@@ -39,11 +37,7 @@ namespace AMN.View
         {
             try
             {
-                //MasterModel.currentUser = await MasterModel.DAL.GetUserDataAsync();
-                //userLoadouts = MasterModel.currentUser.Loadouts;
-
                 userLoadouts = await MasterModel.DAL.GetLoadoutsAsync();
-                //selectedLoadout = await MasterModel.DAL.GetSelectedLoadoutAsync();
                 goalProgress = await MasterModel.DAL.GetGoalProgressAsync();
             }
             catch (Exception ex)
@@ -55,6 +49,7 @@ namespace AMN.View
         private async Task<string> MealSummary(int index)
         {
             string summary = "Select this loadout?\n\n";
+
             //calculate macro totals for each meal while adding to summary string
             for (int i = 0; i < userLoadouts[index].Meals.Count; i++)
             {

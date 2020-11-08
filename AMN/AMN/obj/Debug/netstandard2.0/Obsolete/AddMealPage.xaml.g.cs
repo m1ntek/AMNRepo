@@ -8,12 +8,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("AMN.View.AddMealPage.xaml", "View/AddMealPage.xaml", typeof(global::AMN.View.AddMealPage))]
+[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("AMN.Obsolete.AddMealPage.xaml", "Obsolete/AddMealPage.xaml", typeof(global::AMN.View.AddMealPage))]
 
 namespace AMN.View {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("View\\AddMealPage.xaml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Obsolete\\AddMealPage.xaml")]
     public partial class AddMealPage : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]

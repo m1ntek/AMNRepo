@@ -8,12 +8,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("AMN.View.EditExerciseType.xaml", "View/EditExerciseType.xaml", typeof(global::AMN.View.EditExerciseType))]
+[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("AMN.Obsolete.EditExerciseType.xaml", "Obsolete/EditExerciseType.xaml", typeof(global::AMN.View.EditExerciseType))]
 
 namespace AMN.View {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("View\\EditExerciseType.xaml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Obsolete\\EditExerciseType.xaml")]
     public partial class EditExerciseType : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]

@@ -30,8 +30,6 @@ namespace AMN.View
 
         private async Task GetUserDataAsync()
         {
-            //MasterModel.currentUser = await MasterModel.DAL.GetUserDataAsync();
-            //dailyGoal = MasterModel.currentUser.DailyGoal;
             dailyGoal = await MasterModel.DAL.GetGoalAsync();
         }
 
@@ -54,9 +52,7 @@ namespace AMN.View
         private async void Save_Clicked(object sender, EventArgs e)
         {
             await ConvertAndSaveMultipleToDoubleAsync();
-            //MasterModel.currentUser.DailyGoal = dailyGoal;
             await MasterModel.DAL.SaveGoalAsync(dailyGoal);
-            //await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
             
             await Navigation.PopAsync();
         }

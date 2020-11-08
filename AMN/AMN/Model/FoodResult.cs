@@ -19,12 +19,14 @@ namespace AMN.Model
             //had to implement this to fix a bug... made it a little messy
             try
             {
-                resultName = MasterModel.apiC.queryResult.ingredients[0].parsed[0].foodMatch;
-                resultKcal = MasterModel.apiC.queryResult.ingredients[0].parsed[0].nutrients.ENERC_KCAL.quantity;
-                resultCarb = MasterModel.apiC.queryResult.ingredients[0].parsed[0].nutrients.CHOCDF.quantity;
-                resultProtein = MasterModel.apiC.queryResult.ingredients[0].parsed[0].nutrients.PROCNT.quantity;
-                resultFat = MasterModel.apiC.queryResult.ingredients[0].parsed[0].nutrients.FAT.quantity;
-                resultServing = MasterModel.apiC.queryResult.ingredients[0].parsed[0].weight;
+                var apiQueryResult = MasterModel.apiC.queryResult.ingredients[0].parsed[0];
+
+                resultName = apiQueryResult.foodMatch;
+                resultKcal = apiQueryResult.nutrients.ENERC_KCAL.quantity;
+                resultCarb = apiQueryResult.nutrients.CHOCDF.quantity;
+                resultProtein = apiQueryResult.nutrients.PROCNT.quantity;
+                resultFat = apiQueryResult.nutrients.FAT.quantity;
+                resultServing = apiQueryResult.weight;
             }
             catch (Exception)
             {

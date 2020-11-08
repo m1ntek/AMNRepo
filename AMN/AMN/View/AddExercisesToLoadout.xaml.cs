@@ -72,10 +72,5 @@ namespace AMN.View
         {
             await Navigation.PopAsync();
         }
-
-        private void Label_Unfocused(object sender, FocusEventArgs e)
-        {
-
-        }
     }
 }

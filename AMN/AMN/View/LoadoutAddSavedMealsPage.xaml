@@ -8,6 +8,7 @@
                 <Label x:Name="lblHeader" Text="Saved Meals" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
             </Frame>
             <ActivityIndicator x:Name="actInd"></ActivityIndicator>
+            
             <!-- Loadout meals -->
             <ListView x:Name="lvSavedMeals" ItemsSource="{Binding SavedMeals}" ItemTapped="lvSavedMeals_ItemTapped" Margin="50,0"
                       HasUnevenRows="True">

@@ -106,14 +106,6 @@
                         </StackLayout>
                     </Frame>
                     <StackLayout x:Name="stackFoodItems"></StackLayout>
-                    <!-- Not a core function, on hold (out of scope)
-                    <StackLayout x:Name="macroSummary" BackgroundColor="DarkMagenta" Padding="10,10">
-                        <Label Text="Today's Goal: " FontSize="Medium" TextColor="White"></Label>
-                        <Label Text="Energy: 1234/1500 kcal" FontSize="Medium" TextColor="White"></Label>
-                        <Label Text="Protein: 333/500 g" FontSize="Medium" TextColor="White"></Label>
-                        <Label Text="Carbs: 432/500 g" FontSize="Medium" TextColor="White"></Label>
-                        <Label Text="Fat: 230/250 g" FontSize="Medium" TextColor="White"></Label>
-                    </StackLayout>-->
                 </StackLayout>
                 <Button x:Name="btnSaveAndAdd" Text="Save and Add" Margin="50,0" BackgroundColor="DarkRed" TextColor="White" FontSize="Default" Clicked="SaveMeal_Clicked"
                         BorderColor="White"

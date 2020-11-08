@@ -27,7 +27,6 @@ namespace AMN.View
         {
             base.OnAppearing();
 
-            //await MasterModel.DAL.SaveSelectedExerciseLoadoutAsync(CurrentLoadout);
             await GetSelectedExerciseLoadout();
             Refresh();
         }
@@ -43,7 +42,6 @@ namespace AMN.View
             try
             {
                 CurrentLoadout = await MasterModel.DAL.GetSelectedExerciseLoadoutAsync();
-                //LoadoutExercises = new ObservableCollection<Exercise>(CurrentLoadout.Exercises);
             }
             catch (Exception ex)
             {

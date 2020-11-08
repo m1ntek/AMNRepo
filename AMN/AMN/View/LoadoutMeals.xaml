@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AMN.View.LoadoutMeals">
     <ContentPage.Content>
-        <!--<ScrollView>-->
         <StackLayout BackgroundColor="Black">
             <Frame BackgroundColor="DarkRed" Padding="24" CornerRadius="0">
                 <Label x:Name="lblHeader" Text="New Loadout" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
@@ -22,6 +21,7 @@
                     </Grid>
                 </Frame>
             </StackLayout>
+            
             <!-- Loadout meals -->
             <Label Text="Meals" HorizontalTextAlignment="Center" TextColor="White" FontSize="Large"/>
             <ListView x:Name="lvLoadoutMeals" ItemsSource="{Binding newLoadoutMeals}" ItemTapped="lvLoadoutMeals_ItemTapped" Header="Loadout Meals" Margin="50,0"
@@ -61,6 +61,5 @@
                         TextColor="White"/>
             </Grid>
         </StackLayout>
-        <!--</ScrollView>-->
     </ContentPage.Content>
 </ContentPage>

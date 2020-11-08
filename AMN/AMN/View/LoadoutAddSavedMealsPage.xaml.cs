@@ -34,8 +34,6 @@ namespace AMN.View
         {
             try
             {
-                //MasterModel.currentUser = await MasterModel.DAL.GetUserDataAsync();
-                //SavedMeals = MasterModel.currentUser.Meals;
                 SavedMeals = await MasterModel.DAL.GetSavedMealsAsync();
             }
             catch (Exception ex)
@@ -62,21 +60,8 @@ namespace AMN.View
             if (addMeal == true)
             {
                 await MasterModel.DAL.SaveNewTempLoadoutMealAsync(SavedMeals[e.ItemIndex]);
-                
-                //MasterModel.currentUser.TempLoadoutMeals.Add(SavedMeals[e.ItemIndex]);
-                //await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
-                //newLoadoutMeals.Add(MasterModel.tempMeal);
-                //lvLoadoutMeals.ItemsSource = newLoadoutMeals;
             }
         }
-        //private void SetMealTotals(int index)
-        //{
-        //    //prevents continuous appending of text
-        //    SavedMeals[index].totalEnergy = "Energy: ";
-        //    SavedMeals[index].totalProtein = "Protein: ";
-        //    SavedMeals[index].totalCarbs = "Carbs: ";
-        //    SavedMeals[index].totalFat = "Fat: ";
-        //}
 
         private string MealItemSummary(int index)
         {

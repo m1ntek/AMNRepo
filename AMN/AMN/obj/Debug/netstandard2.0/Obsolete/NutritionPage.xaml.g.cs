@@ -8,12 +8,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("AMN.View.NutritionPage.xaml", "View/NutritionPage.xaml", typeof(global::AMN.View.NutritionPage))]
+[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("AMN.Obsolete.NutritionPage.xaml", "Obsolete/NutritionPage.xaml", typeof(global::AMN.View.NutritionPage))]
 
 namespace AMN.View {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("View\\NutritionPage.xaml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Obsolete\\NutritionPage.xaml")]
     public partial class NutritionPage : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]

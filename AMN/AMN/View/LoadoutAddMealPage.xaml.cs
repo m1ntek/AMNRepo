@@ -66,21 +66,6 @@ namespace AMN.View
             entryProtein.Text = MasterModel.currentFoodResult.resultProtein.ToString("0.00");
         }
 
-        private async Task ActNameOn()
-        {
-            actName.IsRunning = true;
-        }
-
-        private async Task ActNameOff()
-        {
-            actName.IsRunning = false;
-        }
-
-        private async Task QueryAPI()
-        {
-            MasterModel.apiC.Query(entryName.Text);
-        }
-
         //set to 1 gram on default
         private void SetDefaultServing()
         {
@@ -102,16 +87,12 @@ namespace AMN.View
 
         private async void entryName_Unfocused(object sender, FocusEventArgs e)
         {
-            //actName.IsRunning = true;
-            ActNameOn();
-
-            //var queryTask = QueryAPI();
+            actName.IsRunning = true;
 
             if (string.IsNullOrEmpty(entryName.Text) == false)
             {
                 try
                 {
-                    //await queryTask;
                     await MasterModel.apiC.Query(entryName.Text);
                     MasterModel.currentFoodResult = new Model.FoodResult();
                     SetDefaultServing();
@@ -123,9 +104,7 @@ namespace AMN.View
                 }
             }
 
-            ActNameOff();
-                
-            
+            actName.IsRunning = false;
         }
 
         private void entryEnergy_Focused(object sender, FocusEventArgs e)
@@ -323,6 +302,7 @@ namespace AMN.View
                     MasterModel.currentFoodResult.resultServing = item.serving;
 
                     UpdateText();
+
                     //updatetext method doesn't do name
                     entryName.Text = item.name;
 
@@ -400,7 +380,6 @@ namespace AMN.View
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            //MasterModel.currentUser = await MasterModel.DAL.GetUserDataAsync();
             savedMeals = await MasterModel.DAL.GetSavedMealsAsync();
             LoadMealName();
             LoadFoodItems();
@@ -432,7 +411,6 @@ namespace AMN.View
                 {
                     if(MasterModel.tempMeal.index == -1)
                     {
-                        //MasterModel.tempMeal.mealName = await DisplayPromptAsync("Meal Name", "Name your meal.");
                         bool isValid = MasterModel.vd.FormEntriesValid(new string[]
                         {
                             entryMealName.Text
@@ -451,24 +429,18 @@ namespace AMN.View
                             return;
                         }
 
-
-                        //MasterModel.currentUser.Meals.Add(MasterModel.tempMeal);
                         await MasterModel.DAL.SaveNewMealAsync(MasterModel.tempMeal);
                     }
                     else
                     {
-                        //MasterModel.currentUser.Meals[MasterModel.tempMeal.index] = MasterModel.tempMeal;
-                        //savedMeals[MasterModel.tempMeal.index] = MasterModel.tempMeal;
                         await MasterModel.DAL.SaveMealV3Async(MasterModel.tempMeal, savedMeals[MasterModel.tempMeal.index].key);
                     }
 
                     actSave.IsRunning = true;
 
                     //add it to loadout too
-                    //MasterModel.currentUser.TempLoadoutMeals.Add(MasterModel.tempMeal);
                     await MasterModel.DAL.SaveNewTempLoadoutMealAsync(MasterModel.tempMeal);
 
-                    //await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
                     await Navigation.PopAsync();
                 }
                 catch (Exception ex)
@@ -521,26 +493,22 @@ namespace AMN.View
                     List<Meal> tempLoadoutMeals = await MasterModel.DAL.GetTempLoadoutMealsAsync();
                     string selectedMealKey = tempLoadoutMeals[MasterModel.tempMeal.index].key;
                     await MasterModel.DAL.DeleteTempLoadoutMealAsync(selectedMealKey);
-                    //MasterModel.currentUser.TempLoadoutMeals.RemoveAt(MasterModel.tempMeal.index);
-                    //MasterModel.currentUser.Meals.RemoveAt(MasterModel.tempMeal.index);
 
                     //Don't check this if it's a brand new loadout.
                     if(currentLoadoutIndex != -1)
                     {
-                        //List<Meal> selectedLoadoutMeals = await MasterModel.DAL.GetSelectedLoadoutMeals();
                         Loadout selectedLoadout = await MasterModel.DAL.GetSelectedLoadoutAsync();
                         List<Loadout> loadouts = await MasterModel.DAL.GetLoadoutsAsync();
+
                         //update the selected loadout's meals as well if the currently editing loadout is the same
                         if (loadouts[currentLoadoutIndex].LoadoutId
                         == selectedLoadout.LoadoutId)
                         {
                             string selectedLoadoutMealKey = selectedLoadout.Meals[MasterModel.tempMeal.index].key;
                             await MasterModel.DAL.DeleteSelectedLoadoutMealAsync(selectedLoadoutMealKey);
-                            //MasterModel.currentUser.SelectedLoadout.Meals.RemoveAt(MasterModel.tempMeal.index);
                         }
                     }
 
-                    //await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
                     await Navigation.PopAsync();
                 }
                 catch (Exception ex)
@@ -553,18 +521,12 @@ namespace AMN.View
         //just add button
         private async void AddMeal_Clicked(object sender, EventArgs e)
         {
-            //MasterModel.currentUser.TempLoadoutMeals.Add(MasterModel.tempMeal);
-            //await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
-
             await MasterModel.DAL.SaveNewTempLoadoutMealAsync(MasterModel.tempMeal);
             await Navigation.PopAsync();
         }
 
         private async void Save_Clicked(object sender, EventArgs e)
         {
-            //MasterModel.currentUser.TempLoadoutMeals[MasterModel.tempMeal.index] = MasterModel.tempMeal;
-            //await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
-
             List<Meal> tempLoadoutMeals = await MasterModel.DAL.GetTempLoadoutMealsAsync();
             string tempLoadoutMealKey = tempLoadoutMeals[MasterModel.tempMeal.index].key;
             await MasterModel.DAL.SaveTempLoadoutMealAsync(MasterModel.tempMeal, tempLoadoutMealKey);

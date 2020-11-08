@@ -8,8 +8,8 @@
                 <Frame BackgroundColor="DarkRed" Padding="24" CornerRadius="0">
                     <Label Text="Advanced Macro Nutrients" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
                 </Frame>
-                <Frame BackgroundColor="#10FFFFFF" Margin="30,50,30,5" CornerRadius="5">
-                <StackLayout VerticalOptions="CenterAndExpand">
+                <Frame BackgroundColor="#11FFFFFF" Margin="30,50,30,5" CornerRadius="5">
+                    <StackLayout VerticalOptions="CenterAndExpand">
                         <Label FontSize="Large" Text="Login" FontAttributes="Bold" TextColor="White"></Label>
                         <Entry x:Name="entryEmail" FontSize="Default" TextColor="White"
                            Placeholder="Your e-mail address..." Keyboard="Email" Unfocused="entryEmail_Unfocused"

@@ -175,19 +175,21 @@ namespace AMN.View
         {
             //Log end time
             SelectedLoadout.EndTime = DateTime.Now;
+
             //Set summary string of exercise time range.
             SelectedLoadout.StartToEnd = $"{SelectedLoadout.StartTime.ToShortTimeString()} - {SelectedLoadout.EndTime.ToShortTimeString()}";
+
             //Set weight strings for bindings
             SelectedLoadout = await SetWeightStrings(SelectedLoadout);
 
             WeeklyComparisons wComparison = new WeeklyComparisons(SelectedLoadout);
             var comparedLoadout = await wComparison.CompareLastWeeksSession();
-            /*if (comparedLoadout != null) */SelectedLoadout = comparedLoadout;
+            SelectedLoadout = comparedLoadout;
             await MasterModel.DAL.SaveNewExerciseSessionLogAsync(SelectedLoadout);
             await Navigation.PopAsync();
         }
 
-        private async void Button_Clicked(object sender, EventArgs e) //test button
+        private async void Button_Clicked(object sender, EventArgs e) //Button for testing weekly comparisons
         {
             var starttime = DateTime.Now;
             starttime = starttime.Subtract(TimeSpan.FromDays(7));

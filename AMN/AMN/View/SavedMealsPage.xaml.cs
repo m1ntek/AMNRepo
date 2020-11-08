@@ -27,9 +27,7 @@ namespace AMN.View
             base.OnAppearing();
 
             actInd.IsVisible = true;
-            //savedMeals.Clear();
             await GetMeals();
-            //BindingContext = this;
             lvSavedMeals.ItemsSource = savedMeals;
             actInd.IsVisible = false;
         }
@@ -38,8 +36,6 @@ namespace AMN.View
         {
             try
             {
-                //MasterModel.currentUser = await MasterModel.DAL.GetUserDataAsync();
-                //savedMeals = MasterModel.currentUser.Meals;
                 savedMeals = await MasterModel.DAL.GetSavedMealsAsync();
             }
             catch (Exception ex)
@@ -55,17 +51,10 @@ namespace AMN.View
             await Navigation.PushAsync(new AddMealPageV2());
         }
 
-        private async void MealDelete_Clicked(object sender, EventArgs e)
+        private void MealDelete_Clicked(object sender, EventArgs e)
         {
             var mealItem = (Meal)sender;
-
-            //MasterModel.currentUser.Meals.RemoveAt(mealItem.index);
-            //await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
-            //savedMeals = MasterModel.currentUser.Meals;
-
             savedMeals.RemoveAt(mealItem.index);
-            //await MasterModel.DAL.DeleteSelectedMealAsync(savedMeals[mealItem.index].Key);
-
             lvSavedMeals.ItemsSource = savedMeals;
         }
 

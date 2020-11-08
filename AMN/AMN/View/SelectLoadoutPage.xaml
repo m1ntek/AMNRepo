@@ -8,6 +8,7 @@
                 <Label Text="Meal Loadouts" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
             </Frame>
             <ActivityIndicator x:Name="actInd"></ActivityIndicator>
+            
             <!-- Saved meals -->
             <ListView x:Name="lvLoadouts" ItemsSource="{Binding loadouts}" ItemTapped="lvLoadouts_ItemTapped"
                       HasUnevenRows="True">
@@ -23,6 +24,7 @@
                 </ListView.ItemTemplate>
             </ListView>
             <!-- Saved meals end -->
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

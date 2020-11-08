@@ -16,7 +16,6 @@ namespace AMN.Model
         public List<Meal> Meals;
         public Loadout SelectedLoadout;
         public List<Meal> TempLoadoutMeals;
-        //public Loadout TempLoadout;
         public List<Loadout> Loadouts;
         public ExerciseLoadout SelectedExerciseLoadout;
         public List<ExerciseLoadout> ExerciseLoadouts;
@@ -31,7 +30,6 @@ namespace AMN.Model
             Meals = new List<Meal>();
             Loadouts = new List<Loadout>();
             TempLoadoutMeals = new List<Meal>();
-            //TempLoadout = new Loadout();
             SelectedLoadout = new Loadout();
             ExerciseLoadouts = new List<ExerciseLoadout>();
             SavedExercises = new List<Exercise>();

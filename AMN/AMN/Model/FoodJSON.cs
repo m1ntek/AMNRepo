@@ -6,7 +6,6 @@ namespace AMN.Model
 {
     public class FoodJSON
     {
-        // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse); 
         public class ENERCKCAL
         {
             public string label { get; set; }
@@ -784,9 +783,5 @@ namespace AMN.Model
             public List<Ingredient> ingredients { get; set; }
             public TotalNutrientsKCal totalNutrientsKCal { get; set; }
         }
-
-
-
-
     }
 }

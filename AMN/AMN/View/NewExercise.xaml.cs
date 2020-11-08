@@ -157,10 +157,5 @@ namespace AMN.View
         {
             entryRep.Focus();
         }
-
-        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-
-        }
     }
 }

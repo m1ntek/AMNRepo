@@ -7,6 +7,7 @@
             <Frame BackgroundColor="DarkRed" Padding="24" CornerRadius="0">
                 <Label Text="Meal Loadouts" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
             </Frame>
+            
             <!-- Saved meals -->
             <ListView ItemsSource="{Binding userLoadouts}" ItemTapped="lvLoadouts_ItemTapped" HasUnevenRows="True">
                 <ListView.ItemTemplate>
@@ -20,6 +21,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            
             <!-- Saved meals end -->
             <Button Text="New Loadout" Clicked="NewLoadout_Clicked" Margin="50,10"
                     BackgroundColor="DarkRed"

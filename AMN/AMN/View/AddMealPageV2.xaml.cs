@@ -37,16 +37,6 @@ namespace AMN.View
             entryProtein.Text = MasterModel.currentFoodResult.resultProtein.ToString("0.00");
         }
 
-        private async Task ActNameOn()
-        {
-            actName.IsRunning = true;
-        }
-
-        private async Task ActNameOff()
-        {
-            actName.IsRunning = false;
-        }
-
         //set to 1 gram on default
         private void SetDefaultServing()
         {
@@ -68,16 +58,12 @@ namespace AMN.View
 
         private async void entryName_Unfocused(object sender, FocusEventArgs e)
         {
-            //actName.IsRunning = true;
-            await ActNameOn();
-
-            //var queryTask = QueryAPI();
+            actName.IsRunning = true;
 
             if (string.IsNullOrEmpty(entryName.Text) == false)
             {
                 try
                 {
-                    //await queryTask;
                     await MasterModel.apiC.Query(entryName.Text);
                     MasterModel.currentFoodResult = new Model.FoodResult();
                     SetDefaultServing();
@@ -89,9 +75,7 @@ namespace AMN.View
                 }
             }
 
-            await ActNameOff();
-                
-            
+            actName.IsRunning = false;
         }
 
         private void entryEnergy_Focused(object sender, FocusEventArgs e)
@@ -289,6 +273,7 @@ namespace AMN.View
                     MasterModel.currentFoodResult.resultServing = item.serving;
 
                     UpdateText();
+
                     //updatetext method doesn't do name
                     entryName.Text = item.name;
 
@@ -397,7 +382,6 @@ namespace AMN.View
                     //If a new meal
                     if(MasterModel.tempMeal.index == -1)
                     {
-                        //MasterModel.tempMeal.mealName = await DisplayPromptAsync("Meal Name", "Name your meal.");
                         bool isValid = MasterModel.vd.FormEntriesValid(new string[]
                         {
                             entryMealName.Text
@@ -416,9 +400,9 @@ namespace AMN.View
                             return;
                         }
 
-                        //MasterModel.currentUser.Meals.Add(MasterModel.tempMeal);
                         await MasterModel.DAL.SaveNewMealAsync(MasterModel.tempMeal);
                     }
+
                     //If an existing meal
                     else
                     {
@@ -427,9 +411,6 @@ namespace AMN.View
                     }
 
                     actSave.IsRunning = true;
-                    //await MasterModel.DAL.SaveMealV3(MasterModel.tempMeal);
-                    //MasterModel.currentUser.Meals.Add(MasterModel.tempMeal);
-                    //await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
                     await Navigation.PopAsync();
                 }
                 catch (Exception ex)
@@ -481,7 +462,6 @@ namespace AMN.View
                 {
                     MasterModel.currentUser.Meals.RemoveAt(MasterModel.tempMeal.index);
                     await MasterModel.DAL.DeleteMealAsync(MasterModel.tempMeal.key);
-                    //await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
                     await Navigation.PopAsync();
                 }
                 catch (Exception)

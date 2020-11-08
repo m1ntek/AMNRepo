@@ -47,7 +47,7 @@
     <EmbeddedResource Update="View\AddExercisesToSelectedLoadout.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\AddMealPage.xaml">
+    <EmbeddedResource Update="Obsolete\AddMealPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\EditExerciseLoadout.xaml">
@@ -56,7 +56,7 @@
     <EmbeddedResource Update="View\EditExercisePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\EditExerciseType.xaml">
+    <EmbeddedResource Update="Obsolete\EditExerciseType.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\EditGoalsPage.xaml">
@@ -86,7 +86,7 @@
     <EmbeddedResource Update="View\NewSession.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\NutritionPage.xaml">
+    <EmbeddedResource Update="Obsolete\NutritionPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\Progress.xaml">

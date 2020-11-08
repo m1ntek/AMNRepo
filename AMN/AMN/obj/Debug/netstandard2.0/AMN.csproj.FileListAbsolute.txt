@@ -5,11 +5,9 @@ C:\Users\Min\source\repos\AMNRepo\AMN\AMN\bin\Debug\netstandard2.0\AMN.pdb
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\App.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\AddExercisesToLoadout.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\AddExercisesToSelectedLoadout.xaml.g.cs
-C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\AddMealPage.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\AddMealPageV2.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\EditExerciseLoadout.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\EditExercisePage.xaml.g.cs
-C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\EditExerciseType.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\EditExerciseTypeV2.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\EditGoalsPage.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\ExerciseLoadouts.xaml.g.cs
@@ -25,7 +23,6 @@ C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\NewExerc
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\NewExerciseType.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\NewSession.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\NutritionPage V2.xaml.g.cs
-C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\NutritionPage.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\Progress.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\SavedMealsPage.xaml.g.cs
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\View\SelectedExercise.xaml.g.cs
@@ -40,3 +37,6 @@ C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\AMN.dll
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\ref\AMN.dll
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\AMN.pdb
 C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\AMN.csprojAssemblyReference.cache
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\Obsolete\AddMealPage.xaml.g.cs
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\Obsolete\EditExerciseType.xaml.g.cs
+C:\Users\Min\source\repos\AMNRepo\AMN\AMN\obj\Debug\netstandard2.0\Obsolete\NutritionPage.xaml.g.cs

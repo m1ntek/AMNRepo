@@ -16,7 +16,6 @@ namespace AMN.View
     public partial class Progress : ContentPage
     {
         public List<ExerciseLoadout> ExSessions { get; set; }
-        //public WeeklyComparisons WComparisons { get; set; }
         public Progress()
         {
             InitializeComponent();
@@ -27,7 +26,6 @@ namespace AMN.View
         {
             base.OnAppearing();
             ExSessions = await MasterModel.DAL.GetExerciseSessionsAsync();
-            //WComparisons = new WeeklyComparisons(ExSessions);
             Refresh();
         }
 

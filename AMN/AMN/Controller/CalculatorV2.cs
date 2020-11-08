@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace AMN.Controller
 {
+    /* Created a lot of async methods in an attempt to
+     * process more things on background threads. */
     public class CalculatorV2
     {
         private static Meal thisMeal;
@@ -13,13 +15,11 @@ namespace AMN.Controller
         public static async Task<AMN.Model.Meal> MacroTotalsAsync(AMN.Model.Meal meal)
         {
             thisMeal = meal;
-            //List<Task> calcTasks = new List<Task>();
             await ResetTotalsAsync();
             for (int i = 0; i < thisMeal.items.Count; i++)
             {
                 await CalcTotalsAsync(i);
             }
-            ///await Task.WhenAll(calcTasks);
             return thisMeal;
         }
 
@@ -42,13 +42,11 @@ namespace AMN.Controller
         public static async Task<Loadout> MacroTotalsLoadoutAsync(Loadout loadout)
         {
             thisLoadout = loadout;
-            //List<Task> calcTasks = new List<Task>();
             await ResetTotalsLoadoutAsync();
             for (int i = 0; i < thisLoadout.Meals.Count; i++)
             {
                 await CalcTotalsLoadoutAsync(i);
             }
-            ///await Task.WhenAll(calcTasks);
             return thisLoadout;
         }
 

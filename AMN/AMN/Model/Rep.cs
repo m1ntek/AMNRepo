@@ -4,6 +4,7 @@ using System.Text;
 
 namespace AMN.Model
 {
+    //Class for exercise repetition data.
     public class Rep
     {
         public System.Drawing.Color amountColor { get; set; }

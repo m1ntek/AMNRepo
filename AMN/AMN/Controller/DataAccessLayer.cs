@@ -15,6 +15,7 @@ using System.Linq;
 using System.Collections.ObjectModel;
 using System.Reactive.Linq;
 
+//Class to handle database logic.
 public class DataAccessLayer
 {
     public Person user;
@@ -27,7 +28,6 @@ public class DataAccessLayer
     private readonly FirebaseAuthProvider authProvider;
     private FirebaseAuthLink auth;
 
-    //constructor
     public DataAccessLayer()
     {
         apiKey = "AIzaSyCo4orwpS8lGQJsBLISIYjPiY5eOaEs5lA";
@@ -122,11 +122,6 @@ public class DataAccessLayer
         return await fb.Child("Users").Child(auth.User.LocalId).Child("DailyGoal").OnceSingleAsync<MacroNutrients>();
     }
 
-    //public async Task<MacroNutrients> GetGoalV2Async()
-    //{
-    //    return await fb.Child("Users").Child(GetCurrentLocalId()).Child("DailyGoal").OnceSingleAsync<MacroNutrients>();
-    //}
-
     public async Task<MacroNutrients> GetGoalProgressAsync()
     {
         return await fb.Child("Users").Child(GetCurrentLocalId()).Child("GoalProgress").OnceSingleAsync<MacroNutrients>();
@@ -162,13 +157,6 @@ public class DataAccessLayer
             Child("TempLoadoutMeals").
             PutAsync(new List<Meal>());
     }
-    //public async Task SaveTempLoadoutAsync(Loadout loadout)
-    //{
-    //    await fb.Child("Users").
-    //        Child(auth.User.LocalId).
-    //        Child("TempLoadout").
-    //        PutAsync(loadout);
-    //}
 
     public async Task SaveNewTempLoadoutMealAsync(Meal loadoutMeal)
     {
@@ -196,11 +184,11 @@ public class DataAccessLayer
             PutAsync(loadoutMeals);
     }
 
+    //Obsolete method
     public async Task SaveMeal()
     {
         //get mealId from firebase
         //save meal as incremented mealId, save new mealId to firebase
-
         await GetIdsAsync();
         await fb.Child("Meals").Child(idGen.totalMealIds.ToString("0000")).PutAsync(MasterModel.tempMeal.items);
         ++idGen.totalMealIds;
@@ -211,13 +199,12 @@ public class DataAccessLayer
     {
         //get mealId from firebase
         //save meal as incremented mealId, save new mealId to firebase
-
         await GetIdsAsync();
         await fb.Child("Users").Child(GetCurrentLocalId()).Child("Meals").PutAsync(MasterModel.currentUser.Meals);
         ++idGen.totalMealIds;
         await SaveIdsAsync();
     }
-    public async Task SaveNewMealAsync(Meal meal) //testing post async
+    public async Task SaveNewMealAsync(Meal meal)
     {
         await GetIdsAsync();
         await fb.Child("Users").Child(auth.User.LocalId).Child("Meals").PostAsync(meal);
@@ -225,7 +212,7 @@ public class DataAccessLayer
         await SaveIdsAsync();
     }
 
-    public async Task SaveMealV3Async(Meal meal, string key) //testing post async
+    public async Task SaveMealV3Async(Meal meal, string key)
     {
         await fb.Child("Users").Child(auth.User.LocalId).Child("Meals").Child(key).PutAsync(meal);
     }
@@ -268,7 +255,6 @@ public class DataAccessLayer
         }).ToList();
     }
 
-    //This one works, other similar methods currently does not retrieve data successfully.
     public async Task<List<Exercise>> GetSavedExercisesAsync()
     {
         return (await fb.Child("Users")
@@ -422,16 +408,9 @@ public class DataAccessLayer
             .OnceSingleAsync<ExerciseLoadout>());
     }
 
+    //A method for testing progress logs and weekly comparisons feature.
     public async Task<ExerciseLoadout> GetLastWeeksExerciseLoadoutAsync(string previousWeekDate)
     {
-        //return (fb.Child("Users")
-        //    .Child(auth.User.LocalId)
-        //    .Child("ExerciseSessions")
-        //    .OrderByKey()
-        //    .StartAt(previousWeekDate)
-        //    .LimitToFirst(1)
-        //    .OnceSingleAsync<ExerciseLoadout>());
-
         var tempList = (await fb.Child("Users")
             .Child(auth.User.LocalId)
             .Child("ExerciseSessions")

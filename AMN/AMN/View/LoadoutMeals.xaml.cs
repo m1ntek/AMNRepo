@@ -14,18 +14,15 @@ namespace AMN.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoadoutMeals : ContentPage
     {
-        //public List<Meal> savedMeals { get; set; }
         public List<Meal> newLoadoutMeals { get; set; }
         List<Loadout> loadouts;
         Loadout selectedLoadout;
         private List<Task> tasks;
-        //public string headerTitle { get; set; }
         public int currentLoadoutIndex { get; set; } = -1;
 
         public LoadoutMeals(string headerTitle)
         {
             InitializeComponent();
-            //savedMeals = new List<Meal>();
             newLoadoutMeals = new List<Meal>();
             loadouts = new List<Loadout>();
             selectedLoadout = new Loadout();
@@ -34,7 +31,6 @@ namespace AMN.View
         public LoadoutMeals(string headerTitle, int index)
         {
             InitializeComponent();
-            //savedMeals = new List<Meal>();
             newLoadoutMeals = new List<Meal>();
             lblHeader.Text = headerTitle;
             entryLoadoutName.Text = headerTitle;
@@ -44,7 +40,6 @@ namespace AMN.View
         public LoadoutMeals(string headerTitle, int index, List<Task> _tasks)
         {
             InitializeComponent();
-            //savedMeals = new List<Meal>();
             newLoadoutMeals = new List<Meal>();
             lblHeader.Text = headerTitle;
             entryLoadoutName.Text = headerTitle;
@@ -56,12 +51,10 @@ namespace AMN.View
         {
             base.OnAppearing();
 
-            //actInd.IsVisible = true;
             await GetMeals();
-            //lvSavedMeals.ItemsSource = savedMeals;
-            //lvLoadoutMeals.ItemsSource = newLoadoutMeals;
-            
 
+            //An attempt to improve loading times.
+            //Load all meals asynchronously.
             while (tasks.Count>0)
             {
                 Task finished = await Task.WhenAny(tasks);
@@ -71,19 +64,12 @@ namespace AMN.View
 
                 tasks.Remove(finished);
             }
-
-
-            //actInd.IsVisible = false;
         }
 
         private async Task GetMeals()
         {
             try
             {
-                //MasterModel.currentUser = await MasterModel.DAL.GetUserDataAsync();
-                //savedMeals = MasterModel.currentUser.Meals;
-                //newLoadoutMeals = MasterModel.currentUser.TempLoadoutMeals;
-
                 newLoadoutMeals = await MasterModel.DAL.GetTempLoadoutMealsAsync();
             }
             catch (Exception ex)
@@ -92,26 +78,10 @@ namespace AMN.View
             }
         }
 
-        //private void SetMealTotals()
-        //{
-        //    //prevents continuous appending of text
-        //    MasterModel.tempMeal.totalEnergy = "Energy: ";
-        //    MasterModel.tempMeal.totalProtein = "Protein: ";
-        //    MasterModel.tempMeal.totalCarbs = "Carbs: ";
-        //    MasterModel.tempMeal.totalFat = "Fat: ";
-        //}
-
-
         private async void Meal_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            //MasterModel.tempMeal = savedMeals[e.ItemIndex];
             MasterModel.tempMeal.index = e.ItemIndex;
-            
-            //var macroTotalsTask = CalculatorV2.MacroTotals(MasterModel.tempMeal);
 
-            //SetMealTotals();
-            //MasterModel.tempMeal = CalculatorV2.MacroTotals(MasterModel.tempMeal);
-            //MasterModel.tempMeal = await macroTotalsTask;
             MasterModel.tempMeal = await CalculatorV2.MacroTotalsAsync(MasterModel.tempMeal);
 
             bool addMeal = await DisplayAlert(
@@ -122,13 +92,9 @@ namespace AMN.View
                 string.Format("{0:0.00} g", MasterModel.tempMeal.totalProtein) + "\n" +
                 string.Format("{0:0.00} g", MasterModel.tempMeal.totalCarbs) + "\n" +
                 string.Format("{0:0.00} g", MasterModel.tempMeal.totalFat) + "\n", "Yes", "No");
-            //number format not working for some reason
 
             if(addMeal == true)
             {
-                //newLoadoutMeals.Add(MasterModel.tempMeal);
-                //lvLoadoutMeals.ItemsSource = newLoadoutMeals;
-
                 await MasterModel.DAL.SaveNewTempLoadoutMealAsync(MasterModel.tempMeal);
             }
         }
@@ -149,20 +115,10 @@ namespace AMN.View
             var mealItem = (Meal)sender;
 
             await MasterModel.DAL.DeleteMealAsync(mealItem.key);
-
-            //MasterModel.currentUser.Meals.RemoveAt(mealItem.index);
-            //await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
-            //savedMeals = MasterModel.currentUser.Meals;
-
-            //lvSavedMeals.ItemsSource = savedMeals;
         }
 
         private async void AddMeal_Clicked(object sender, EventArgs e)
         {
-            //MasterModel.currentUser.TempLoadoutMeals = newLoadoutMeals;
-            //MasterModel.tempMeal = new Meal();
-            //await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
-
             MasterModel.tempMeal = new Meal();
 
             await Navigation.PushAsync(new LoadoutAddSavedMealsPage());
@@ -172,7 +128,6 @@ namespace AMN.View
         {
             bool isValid = MasterModel.vd.FormEntriesValid(new string[] { entryLoadoutName.Text });
             await MasterModel.DAL.GetIdsAsync();
-            //newLoadoutMeals = MasterModel.currentUser.TempLoadoutMeals;
 
             if (isValid == false)
             {
@@ -186,15 +141,9 @@ namespace AMN.View
             }
             else
             {
-                //new loadout or replace existing logic
+                //new loadout or replace existing loadout logic
                 if(currentLoadoutIndex == -1)
                 {
-                    //MasterModel.currentUser.Loadouts.Add(new Loadout()
-                    //{
-                    //    LoadoutName = entryLoadoutName.Text,
-                    //    Meals = newLoadoutMeals,
-                    //    LoadoutId = MasterModel.DAL.idGen.totalLoadoutIds
-                    //});
                     await MasterModel.DAL.SaveNewLoadout(new Loadout
                     {
                         LoadoutName = entryLoadoutName.Text,
@@ -205,9 +154,6 @@ namespace AMN.View
                 }
                 else
                 {
-                    //MasterModel.currentUser.Loadouts[currentLoadoutIndex].LoadoutName = entryLoadoutName.Text;
-                    //MasterModel.currentUser.Loadouts[currentLoadoutIndex].Meals = newLoadoutMeals;
-
                     loadouts = await MasterModel.DAL.GetLoadoutsAsync();
                     loadouts[currentLoadoutIndex].LoadoutName = entryLoadoutName.Text;
                     loadouts[currentLoadoutIndex].Meals = newLoadoutMeals;
@@ -232,17 +178,12 @@ namespace AMN.View
             }
             
             await MasterModel.DAL.SaveIdsAsync();
-
-            //await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
             
             await Navigation.PopAsync();
         }
 
         private async void lvLoadoutMeals_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            //MasterModel.tempMeal = MasterModel.currentUser.TempLoadoutMeals[e.ItemIndex];
-            //MasterModel.tempMeal.index = e.ItemIndex;
-
             List<Meal> tempLoadoutMeals = await MasterModel.DAL.GetTempLoadoutMealsAsync();
             MasterModel.tempMeal = tempLoadoutMeals[e.ItemIndex];
             MasterModel.tempMeal.index = e.ItemIndex;
@@ -257,10 +198,8 @@ namespace AMN.View
 
             if(deleteConfirmed == true)
             {
-                //MasterModel.currentUser.Loadouts.RemoveAt(currentLoadoutIndex);
                 loadouts = await MasterModel.DAL.GetLoadoutsAsync();
                 await MasterModel.DAL.DeleteLoadoutAsync(loadouts[currentLoadoutIndex].Key);
-                //await MasterModel.DAL.SaveUserDataAsync(MasterModel.currentUser);
                 await Navigation.PopAsync();
             }
         }

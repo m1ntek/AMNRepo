@@ -8,12 +8,12 @@ namespace AMN.Model
     {
         public string Key { get; set; }
         public string Name { get; set; }
-        //public List<Workout> WorkoutTypes { get; set; }
         public List<ExerciseType> Types { get; set; }
 
+        //Could not clarify if constructors to initiate variables
+        //were allowed in models.
         public Exercise()
         {
-            //WorkoutTypes = new List<Workout>();
             Types = new List<ExerciseType>();
         }
     }

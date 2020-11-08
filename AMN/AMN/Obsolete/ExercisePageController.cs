@@ -40,35 +40,6 @@ namespace AMN.Controller
             {
                 await App.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
             }
-
-            //Temp initial data and push to db
-            //Workout testWorkout = new Workout();
-            //testWorkout.Weight = 100;
-            //testWorkout.Reps = 10;
-
-            //Exercise ex1 = new Exercise();
-            //ex1.Name = "Flat bench";
-            //ex1.WorkoutTypes = new List<Workout>();
-            //ex1.WorkoutTypes.Add(testWorkout);
-
-            //Exercise ex2 = new Exercise();
-            //ex2.Name = "Standing military press";
-            //ex2.WorkoutTypes = new List<Workout>();
-            //ex2.WorkoutTypes.Add(testWorkout);
-
-            //ExerciseLoadout CurrentExerciseLoadout = new ExerciseLoadout();
-            //CurrentExerciseLoadout.Exercises = new List<Exercise>();
-            //CurrentExerciseLoadout.Exercises.Add(ex1);
-            //CurrentExerciseLoadout.Exercises.Add(ex2);
-
-            //try
-            //{
-            //    await MasterModel.DAL.SaveSelectedExerciseLoadoutAsync(CurrentExerciseLoadout);
-            //}
-            //catch (Exception ex)
-            //{
-            //    await App.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
-            //}
         }
 
         private async Task GetSelectedExerciseLoadout()

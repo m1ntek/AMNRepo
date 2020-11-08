@@ -12,9 +12,7 @@ namespace AMN.Model
         public int mealId;
         public string key;
         public string userLocalId;
-        //public string mealName;
         public string mealName { get; set; }
-        //public List<FoodItem> items;
         public List<FoodItem> items { get; set; }
         public double totalEnergy { get; set; }
         public double totalProtein { get; set; }

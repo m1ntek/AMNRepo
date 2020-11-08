@@ -17,13 +17,11 @@ namespace AMN.View
         public string Key { get; set; }
         public Exercise _Exercise { get; set; }
         public ExerciseType _ExerciseType { get; set; }
-        private string repeatableLblText;
 
         public NewExerciseType(string key)
         {
             InitializeComponent();
             Key = key;
-            repeatableLblText = "Rep:";
         }
 
         private void Refresh()
@@ -49,7 +47,7 @@ namespace AMN.View
             BindingContext = this;
         }
 
-        private async void btnAddRep_Clicked(object sender, EventArgs e)
+        private void btnAddRep_Clicked(object sender, EventArgs e)
         {
             AddRep();
         }

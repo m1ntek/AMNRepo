@@ -27,21 +27,25 @@ namespace AMN
             {
                 try
                 {
+                    actInd.IsRunning = true;
                     await MasterModel.DAL.SignUpUserAsync(entryEmail.Text, entryPassword1.Text);
-                    await DisplayAlert("Successful", "New account created successfully.", "OK");
                     await MasterModel.DAL.SignInUserAsync(entryEmail.Text, entryPassword1.Text);
                     await MasterModel.DAL.UpdateUserAsync(entryEmail.Text);
+                    actInd.IsRunning = false;
+                    await DisplayAlert("Successful", "New account created successfully.", "OK");
                     ClearForm();
                     await Navigation.PopToRootAsync();
                 }
                 catch (Exception exception)
                 {
+                    actInd.IsRunning = false;
                     string reason = MasterModel.DAL.SimplifyException(exception.Message);
                     await DisplayAlert("Error", reason, "OK");
                 }
             }
             else
             {
+                actInd.IsRunning = false;
                 await DisplayAlert("Invalid", MasterModel.vd.error, "OK");
                 ClearPasswords();
             }

@@ -14,7 +14,6 @@ namespace AMN.Controller
         public WeeklyComparisons(ExerciseLoadout _exSession)
         {
             exSession = _exSession;
-            //lastWeeksSession = new ExerciseLoadout();
         }
 
         public async Task<ExerciseLoadout> CompareLastWeeksSession()
@@ -46,6 +45,8 @@ namespace AMN.Controller
             return exSession;
         }
 
+        //Ended up with this giant method, would have preferred to re-factor or re-design
+        //but could not in time.
         public async Task<ExerciseLoadout> SetDifferences()
         {
             //within each exercise

@@ -22,7 +22,6 @@ namespace AMN.View
         public NutritionPageV2()
         {
             InitializeComponent();
-            //loadoutMeals = new List<Meal>();
             dailyGoal = new MacroNutrients();
             goalProgress = new MacroNutrients();
         }
@@ -30,7 +29,6 @@ namespace AMN.View
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            //loadoutMeals = new List<Meal>();
             await GetUserData();
 
             if(loadoutMeals != null &&
@@ -79,7 +77,7 @@ namespace AMN.View
                 Task dailyGoalTask = Task.Run(async () => { dailyGoal = await MasterModel.DAL.GetGoalAsync(); });
                 Task goalProgressTask = Task.Run(async () => { goalProgress = await MasterModel.DAL.GetGoalProgressAsync(); });
 
-                //Load the page faster by running these tasks at the same time in parallel.
+                //Load the page faster by running these tasks asynchronously.
                 await Task.WhenAll(loadoutTask, dailyGoalTask, goalProgressTask);
 
                 loadoutMeals = loadout.Meals;
@@ -116,7 +114,6 @@ namespace AMN.View
                 itemGrid.RowDefinitions.Add(new RowDefinition());
                 itemGrid.RowDefinitions.Add(new RowDefinition());
                 itemGrid.RowDefinitions.Add(new RowDefinition());
-                //itemGrid.RowDefinitions.Add(new RowDefinition());
 
                 itemGrid.RowDefinitions[1].Height = new GridLength(0.5, GridUnitType.Star);
                 itemGrid.RowDefinitions[2].Height = new GridLength(0.5, GridUnitType.Star);

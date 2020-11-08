@@ -16,16 +16,12 @@ namespace AMN.View
     {
         public string Key { get; set; }
         public int currentRow { get; set; }
-        private string repeatableLblText;
-        private int defaultMaxIndex;
         public Exercise Exercise { get; set; }
         public SelectedExercise(string key)
         {
             InitializeComponent();
             Exercise = new Exercise();
             Key = key;
-            repeatableLblText = "Reps:";
-            defaultMaxIndex = -1;
         }
 
         protected override async void OnAppearing()
@@ -34,10 +30,10 @@ namespace AMN.View
             Exercise = await GetExercise();
             Exercise = await RepController.PrepareRepSummaryAsync(Exercise);
             Exercise.Key = Key;
-            await RefreshList();
+            Refresh();
         }
 
-        private async Task RefreshList()
+        private void Refresh()
         {
             BindingContext = null;
             BindingContext = this;
@@ -46,16 +42,6 @@ namespace AMN.View
         private Task<Exercise> GetExercise()
         {
             return MasterModel.DAL.GetSelectedExerciseAsync(Key);
-        }
-
-        private void FillForm()
-        {
-
-        }
-
-        private void AddRep_Clicked(object sender, EventArgs e)
-        {
-
         }
 
         private async void Type_ItemTapped(object sender, ItemTappedEventArgs e)
