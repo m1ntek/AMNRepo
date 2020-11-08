@@ -13,6 +13,7 @@ namespace AMN.Model
         public int Index { get; set; }
         public string Amount { get; set; }
         public string AmountDifference { get; set; }
+        public string WeightString { get; set; } = "None";
         public double Weight { get; set; }
         public string WeightDifference { get; set; }
     }

@@ -14,7 +14,7 @@ namespace AMN.Controller
         public WeeklyComparisons(ExerciseLoadout _exSession)
         {
             exSession = _exSession;
-            lastWeeksSession = new ExerciseLoadout();
+            //lastWeeksSession = new ExerciseLoadout();
         }
 
         public async Task<ExerciseLoadout> CompareLastWeeksSession()
@@ -25,7 +25,23 @@ namespace AMN.Controller
                 lastWeeksSession = await MasterModel.DAL.GetLastWeeksExerciseLoadoutAsync(lastWeeksDate);
                 exSession = await SetDifferences();
             }
-            catch (Exception) {/* Do nothing */ }
+            catch (Exception) { /* Do nothing */ }
+
+            //Hide the compared values if no comparable data was found.
+            if (lastWeeksSession == null) exSession = SetTypesComparableFalse(exSession);
+
+            return exSession;
+        }
+
+        private ExerciseLoadout SetTypesComparableFalse(ExerciseLoadout exSession)
+        {
+            foreach (var exercise in exSession.Exercises)
+            {
+                foreach (var type in exercise.Types)
+                {
+                    type.IsComparable = false;
+                }
+            }
 
             return exSession;
         }
@@ -40,17 +56,9 @@ namespace AMN.Controller
                 {
                     var exSessionType = exSession.Exercises[i].Types[j];
 
-                    //In case a type was deleted during session log, we wrap the logic in try/catch
-                    try
+                    try //In case a type was deleted during session log, we wrap the logic in try/catch
                     {
                         var lastWeekSessionType = lastWeeksSession.Exercises[i].Types[j];
-
-                        //Easier to conceptualise
-                        //A log may have more reps than the initial loadout
-                        //so they are counted and identified which is larger.
-                        //var orderedReps = new List<ExerciseType> { exSessionType, lastWeekSessionType }.OrderByDescending(x => x.Reps.Count);
-                        //var highestCountRepsType = orderedReps.First();
-                        //var lowestCountRepsType = orderedReps.Last();
 
                         //If we have uneven comparisons
                         if (exSessionType.Reps.Count != lastWeekSessionType.Reps.Count)
@@ -76,8 +84,7 @@ namespace AMN.Controller
                                     }
                                 }
                             }
-                            //lastWeekSessionType has more reps
-                            else
+                            else //lastWeekSessionType has more reps
                             {
                                 for (int k = 0; k < lastWeekSessionType.Reps.Count; ++k)
                                 {

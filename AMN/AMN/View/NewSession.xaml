@@ -52,27 +52,27 @@
                                                                             <StackLayout>
                                                                                 <StackLayout Orientation="Horizontal">
                                                                                     <Label Text="Rep:" VerticalTextAlignment="Center"
-                                                                               TextColor="White"/>
+                                                                                           TextColor="White"/>
                                                                                     <Entry Text="{Binding Amount}"
-                                                                           WidthRequest="40"
-                                                                               TextColor="White"/>
+                                                                                           WidthRequest="40"
+                                                                                           TextColor="White"/>
                                                                                     <Label Text="Weight:" VerticalTextAlignment="Center"
-                                                                               TextColor="White"/>
+                                                                                           TextColor="White"/>
                                                                                     <Entry Placeholder="weight in kg"
-                                                                           Text="{Binding Weight}" VerticalTextAlignment="Center"
-                                                                               Keyboard="Numeric"
-                                                                               TextColor="White"/>
+                                                                                           Text="{Binding Weight}" VerticalTextAlignment="Center"
+                                                                                           Keyboard="Numeric"
+                                                                                           TextColor="White"/>
                                                                                     <Button Text="Del" HorizontalOptions="EndAndExpand"
-                                                                            WidthRequest="50"
-                                                                            CommandParameter="{Binding}"
-                                                                            Clicked="DelRep_Clicked"
-                                                                                BackgroundColor="Black"
-                                                                                BorderColor="White"
-                                                                                BorderWidth="1"
-                                                                                TextColor="White"
-                                                                                Padding="0,0"
-                                                                                HeightRequest="30"
-                                                                                    VerticalOptions="Center"/>
+                                                                                            WidthRequest="50"
+                                                                                            CommandParameter="{Binding}"
+                                                                                            Clicked="DelRep_Clicked"
+                                                                                            BackgroundColor="Black"
+                                                                                            BorderColor="White"
+                                                                                            BorderWidth="1"
+                                                                                            TextColor="White"
+                                                                                            Padding="0,0"
+                                                                                            HeightRequest="30"
+                                                                                            VerticalOptions="Center"/>
                                                                                 </StackLayout>
                                                                             </StackLayout>
                                                                         </DataTemplate>
@@ -108,7 +108,8 @@
                         BackgroundColor="DarkGoldenrod"
                         TextColor="White"
                         BorderColor="White"
-                        BorderWidth="1"/>
+                        BorderWidth="1"
+                        IsVisible="True"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

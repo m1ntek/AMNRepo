@@ -155,12 +155,30 @@ namespace AMN.View
             Refresh();
         }
 
+        private async Task<ExerciseLoadout> SetWeightStrings(ExerciseLoadout loadout)
+        {
+            foreach (var exercise in loadout.Exercises)
+            {
+                foreach (var type in exercise.Types)
+                {
+                    foreach (var rep in type.Reps)
+                    {
+                        rep.WeightString = rep.Weight + "kg";
+                    }
+                }
+            }
+
+            return loadout;
+        }
+
         private async void LogSession_Clicked(object sender, EventArgs e)
         {
             //Log end time
             SelectedLoadout.EndTime = DateTime.Now;
             //Set summary string of exercise time range.
             SelectedLoadout.StartToEnd = $"{SelectedLoadout.StartTime.ToShortTimeString()} - {SelectedLoadout.EndTime.ToShortTimeString()}";
+            //Set weight strings for bindings
+            SelectedLoadout = await SetWeightStrings(SelectedLoadout);
 
             WeeklyComparisons wComparison = new WeeklyComparisons(SelectedLoadout);
             var comparedLoadout = await wComparison.CompareLastWeeksSession();
@@ -183,6 +201,9 @@ namespace AMN.View
 
             //Set summary string of exercise time range.
             SelectedLoadout.StartToEnd = $"{SelectedLoadout.StartTime.ToShortTimeString()} - {SelectedLoadout.EndTime.ToShortTimeString()}";
+
+            //Set weight strings for bindings
+            SelectedLoadout = await SetWeightStrings(SelectedLoadout);
 
             WeeklyComparisons wComparison = new WeeklyComparisons(SelectedLoadout);
             var comparedLoadout = await wComparison.CompareLastWeeksSession();

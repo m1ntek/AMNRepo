@@ -392,7 +392,6 @@ public class DataAccessLayer
             .LimitToLast(7)
             .OnceAsync<ExerciseLoadout>())
             .Reverse()
-
             .Select(item => new ExerciseLoadout()
             {
                 Exercises = item.Object.Exercises,
@@ -423,15 +422,25 @@ public class DataAccessLayer
             .OnceSingleAsync<ExerciseLoadout>());
     }
 
-    public Task<ExerciseLoadout> GetLastWeeksExerciseLoadoutAsync(string previousWeekDate)
+    public async Task<ExerciseLoadout> GetLastWeeksExerciseLoadoutAsync(string previousWeekDate)
     {
-        return (fb.Child("Users")
+        //return (fb.Child("Users")
+        //    .Child(auth.User.LocalId)
+        //    .Child("ExerciseSessions")
+        //    .OrderByKey()
+        //    .StartAt(previousWeekDate)
+        //    .LimitToFirst(1)
+        //    .OnceSingleAsync<ExerciseLoadout>());
+
+        var tempList = (await fb.Child("Users")
             .Child(auth.User.LocalId)
             .Child("ExerciseSessions")
             .OrderByKey()
-            .StartAt(previousWeekDate)
-            .LimitToFirst(1)
-            .OnceSingleAsync<ExerciseLoadout>());
+            .LimitToLast(20)
+            .OnceAsync<ExerciseLoadout>()).ToList()
+            .Where(item => item.Object.DateString == previousWeekDate).ToList();
+
+        return tempList[0].Object;
     }
 
     public async Task SaveSelectedExerciseLoadoutAsync(ExerciseLoadout eLoadout)
