@@ -146,7 +146,8 @@ public class DataAccessLayer
         {
             LoadoutId = item.Object.LoadoutId,
             LoadoutName = item.Object.LoadoutName,
-            Meals = item.Object.Meals
+            Meals = item.Object.Meals,
+            Key = item.Key
         }).ToList();
     }
 
