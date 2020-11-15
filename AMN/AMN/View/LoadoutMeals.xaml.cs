@@ -203,7 +203,7 @@ namespace AMN.View
         private async void DeleteLoadout_Clicked(object sender, EventArgs e)
         {
             var deleteConfirmed = await DisplayAlert(
-                MasterModel.currentUser.Loadouts[currentLoadoutIndex].LoadoutName,
+                lblHeader.Text,
                 "Delete this loadout?", "Yes", "No");
 
             if(deleteConfirmed == true)
