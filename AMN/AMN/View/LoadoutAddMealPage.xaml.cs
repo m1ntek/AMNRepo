@@ -8,7 +8,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
 using Xamarin.Forms;
-using Xamarin.Forms.Markup;
 using Xamarin.Forms.Xaml;
 
 namespace AMN.View

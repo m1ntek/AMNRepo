@@ -51,9 +51,9 @@ namespace AMN
 
         private async Task UpdateFooter()
         {
-            loggedIn.IsVisible = true;
-            string userEmail = await MasterModel.DAL.GetEmail();
-            lblLoggedIn.Text = MasterModel.loginC.UpdateFooter(userEmail);
+            //loggedIn.IsVisible = true;
+            //string userEmail = await MasterModel.DAL.GetEmail();
+            //lblLoggedIn.Text = MasterModel.loginC.UpdateFooter(userEmail);
         }
     }
 }

@@ -113,7 +113,7 @@
                         TextColor="White"
                         BorderColor="White"
                         BorderWidth="1"
-                        IsVisible="true"/>
+                        IsVisible="False"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
