@@ -1,5 +1,6 @@
-# AMNRepo
-Advanced Macro Nutrients
+# Advanced Macro Nutrients
+
+Head on over to AMN/AMN/ to see the majority of the code.
 
 Project paper during the last year of Bachelor's Degree studies (Level 7).
 
